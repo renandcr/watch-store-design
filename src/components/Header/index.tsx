@@ -4,7 +4,7 @@ import Logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { Badge } from "@mui/material";
 
-const Header = () => {
+const Header: React.FC = (): JSX.Element => {
   return (
     <HeaderContainer>
       <div>
