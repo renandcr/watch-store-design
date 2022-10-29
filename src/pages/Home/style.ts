@@ -6,7 +6,7 @@ export const MainHomeContainer = styled.main`
   padding-bottom: 30px;
 `;
 
-export const HomeContainer = styled.section`
+export const HomeContainer = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
