@@ -1,5 +1,11 @@
-import { MainPageCart, CartPageContainer, CartCardsSection } from "./style";
+import {
+  OrderSummarySection,
+  CartPageContainer,
+  CartCardsSection,
+  MainPageCart,
+} from "./style";
 import CartProductCard from "../../components/CartProductCard";
+import OrderSummary from "../../components/OrderSummary";
 import Header from "../../components/Header";
 
 const CartPage: React.FC = (): JSX.Element => {
@@ -8,6 +14,9 @@ const CartPage: React.FC = (): JSX.Element => {
       <Header />
       <MainPageCart>
         <CartPageContainer>
+          <OrderSummarySection>
+            <OrderSummary />
+          </OrderSummarySection>
           <CartCardsSection>
             <CartProductCard />
           </CartCardsSection>
