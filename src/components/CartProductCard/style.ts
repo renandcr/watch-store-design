@@ -43,25 +43,6 @@ export const CartDescriptionContainer = styled.div`
   }
 `;
 
-export const TrashContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 27px;
-  border-radius: 4px;
-  color: gray;
-  cursor: pointer;
-  :hover {
-    color: #ffffff;
-    background-color: lightgray;
-    transition: 0.3s;
-  }
-  :active {
-    background-color: gray;
-  }
-`;
-
 export const UnitsContainerAndDeletion = styled.div`
   display: flex;
   flex-direction: column;
@@ -100,6 +81,12 @@ export const AddContainer = styled.div`
   }
 `;
 
+export const QuantityContainer = styled.div`
+  font-size: 12px;
+  color: gray;
+  font-weight: 500;
+`;
+
 export const SubtractContainer = styled.div`
   display: flex;
   align-items: center;
@@ -118,8 +105,21 @@ export const SubtractContainer = styled.div`
   }
 `;
 
-export const QuantityContainer = styled.div`
-  font-size: 12px;
+export const TrashContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 27px;
+  border-radius: 4px;
   color: gray;
-  font-weight: 500;
+  cursor: pointer;
+  :hover {
+    color: #ffffff;
+    background-color: lightgray;
+    transition: 0.3s;
+  }
+  :active {
+    background-color: gray;
+  }
 `;
