@@ -1,13 +1,13 @@
 import {
-  CartProductCardContainer,
-  CartImageContainer,
-  CartDescriptionContainer,
-  TrashContainer,
-  AddAndSubtractComponent,
-  AddContainer,
-  QuantityContainer,
-  SubtractContainer,
   UnitsContainerAndDeletion,
+  CartProductCardContainer,
+  CartDescriptionContainer,
+  AddAndSubtractComponent,
+  CartImageContainer,
+  SubtractContainer,
+  QuantityContainer,
+  TrashContainer,
+  AddContainer,
 } from "./style";
 
 import Watch from "../../assets/images/eight.jpg";

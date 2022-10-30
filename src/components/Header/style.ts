@@ -44,7 +44,7 @@ export const HeaderContainer = styled.header`
       padding: 0 38px 0 38px;
       height: 75px;
     }
-    @media only sreen and (min-width: 1200px) {
+    @media only screen and (min-width: 1200px) {
       padding: 0 60px 0 60px;
     }
   }

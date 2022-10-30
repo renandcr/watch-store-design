@@ -1,6 +1,7 @@
 import {
   OrderSummarySection,
   CartPageContainer,
+  GreetingContainer,
   CartCardsSection,
   MainPageCart,
 } from "./style";
@@ -14,6 +15,7 @@ const CartPage: React.FC = (): JSX.Element => {
       <Header />
       <MainPageCart>
         <CartPageContainer>
+          <GreetingContainer>Seja bem vindo(a), Harv</GreetingContainer>
           <OrderSummarySection>
             <OrderSummary />
           </OrderSummarySection>

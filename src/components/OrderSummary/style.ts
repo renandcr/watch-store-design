@@ -24,6 +24,13 @@ export const TitleContainer = styled.div`
   }
 `;
 
+export const OrderBodyContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 25px 20px;
+`;
+
 export const PaymentInformationContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -36,13 +43,6 @@ export const PaymentInformationContainer = styled.div`
     color: ${VARIABLES.colorGold2};
     font-weight: 500;
   }
-`;
-
-export const OrderBodyContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px 25px 20px;
 `;
 
 export const KeepBuyingContainer = styled.span`
