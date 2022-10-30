@@ -15,7 +15,7 @@ const Header: React.FC = (): JSX.Element => {
           <Link to="">
             <li>Sair</li>
           </Link>
-          <Link to="">
+          <Link to="/">
             <li>Voltar</li>
           </Link>
           <Link to="">
@@ -24,7 +24,7 @@ const Header: React.FC = (): JSX.Element => {
           <Link to="">
             <li>Login</li>
           </Link>
-          <Link to="">
+          <Link to="/cart-page">
             <Badge badgeContent={4} color={"primary"}>
               <ShoppingCartOutlined />
             </Badge>
