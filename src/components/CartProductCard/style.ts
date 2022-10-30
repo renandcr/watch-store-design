@@ -29,6 +29,10 @@ export const CartDescriptionContainer = styled.div`
   h2 {
     line-height: 18px;
     color: ${VARIABLES.colorGray1};
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
   span {
     margin-top: 15px;
