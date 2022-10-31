@@ -1,3 +1,8 @@
+import CartProductCard from "../../components/CartProductCard";
+import OrderSummary from "../../components/OrderSummary";
+import { useTypedSelector } from "../../store/modules";
+import Header from "../../components/Header";
+
 import {
   OrderSummarySection,
   CartPageContainer,
@@ -5,11 +10,10 @@ import {
   CartCardsSection,
   MainPageCart,
 } from "./style";
-import CartProductCard from "../../components/CartProductCard";
-import OrderSummary from "../../components/OrderSummary";
-import Header from "../../components/Header";
 
 const CartPage: React.FC = (): JSX.Element => {
+  const productCart = useTypedSelector((state) => state.cart);
+
   return (
     <>
       <Header />
@@ -20,7 +24,9 @@ const CartPage: React.FC = (): JSX.Element => {
             <OrderSummary />
           </OrderSummarySection>
           <CartCardsSection>
-            <CartProductCard />
+            {productCart.map((product, index) => (
+              <CartProductCard key={index} product={product} />
+            ))}
           </CartCardsSection>
         </CartPageContainer>
       </MainPageCart>

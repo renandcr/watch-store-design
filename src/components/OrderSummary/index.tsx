@@ -1,3 +1,7 @@
+import { BsBagFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import Button from "../Button";
+
 import {
   PaymentInformationContainer,
   OrderSummaryContainer,
@@ -5,10 +9,6 @@ import {
   OrderBodyContainer,
   TitleContainer,
 } from "./style";
-
-import { BsBagFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
-import Button from "../Button";
 
 const OrderSummary: React.FC = (): JSX.Element => {
   return (
