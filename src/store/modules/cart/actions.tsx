@@ -1,4 +1,9 @@
-import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART } from "./constants";
+import {
+  REMOVE_PRODUCT_FROM_CART,
+  ADD_PRODUCT_TO_CART,
+  SUBTRACT_UNITS,
+  ADD_UNITS,
+} from "./constants";
 import { IDbProducts } from "../dbProducts";
 
 export interface IAddAndRemoveProductsAction {
@@ -6,15 +11,29 @@ export interface IAddAndRemoveProductsAction {
   payload: IDbProducts;
 }
 
-export const addProductToCartAction = (product: IDbProducts) => {
+export const actionAddProductToCart = (product: IDbProducts) => {
   return {
     type: ADD_PRODUCT_TO_CART,
     payload: product,
   };
 };
-export const removeProductFromCartAction = (product: IDbProducts) => {
+export const actionRemoveProductFromCart = (product: IDbProducts) => {
   return {
     type: REMOVE_PRODUCT_FROM_CART,
+    payload: product,
+  };
+};
+
+export const actionAddUnits = (product: IDbProducts) => {
+  return {
+    type: ADD_UNITS,
+    payload: product,
+  };
+};
+
+export const actionSubtractUnits = (product: IDbProducts) => {
+  return {
+    type: SUBTRACT_UNITS,
     payload: product,
   };
 };

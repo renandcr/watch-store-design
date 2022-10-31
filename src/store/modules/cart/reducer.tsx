@@ -1,10 +1,16 @@
-import { ADD_PRODUCT_TO_CART, REMOVE_PRODUCT_FROM_CART } from "./constants";
 import { IAddAndRemoveProductsAction } from "./actions";
 import { IDbProducts } from "../dbProducts";
 
+import {
+  REMOVE_PRODUCT_FROM_CART,
+  ADD_PRODUCT_TO_CART,
+  SUBTRACT_UNITS,
+  ADD_UNITS,
+} from "./constants";
+
 const cartReducer = (
   state: Array<IDbProducts> = JSON.parse(
-    localStorage.getItem("@watchStore: cartProducts") || ""
+    localStorage.getItem("@watchStore: cartProducts") || JSON.stringify("")
   ) || [],
   action: IAddAndRemoveProductsAction
 ) => {
@@ -22,17 +28,36 @@ const cartReducer = (
         return [...state, action.payload];
       }
 
-      return [...state];
+      return state;
 
     case REMOVE_PRODUCT_FROM_CART:
-      const updatedCart = state.filter(
-        (product) => product.id !== action.payload.id
-      );
+      const updatedCart = state.filter((product) => {
+        action.payload.units = 1;
+        return product.id !== action.payload.id;
+      });
       localStorage.setItem(
         "@watchStore: cartProducts",
         JSON.stringify(updatedCart)
       );
-      return [...updatedCart];
+
+      return updatedCart;
+
+    case ADD_UNITS:
+      action.payload.units += 1;
+      localStorage.setItem("@watchStore: cartProducts", JSON.stringify(state));
+
+      return [...state];
+
+    case SUBTRACT_UNITS:
+      if (action.payload.units > 1) {
+        action.payload.units -= 1;
+        localStorage.setItem(
+          "@watchStore: cartProducts",
+          JSON.stringify(state)
+        );
+      }
+
+      return [...state];
 
     default:
       return state;

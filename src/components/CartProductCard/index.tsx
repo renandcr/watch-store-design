@@ -1,9 +1,14 @@
-import { removeProductFromCartAction } from "../../store/modules/cart/actions";
 import { IDbProducts } from "../../store/modules/dbProducts";
 import { RiSubtractLine } from "react-icons/ri";
-import { IoIosAdd } from "react-icons/io";
+import { RiAddLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { FaTrash } from "react-icons/fa";
+
+import {
+  actionRemoveProductFromCart,
+  actionSubtractUnits,
+  actionAddUnits,
+} from "../../store/modules/cart/actions";
 
 import {
   UnitsContainerAndDeletion,
@@ -39,16 +44,18 @@ const CartProductCard: React.FC<{ product: IDbProducts }> = ({
 
       <UnitsContainerAndDeletion>
         <AddAndSubtractComponent>
-          <AddContainer>
-            <IoIosAdd />
+          <AddContainer onClick={() => dispatch(actionAddUnits(product))}>
+            <RiAddLine />
           </AddContainer>
-          <QuantityContainer>1</QuantityContainer>
-          <SubtractContainer>
+          <QuantityContainer>{product.units}</QuantityContainer>
+          <SubtractContainer
+            onClick={() => dispatch(actionSubtractUnits(product))}
+          >
             <RiSubtractLine />
           </SubtractContainer>
         </AddAndSubtractComponent>
         <TrashContainer
-          onClick={() => dispatch(removeProductFromCartAction(product))}
+          onClick={() => dispatch(actionRemoveProductFromCart(product))}
         >
           <span>
             <FaTrash />

@@ -1,3 +1,4 @@
+import { useTypedSelector } from "../../store/modules/index";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import { HeaderContainer, LogoContainer } from "./style";
 import Logo from "../../assets/images/logo.png";
@@ -5,6 +6,8 @@ import { Link } from "react-router-dom";
 import { Badge } from "@mui/material";
 
 const Header: React.FC = (): JSX.Element => {
+  const cartProducts = useTypedSelector((state) => state.cart);
+
   return (
     <HeaderContainer>
       <div>
@@ -25,7 +28,7 @@ const Header: React.FC = (): JSX.Element => {
             <li>Login</li>
           </Link>
           <Link to="/cart-page">
-            <Badge badgeContent={4} color={"primary"}>
+            <Badge badgeContent={cartProducts.length} color={"primary"}>
               <ShoppingCartOutlined />
             </Badge>
           </Link>
