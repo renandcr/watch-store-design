@@ -1,3 +1,10 @@
+import { removeProductFromCartAction } from "../../store/modules/cart/actions";
+import { IDbProducts } from "../../store/modules/dbProducts";
+import { RiSubtractLine } from "react-icons/ri";
+import { IoIosAdd } from "react-icons/io";
+import { useDispatch } from "react-redux";
+import { FaTrash } from "react-icons/fa";
+
 import {
   UnitsContainerAndDeletion,
   CartProductCardContainer,
@@ -10,20 +17,19 @@ import {
   AddContainer,
 } from "./style";
 
-import Watch from "../../assets/images/eight.jpg";
-import { RiSubtractLine } from "react-icons/ri";
-import { IoIosAdd } from "react-icons/io";
-import { FaTrash } from "react-icons/fa";
+const CartProductCard: React.FC<{ product: IDbProducts }> = ({
+  product,
+}): JSX.Element => {
+  const dispatch = useDispatch();
 
-const CartProductCard: React.FC = (): JSX.Element => {
   return (
     <CartProductCardContainer>
       <CartImageContainer>
-        <img src={Watch} alt="Imagem ilustrativa de um relógio" />
+        <img src={product.img} alt="Imagem ilustrativa de um relógio" />
       </CartImageContainer>
       <CartDescriptionContainer>
-        <h2>Aqui fica a descrição do relógio </h2>
-        <span>1.990</span>
+        <h2>{product.description}</h2>
+        <span>{product.price}</span>
       </CartDescriptionContainer>
 
       <UnitsContainerAndDeletion>
@@ -36,7 +42,9 @@ const CartProductCard: React.FC = (): JSX.Element => {
             <RiSubtractLine />
           </SubtractContainer>
         </AddAndSubtractComponent>
-        <TrashContainer>
+        <TrashContainer
+          onClick={() => dispatch(removeProductFromCartAction(product))}
+        >
           <span>
             <FaTrash />
           </span>
