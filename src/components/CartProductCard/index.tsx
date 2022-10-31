@@ -22,6 +22,11 @@ const CartProductCard: React.FC<{ product: IDbProducts }> = ({
 }): JSX.Element => {
   const dispatch = useDispatch();
 
+  const productPrice = product.price.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
+
   return (
     <CartProductCardContainer>
       <CartImageContainer>
@@ -29,7 +34,7 @@ const CartProductCard: React.FC<{ product: IDbProducts }> = ({
       </CartImageContainer>
       <CartDescriptionContainer>
         <h2>{product.description}</h2>
-        <span>{product.price}</span>
+        <span>{productPrice}</span>
       </CartDescriptionContainer>
 
       <UnitsContainerAndDeletion>

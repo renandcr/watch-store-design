@@ -1,3 +1,4 @@
+import { useTypedSelector } from "../../store/modules/index";
 import { BsBagFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Button from "../Button";
@@ -11,6 +12,16 @@ import {
 } from "./style";
 
 const OrderSummary: React.FC = (): JSX.Element => {
+  const cartProducts = useTypedSelector((state) => state.cart);
+  const totalUnits = cartProducts.reduce(
+    (acc, product) => product.units + acc,
+    0
+  );
+
+  const totalPrice = cartProducts
+    .reduce((acc, product) => product.price * product.units + acc, 0)
+    .toLocaleString("pt-br", { style: "currency", currency: "BRL" });
+
   return (
     <OrderSummaryContainer>
       <TitleContainer>
@@ -18,8 +29,8 @@ const OrderSummary: React.FC = (): JSX.Element => {
       </TitleContainer>
       <OrderBodyContainer>
         <PaymentInformationContainer>
-          <span>1 unidades</span>
-          <span>R$ 2.890</span>
+          <span>{totalUnits} unidades</span>
+          <span>{totalPrice}</span>
         </PaymentInformationContainer>
         <Link to="/">
           <KeepBuyingContainer>
