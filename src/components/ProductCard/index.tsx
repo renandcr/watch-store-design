@@ -1,4 +1,4 @@
-import { addProductToCartAction } from "../../store/modules/cart/actions";
+import { actionAddProductToCart } from "../../store/modules/cart/actions";
 import { IDbProducts } from "../../store/modules/dbProducts";
 import { useDispatch } from "react-redux";
 import Button from "../Button";
@@ -27,7 +27,7 @@ const ProductCard: React.FC<{ product: IDbProducts }> = ({
       <DescriptionContainer>
         <h2>{product.description}</h2>
         <span>{productPrice}</span>
-        <Button onClick={() => dispatch(addProductToCartAction(product))}>
+        <Button onClick={() => dispatch(actionAddProductToCart(product))}>
           Adicionar ao carrinho
         </Button>
       </DescriptionContainer>

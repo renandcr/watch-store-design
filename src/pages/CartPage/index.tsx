@@ -20,9 +20,12 @@ const CartPage: React.FC = (): JSX.Element => {
       <MainPageCart>
         <CartPageContainer>
           <GreetingContainer>Seja bem vindo(a), Harv</GreetingContainer>
-          <OrderSummarySection>
-            <OrderSummary />
-          </OrderSummarySection>
+          {productCart.length > 0 ? (
+            <OrderSummarySection>
+              <OrderSummary />
+            </OrderSummarySection>
+          ) : null}
+
           <CartCardsSection>
             {productCart.map((product, index) => (
               <CartProductCard key={index} product={product} />
