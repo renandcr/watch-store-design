@@ -13,6 +13,12 @@ const ProductCard: React.FC<{ product: IDbProducts }> = ({
   product,
 }): JSX.Element => {
   const dispatch = useDispatch();
+
+  const productPrice = product.price.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
+
   return (
     <ProductCardContainer>
       <ImageContainer>
@@ -20,7 +26,7 @@ const ProductCard: React.FC<{ product: IDbProducts }> = ({
       </ImageContainer>
       <DescriptionContainer>
         <h2>{product.description}</h2>
-        <span>{product.price}</span>
+        <span>{productPrice}</span>
         <Button onClick={() => dispatch(addProductToCartAction(product))}>
           Adicionar ao carrinho
         </Button>
