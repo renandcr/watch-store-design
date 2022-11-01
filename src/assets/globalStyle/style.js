@@ -48,9 +48,10 @@ export const VARIABLES = {
   colorGray2: "#6c757d",
   colorGold1: "#926c15",
   colorGold2: "#a47e1b",
-  colorShadow: "0 4px 34px -10px #6c757d",
-  colorShadowSecondary:
+  colorShadow1: "0 4px 34px -10px #6c757d",
+  colorShadow2:
     "0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%)",
+  colorShadow3: "0 4px 34px -7px #6c757d",
 
   fontSecondary: "Poppins, sans-serif",
   fontThirdy: "Open Sans, sans-serif",

@@ -1,4 +1,4 @@
-import { RegistrationFormContainer, LoginShortcutContainer } from "./style";
+import { FormContainer, LoginShortcutContainer } from "./style";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -48,7 +48,7 @@ const RegistrationForm: React.FC = (): JSX.Element => {
   };
 
   return (
-    <RegistrationFormContainer onSubmit={handleSubmit(submissionMethod)}>
+    <FormContainer onSubmit={handleSubmit(submissionMethod)}>
       <h1>Cadastre-se aqui</h1>
       <TextField
         className="textField"
@@ -78,7 +78,7 @@ const RegistrationForm: React.FC = (): JSX.Element => {
       )}
       <TextField
         className="textField"
-        label="Email"
+        label="E-mail"
         type="email"
         autoComplete="currente-password"
         {...register("email")}
@@ -117,12 +117,12 @@ const RegistrationForm: React.FC = (): JSX.Element => {
       )}
       <LoginShortcutContainer>
         <span>Já possui conta?</span>
-        <Link to="">
+        <Link to="/login-page">
           <span>Faça o login</span>
         </Link>
       </LoginShortcutContainer>
       <Button>Cadastrar</Button>
-    </RegistrationFormContainer>
+    </FormContainer>
   );
 };
 

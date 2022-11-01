@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   position: fixed;
   width: 100vw;
   background-color: ${VARIABLES.colorPrimary};
-  box-shadow: ${VARIABLES.colorShadowSecondary};
+  box-shadow: ${VARIABLES.colorShadow3};
   z-index: 2;
   > div:first-child {
     display: flex;

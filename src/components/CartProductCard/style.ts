@@ -7,7 +7,7 @@ export const CartProductCardContainer = styled.div`
   width: 100%;
   height: 115px;
   border-radius: 4px;
-  box-shadow: ${VARIABLES.colorShadow};
+  box-shadow: ${VARIABLES.colorShadow2};
   background-color: rgb(255, 255, 255);
 `;
 
