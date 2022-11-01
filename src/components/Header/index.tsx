@@ -21,7 +21,7 @@ const Header: React.FC = (): JSX.Element => {
           <Link to="/">
             <li>Voltar</li>
           </Link>
-          <Link to="">
+          <Link to="/registration-page">
             <li>Cadastro</li>
           </Link>
           <Link to="">
