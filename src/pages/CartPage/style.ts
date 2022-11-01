@@ -44,6 +44,16 @@ export const GreetingContainer = styled.h2`
   }
 `;
 
+export const EmptyCartContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  img {
+    width: 90%;
+    max-width: 360px;
+  }
+`;
+
 export const OrderSummarySection = styled.section`
   width: 90%;
   max-width: 410px;

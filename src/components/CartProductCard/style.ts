@@ -95,6 +95,7 @@ export const SubtractContainer = styled.div`
   height: 33%;
   width: 100%;
   color: gray;
+  cursor: pointer;
   :hover {
     color: #ffffff;
     background-color: lightgray;
