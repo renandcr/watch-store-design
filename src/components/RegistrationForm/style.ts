@@ -1,7 +1,7 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
 
-export const RegistrationFormContainer = styled.form`
+export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +10,7 @@ export const RegistrationFormContainer = styled.form`
   max-width: 400px;
   padding: 30px 20px 32px 20px;
   border-radius: 4px;
-  box-shadow: ${VARIABLES.colorSecondary};
+  box-shadow: ${VARIABLES.colorShadow2};
   background-color: rgb(255, 255, 255);
   h1 {
     font-size: 24px;
@@ -47,7 +47,7 @@ export const LoginShortcutContainer = styled.div`
     margin-bottom: 5px;
   }
   span {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
   }
 `;

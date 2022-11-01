@@ -7,7 +7,7 @@ export const ProductCardContainer = styled.li`
   margin: 0 20px 30px 20px;
   font-weight: 500;
   background-color: ${VARIABLES.colorPrimary};
-  box-shadow: ${VARIABLES.colorShadow};
+  box-shadow: ${VARIABLES.colorShadow1};
   text-align: left;
 
   @media only screen and (min-width: 720px) {
