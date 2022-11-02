@@ -55,15 +55,23 @@ export const HeaderContainer = styled.header`
 `;
 
 export const LogoContainer = styled.div`
-  background-color: ${VARIABLES.colorAlternative};
-  border-radius: 4px;
-  width: 128px;
+  display: flex;
+  flex-direction: column;
+  width: 116px;
   height: 52px;
-  padding: 5px;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px;
+  border-radius: 6px;
+  background-color: ${VARIABLES.colorAlternative};
+  padding: 3px 10px 3px 10px;
+  .watch-store {
+    font-family: "Righteous", cursive;
+    color: #ffffff;
+  }
+  .larger {
+    font-size: 30px;
+  }
+  .smaller {
+    font-size: 15px;
+    text-align: right;
+    margin-top: -2px;
   }
 `;

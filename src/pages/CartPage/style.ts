@@ -38,9 +38,15 @@ export const GreetingContainer = styled.h2`
   font-family: ${VARIABLES.fontSecondary};
   color: ${VARIABLES.colorGray2};
   font-weight: 500;
+  span {
+    font-size: 22px;
+  }
 
   @media only screen and (min-width: 768px) {
     font-size: 28px;
+    span {
+      font-size: 27px;
+    }
   }
 `;
 

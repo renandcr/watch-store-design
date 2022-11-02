@@ -28,7 +28,9 @@ const CartPage: React.FC = (): JSX.Element => {
         <MainPageCart>
           <CartPageContainer>
             {productCart.length > 0 ? (
-              <GreetingContainer>Seja bem vindo(a), Harv</GreetingContainer>
+              <GreetingContainer>
+                Seja bem-vindo :<span>)</span>, Harv
+              </GreetingContainer>
             ) : (
               <GreetingContainer>Seu carrinho está vazio!</GreetingContainer>
             )}
