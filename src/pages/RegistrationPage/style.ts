@@ -8,12 +8,12 @@ export const MainRegistrationForm = styled.main`
 
 export const RegistrationPageContainer = styled.section`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  margin-top: 30px;
   width: 100%;
-  margin-top: 115px;
 
-  @media only screen and (min-width: 768px) {
-    margin-top: 165px;
+  @media only screen and (max-width: 1024px) {
+    width: 90%;
   }
 `;

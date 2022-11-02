@@ -1,13 +1,17 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
 
-export const FormContainer = styled.form`
+export const FormContainer = styled.div`
+  width: 100%;
+  max-width: 400px;
+`;
+
+export const InsideFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 10px;
-  width: 90%;
-  max-width: 400px;
+  width: 100%;
   padding: 30px 20px 32px 20px;
   border-radius: 4px;
   box-shadow: ${VARIABLES.colorShadow2};
@@ -43,11 +47,16 @@ export const LoginShortcutContainer = styled.div`
   align-items: center;
   width: 100%;
   a {
-    text-decoration: underline;
+    color: ${VARIABLES.colorButton};
+    :hover {
+      text-decoration: underline;
+      color: ${VARIABLES.colorSecondary};
+    }
     margin-bottom: 5px;
   }
   span {
-    font-size: 11px;
+    text-transform: none;
+    font-size: 12px;
     font-weight: 500;
   }
 `;

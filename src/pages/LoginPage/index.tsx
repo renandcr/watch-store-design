@@ -1,12 +1,11 @@
 import { MainLoginPage, LoginPageContainer } from "./style";
 import LoginForm from "../../components/LoginForm";
-import Header from "../../components/Header";
+import BigLogo from "../../components/BigLogo";
 import { motion } from "framer-motion";
 
 const LoginPage: React.FC = (): JSX.Element => {
   return (
     <>
-      <Header />
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -14,6 +13,7 @@ const LoginPage: React.FC = (): JSX.Element => {
       >
         <MainLoginPage>
           <LoginPageContainer>
+            <BigLogo />
             <LoginForm />
           </LoginPageContainer>
         </MainLoginPage>

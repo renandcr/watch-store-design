@@ -1,7 +1,6 @@
 import { useTypedSelector } from "../../store/modules/index";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import { HeaderContainer, LogoContainer } from "./style";
-import Logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { Badge } from "@mui/material";
 
@@ -12,7 +11,8 @@ const Header: React.FC = (): JSX.Element => {
     <HeaderContainer>
       <div>
         <LogoContainer>
-          <img src={Logo} alt="Logo da loja" />
+          <span className="watch-store larger">Watch</span>
+          <span className="watch-store smaller">Store</span>
         </LogoContainer>
         <ul>
           <Link to="">

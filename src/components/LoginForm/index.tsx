@@ -1,8 +1,10 @@
+import { InsideFormContainer } from "../RegistrationForm/style";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { FormContainer } from "../RegistrationForm/style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
+import WebSiteLogo from "../WebSiteLogo";
 import Button from "../Button";
 import * as yup from "yup";
 
@@ -28,35 +30,38 @@ const LoginForm: React.FC = (): JSX.Element => {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit(submissionMethod)}>
-      <h1>Faça o login</h1>
-      <TextField
-        className="textField"
-        type="text"
-        label="E-mail"
-        autoComplete="current-password"
-        {...register("email")}
-      />
-      {errors.email && (
-        <p>
-          <AiOutlineExclamationCircle />
-          {errors.email?.message}
-        </p>
-      )}
-      <TextField
-        className="textField"
-        type="password"
-        label="Senha"
-        autoComplete="current-password"
-        {...register("password")}
-      />
-      {errors.password && (
-        <p>
-          <AiOutlineExclamationCircle />
-          {errors.password?.message}
-        </p>
-      )}
-      <Button>Login</Button>
+    <FormContainer>
+      <WebSiteLogo />
+      <InsideFormContainer onSubmit={handleSubmit(submissionMethod)}>
+        <h1>Fazer login</h1>
+        <TextField
+          className="textField"
+          type="text"
+          label="E-mail"
+          autoComplete="current-password"
+          {...register("email")}
+        />
+        {errors.email && (
+          <p>
+            <AiOutlineExclamationCircle />
+            {errors.email?.message}
+          </p>
+        )}
+        <TextField
+          className="textField"
+          type="password"
+          label="Senha"
+          autoComplete="current-password"
+          {...register("password")}
+        />
+        {errors.password && (
+          <p>
+            <AiOutlineExclamationCircle />
+            {errors.password?.message}
+          </p>
+        )}
+        <Button>Login</Button>
+      </InsideFormContainer>
     </FormContainer>
   );
 };

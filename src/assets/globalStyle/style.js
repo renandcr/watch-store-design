@@ -26,7 +26,6 @@ export const GlobalStyle = createGlobalStyle`
         text-transform: uppercase;
         color: #f45b69;
         text-decoration: none;
-
         cursor: pointer;
         :hover {
             filter: brightness(75%);
