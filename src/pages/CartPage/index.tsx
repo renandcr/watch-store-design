@@ -2,6 +2,7 @@ import CartProductCard from "../../components/CartProductCard";
 import EmptyCart from "../../assets/images/carrinho_vazio.png";
 import OrderSummary from "../../components/OrderSummary";
 import { useTypedSelector } from "../../store/modules";
+import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { motion } from "framer-motion";
 
@@ -53,6 +54,7 @@ const CartPage: React.FC = (): JSX.Element => {
             </CartCardsSection>
           </CartPageContainer>
         </MainPageCart>
+        <Footer />
       </motion.div>
     </>
   );

@@ -1,6 +1,7 @@
 import { MainRegistrationForm, RegistrationPageContainer } from "./style";
 import RegistrationForm from "../../components/RegistrationForm";
 import BigLogo from "../../components/BigLogo";
+import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
 
 const RegistrationPage: React.FC = (): JSX.Element => {
@@ -18,6 +19,7 @@ const RegistrationPage: React.FC = (): JSX.Element => {
           </RegistrationPageContainer>
         </MainRegistrationForm>
       </motion.div>
+      <Footer />
     </>
   );
 };
