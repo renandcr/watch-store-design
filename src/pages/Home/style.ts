@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const MainHomeContainer = styled.main`
   display: flex;
   justify-content: center;
-  padding-bottom: 30px;
 `;
 
 export const HomeContainer = styled.ul`

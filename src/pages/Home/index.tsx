@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import { MainHomeContainer } from "./style";
 import { HomeContainer } from "./style";
 import { motion } from "framer-motion";
+import Footer from "../../components/Footer";
 
 const Home: React.FC = (): JSX.Element => {
   return (
@@ -21,6 +22,7 @@ const Home: React.FC = (): JSX.Element => {
             ))}
           </HomeContainer>
         </MainHomeContainer>
+        <Footer />
       </motion.div>
     </>
   );
