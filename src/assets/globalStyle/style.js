@@ -39,9 +39,10 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const VARIABLES = {
-  colorPrimary: "#609cba",
+  colorBlue1: "#609cba",
+  colorBlue2: "#1768ac",
+  colorBlue3: "#5d8aa8",
   colorSecondary: "#f45b69",
-  colorButton: "#1768ac",
   colorAlternative: "#ff0054",
   colorGray1: "#495057",
   colorGray2: "#6c757d",

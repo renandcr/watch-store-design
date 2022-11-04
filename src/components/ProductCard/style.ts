@@ -6,7 +6,7 @@ export const ProductCardContainer = styled.li`
   border-radius: 4px;
   margin: 0 20px 30px 20px;
   font-weight: 500;
-  background-color: ${VARIABLES.colorPrimary};
+  background-color: ${VARIABLES.colorBlue1};
   box-shadow: ${VARIABLES.colorShadow1};
   text-align: left;
 

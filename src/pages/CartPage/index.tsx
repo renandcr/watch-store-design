@@ -28,13 +28,13 @@ const CartPage: React.FC = (): JSX.Element => {
       >
         <MainPageCart>
           <CartPageContainer>
-            {productCart.length > 0 ? (
+            {/* {productCart.length > 0 ? (
               <GreetingContainer>
                 Seja bem-vindo :<span>)</span>, Harv
               </GreetingContainer>
             ) : (
               <GreetingContainer>Seu carrinho está vazio!</GreetingContainer>
-            )}
+            )} */}
             {productCart.length > 0 ? (
               <OrderSummarySection>
                 <OrderSummary />

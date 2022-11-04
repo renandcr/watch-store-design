@@ -10,9 +10,12 @@ export const HomeContainer = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
   width: 1440px;
-  margin-top: 125px;
+  margin-top: 215px;
 
-  @media only screen and (min-width: 650px) {
-    margin-top: 100px;
+  @media only screen and (min-width: 500px) {
+    margin-top: 160px;
+  }
+  @media only screen and (min-width: 768px) {
+    margin-top: 170px;
   }
 `;
