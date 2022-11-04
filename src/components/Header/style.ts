@@ -3,54 +3,102 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   position: fixed;
   width: 100vw;
-  background-color: ${VARIABLES.colorPrimary};
   box-shadow: ${VARIABLES.colorShadow3};
   z-index: 2;
-  > div:first-child {
+`;
+
+export const TopContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 15px 20px 15px 15px;
+  background-color: ${VARIABLES.colorBlue3};
+  .input-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 15px 6px 15px;
-    width: 1440px;
-    height: 100px;
-    font-weight: 600;
-    ul {
+    border-radius: 4px;
+    height: 45px;
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      padding-left: 15px;
+      font-size: 15px;
+      color: rgb(100, 100, 100);
+      :focus {
+        outline: none;
+      }
+      ::placeholder {
+        font-size: 15px;
+        font-weight: 100;
+        color: rgb(140, 140, 140);
+      }
+    }
+    button {
       display: flex;
+      justify-content: center;
       align-items: center;
-      li {
-        font-size: ${VARIABLES.fontSize3};
-        font-family: ${VARIABLES.fontSecondary};
-        font-weight: 600;
-      }
-      a + a {
-        margin-left: 10px;
-
-        @media only screen and (min-width: 375px) {
-          margin-left: 19px;
-        }
-        @media only screen and (min-width: 425px) {
-          margin-left: 34px;
+      border: none;
+      margin-left: -1px;
+      padding-right: 15px;
+      border-radius: 0 4px 4px 0;
+      background-color: #ffffff;
+      filter: none;
+      .search-icon {
+        font-size: 26px;
+        color: rgb(180, 180, 180);
+        :hover {
+          filter: brightness(75%);
         }
       }
-    }
-
-    @media only screen and (min-width: 650px) {
-      flex-direction: row;
-      padding: 0 38px 0 38px;
-      height: 75px;
-    }
-    @media only screen and (min-width: 1200px) {
-      padding: 0 60px 0 60px;
     }
   }
+  .input-mobile {
+    width: 100%;
+    margin-top: 10px;
+    @media only screen and (min-width: 500px) {
+      display: none;
+    }
+  }
+  .input-desktop {
+    width: 40%;
+    display: none;
+    @media only screen and (min-width: 500px) {
+      display: flex;
+    }
+  }
+  ul {
+    display: flex;
+    align-items: center;
+  }
+  li:first-child {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    color: #ffffff;
+    span {
+      font-size: 13px;
+      font-family: ${VARIABLES.fontSecondary};
+    }
+    .smile {
+      font-size: 10px;
+    }
+    .header-name {
+      font-weight: 600;
+      margin-top: 3px;
+    }
+  }
+  .icon-cart {
+    font-size: 30px;
+    color: ${VARIABLES.colorAlternative};
+  }
 
-  @media only screen and (min-width: 650px) {
-    padding: 0 15px 0 15px;
+  @media only screen and (min-width: 768px) {
+    padding: 20px 50px;
   }
 `;
 
@@ -73,5 +121,43 @@ export const LogoContainer = styled.div`
     font-size: 15px;
     text-align: right;
     margin-top: -2px;
+  }
+`;
+
+export const OptionsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  padding: 10px 25px 10px 15px;
+  margin-top: -1px;
+  background-color: ${VARIABLES.colorBlue1};
+  .menu-icon {
+    color: #ffffff;
+    color: ${VARIABLES.colorAlternative};
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    li {
+      font-size: 11px;
+      font-weight: 500;
+      font-family: ${VARIABLES.fontSecondary};
+      color: #ffffff;
+    }
+    a + a {
+      margin-left: 10px;
+
+      @media only screen and (min-width: 375px) {
+        margin-left: 19px;
+      }
+      @media only screen and (min-width: 425px) {
+        margin-left: 34px;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    padding: 10px 50px;
   }
 `;

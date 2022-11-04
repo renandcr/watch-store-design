@@ -47,7 +47,7 @@ export const LoginShortcutContainer = styled.div`
   align-items: center;
   width: 100%;
   a {
-    color: ${VARIABLES.colorButton};
+    color: ${VARIABLES.colorBlue2};
     :hover {
       text-decoration: underline;
       color: ${VARIABLES.colorSecondary};

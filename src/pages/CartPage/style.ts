@@ -12,15 +12,16 @@ export const CartPageContainer = styled.div`
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
-  margin-top: 125px;
+  margin-top: 215px;
 
-  @media only screen and (min-width: 650px) {
-    margin-top: 100px;
+  @media only screen and (min-width: 500px) {
+    margin-top: 160px;
   }
   @media only screen and (min-width: 768px) {
     flex-direction: row-reverse;
     align-items: flex-start;
     justify-content: center;
+    margin-top: 170px;
   }
   @media only screen and (min-width: 1024px) {
     column-gap: 70px;

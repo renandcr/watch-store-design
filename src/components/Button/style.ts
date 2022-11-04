@@ -7,7 +7,7 @@ const ButtonContainer = styled.button`
   border: none;
   padding: 10px;
   border-radius: 4px;
-  background-color: ${VARIABLES.colorButton};
+  background-color: ${VARIABLES.colorBlue2};
   font-size: ${VARIABLES.fontSize4};
   color: #ffffff;
 `;
