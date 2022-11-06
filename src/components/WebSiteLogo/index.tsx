@@ -1,9 +1,15 @@
 import WebSiteLogoContainer from "./styled";
 import { Link } from "react-router-dom";
 
-const WebSiteLogo: React.FC = (): JSX.Element => {
+export interface IWebSiteLogoStyle {
+  marginBottom?: string;
+}
+
+const WebSiteLogo: React.FC<IWebSiteLogoStyle> = ({
+  marginBottom,
+}): JSX.Element => {
   return (
-    <WebSiteLogoContainer>
+    <WebSiteLogoContainer marginBottom={marginBottom}>
       <Link to="/">
         <span className="watch-store">
           watchstore<span className="watch-store-inside">.com.br</span>

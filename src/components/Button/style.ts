@@ -10,6 +10,14 @@ const ButtonContainer = styled.button`
   background-color: ${VARIABLES.colorBlue2};
   font-size: ${VARIABLES.fontSize4};
   color: #ffffff;
+  :hover {
+    filter: brightness(75%);
+    transition: 0.3s;
+  }
+  :active {
+    filter: brightness(1.6);
+    transition: 0.3s;
+  }
 `;
 
 export default ButtonContainer;

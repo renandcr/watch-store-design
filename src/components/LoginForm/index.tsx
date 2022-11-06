@@ -31,7 +31,7 @@ const LoginForm: React.FC = (): JSX.Element => {
 
   return (
     <FormContainer>
-      <WebSiteLogo />
+      <WebSiteLogo marginBottom="90px" />
       <InsideFormContainer onSubmit={handleSubmit(submissionMethod)}>
         <h1>Fazer login</h1>
         <TextField

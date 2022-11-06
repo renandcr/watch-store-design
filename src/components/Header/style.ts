@@ -1,5 +1,6 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
+import { IHeaderHiden } from ".";
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -10,54 +11,15 @@ export const HeaderContainer = styled.header`
   z-index: 2;
 `;
 
-export const TopContainer = styled.div`
+export const TopContainer = styled.div<IHeaderHiden>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   padding: 15px 20px 15px 15px;
   background-color: ${VARIABLES.colorBlue3};
-  .input-container {
-    display: flex;
-    border-radius: 4px;
-    height: 45px;
-    input {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 4px 0 0 4px;
-      padding-left: 15px;
-      font-size: 15px;
-      color: rgb(100, 100, 100);
-      :focus {
-        outline: none;
-      }
-      ::placeholder {
-        font-size: 15px;
-        font-weight: 100;
-        color: rgb(140, 140, 140);
-      }
-    }
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: none;
-      margin-left: -1px;
-      padding-right: 15px;
-      border-radius: 0 4px 4px 0;
-      background-color: #ffffff;
-      filter: none;
-      .search-icon {
-        font-size: 26px;
-        color: rgb(180, 180, 180);
-        :hover {
-          filter: brightness(75%);
-        }
-      }
-    }
-  }
   .input-mobile {
+    display: flex;
     width: 100%;
     margin-top: 10px;
     @media only screen and (min-width: 500px) {
@@ -70,6 +32,49 @@ export const TopContainer = styled.div`
     @media only screen and (min-width: 500px) {
       display: flex;
     }
+  }
+  .input-container {
+    border-radius: 4px;
+    height: 45px;
+    :focus-within {
+      border: 1px solid ${VARIABLES.colorOrange1};
+      box-sizing: content-box;
+    }
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 4px 0 0 4px;
+      padding-left: 15px;
+      font-size: 15px;
+      color: ${VARIABLES.colorGray1};
+      :focus {
+        outline: none;
+      }
+      ::placeholder {
+        font-size: 15px;
+        font-weight: 100;
+        color: ${VARIABLES.colorGray2};
+      }
+    }
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      margin-left: -1px;
+      padding-right: 15px;
+      border-radius: 0 4px 4px 0;
+      background-color: #ffffff;
+      .search-icon {
+        font-size: 26px;
+        color: rgb(180, 180, 180);
+        :hover {
+          filter: brightness(75%);
+        }
+      }
+    }
+    display: ${(props) => props.display};
   }
   ul {
     display: flex;
@@ -92,6 +97,11 @@ export const TopContainer = styled.div`
       margin-top: 3px;
     }
   }
+  .li-icon-cart:hover {
+    filter: brightness(75%);
+    transition: 0.3s;
+  }
+
   .icon-cart {
     font-size: 30px;
     color: ${VARIABLES.colorAlternative};
@@ -133,8 +143,16 @@ export const OptionsContainer = styled.div`
   margin-top: -1px;
   background-color: ${VARIABLES.colorBlue1};
   .menu-icon {
-    color: #ffffff;
     color: ${VARIABLES.colorAlternative};
+    cursor: pointer;
+    :hover {
+      filter: brightness(75%);
+      transition: 0.3s;
+    }
+    :active {
+      filter: brightness(1.6);
+      transition: 0.3s;
+    }
   }
   ul {
     display: flex;
@@ -144,6 +162,10 @@ export const OptionsContainer = styled.div`
       font-weight: 500;
       font-family: ${VARIABLES.fontSecondary};
       color: #ffffff;
+      :hover {
+        color: ${VARIABLES.colorOrange1};
+        transition: 0.3s;
+      }
     }
     a + a {
       margin-left: 10px;

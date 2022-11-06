@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { VARIABLES } from "../../assets/globalStyle/style";
 
 export const FooterContainer = styled.footer`
   display: flex;
@@ -85,7 +86,7 @@ export const CreditCardsContainer = styled.div`
     h2 {
       font-size: 13px;
       font-weight: 500;
-      color: #555555;
+      color: ${VARIABLES.colorGray1};
     }
   }
   .credit-cards-img {

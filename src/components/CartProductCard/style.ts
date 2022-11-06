@@ -66,8 +66,8 @@ export const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  height: 33%;
+  border-radius: 4px 4px 0 0;
+  height: 35%;
   width: 100%;
   color: gray;
   cursor: pointer;
@@ -91,8 +91,8 @@ export const SubtractContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  height: 33%;
+  border-radius: 0 0 4px 4px;
+  height: 35%;
   width: 100%;
   color: gray;
   cursor: pointer;
@@ -110,7 +110,7 @@ export const TrashContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px;
+  width: 30px;
   height: 27px;
   border-radius: 4px;
   color: gray;

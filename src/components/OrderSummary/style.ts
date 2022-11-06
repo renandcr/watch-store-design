@@ -52,6 +52,10 @@ export const KeepBuyingContainer = styled.span`
   border-bottom: solid 1px gray;
   color: gray;
   font-size: 11.8px;
+  :hover {
+    filter: brightness(75%);
+    transition: 0.3s;
+  }
   .bag_icon {
     margin-right: 5px;
   }

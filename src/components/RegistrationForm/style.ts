@@ -14,13 +14,11 @@ export const InsideFormContainer = styled.form`
   width: 100%;
   padding: 30px 20px 32px 20px;
   border-radius: 4px;
-  box-shadow: ${VARIABLES.colorShadow2};
-  background-color: rgb(255, 255, 255);
   h1 {
     font-size: 24px;
     color: ${VARIABLES.colorGray2};
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
   }
   .textField {
     width: 100%;

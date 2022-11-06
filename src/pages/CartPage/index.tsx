@@ -20,7 +20,7 @@ const CartPage: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <Header />
+      <Header display="none" />
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -28,13 +28,9 @@ const CartPage: React.FC = (): JSX.Element => {
       >
         <MainPageCart>
           <CartPageContainer>
-            {/* {productCart.length > 0 ? (
-              <GreetingContainer>
-                Seja bem-vindo :<span>)</span>, Harv
-              </GreetingContainer>
-            ) : (
+            {productCart.length < 1 && (
               <GreetingContainer>Seu carrinho está vazio!</GreetingContainer>
-            )} */}
+            )}
             {productCart.length > 0 ? (
               <OrderSummarySection>
                 <OrderSummary />
@@ -43,7 +39,7 @@ const CartPage: React.FC = (): JSX.Element => {
               <EmptyCartContainer>
                 <img
                   src={EmptyCart}
-                  alt="Imagem ilustrativa de um carinho vazio"
+                  alt="Imagem ilustrativa de um carrinho vazio"
                 />
               </EmptyCartContainer>
             )}
