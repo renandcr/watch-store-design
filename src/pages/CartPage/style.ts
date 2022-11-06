@@ -37,7 +37,7 @@ export const GreetingContainer = styled.h2`
   text-align: center;
   margin-bottom: 50px;
   font-family: ${VARIABLES.fontSecondary};
-  color: ${VARIABLES.colorGray2};
+  color: ${VARIABLES.colorGray1};
   font-weight: 500;
   span {
     font-size: 22px;
@@ -58,6 +58,7 @@ export const EmptyCartContainer = styled.div`
   img {
     width: 90%;
     max-width: 360px;
+    margin-right: 14px;
   }
 `;
 

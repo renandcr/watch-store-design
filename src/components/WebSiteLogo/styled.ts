@@ -1,20 +1,16 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
+import { IWebSiteLogoStyle } from ".";
 
-const WebSiteLogoContainer = styled.div`
+const WebSiteLogoContainer = styled.div<IWebSiteLogoStyle>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  margin-bottom: ${(props) => props.marginBottom};
   a {
     color: ${VARIABLES.colorAlternative};
     text-transform: none;
-    :hover {
-      filter: none;
-    }
-    :active {
-      filter: none;
-    }
   }
   .watch-store {
     font-family: "Righteous", cursive;

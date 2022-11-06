@@ -15,14 +15,18 @@ import {
   TopContainer,
 } from "./style";
 
-const Header: React.FC = (): JSX.Element => {
+export interface IHeaderHiden {
+  display?: string;
+}
+
+const Header: React.FC<IHeaderHiden> = ({ display }): JSX.Element => {
   const [search, setSearch] = useState("");
   const cartProducts = useTypedSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   return (
     <HeaderContainer>
-      <TopContainer>
+      <TopContainer display={display}>
         <LogoContainer>
           <span className="watch-store larger">Watch</span>
           <span className="watch-store smaller">Store</span>
@@ -44,7 +48,7 @@ const Header: React.FC = (): JSX.Element => {
             </span>
             <span className="header-name">Renan</span>
           </li>
-          <li>
+          <li className="li-icon-cart">
             <Link to="/cart-page">
               <Badge badgeContent={cartProducts.length} color={"primary"}>
                 <ShoppingCartOutlined className="icon-cart" />

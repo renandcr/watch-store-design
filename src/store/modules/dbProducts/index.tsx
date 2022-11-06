@@ -1,13 +1,13 @@
-import image_one from "../../../assets/images/one.jpg";
-import image_two from "../../../assets/images/two.jpg";
-import image_three from "../../../assets/images/three.jpg";
-import image_four from "../../../assets/images/four.jpg";
-import image_five from "../../../assets/images/five.jpg";
-import image_six from "../../../assets/images/six.jpg";
-import image_seven from "../../../assets/images/seven.jpg";
-import image_eight from "../../../assets/images/eight.jpg";
-import image_nine from "../../../assets/images/nine.jpg";
-import image_ten from "../../../assets/images/ten.jpg";
+import image_one from "../../../assets/images/cards/one.jpg";
+import image_two from "../../../assets/images/cards/two.jpg";
+import image_three from "../../../assets/images/cards/three.jpg";
+import image_four from "../../../assets/images/cards/four.jpg";
+import image_five from "../../../assets/images/cards/five.jpg";
+import image_six from "../../../assets/images/cards/six.jpg";
+import image_seven from "../../../assets/images/cards/seven.jpg";
+import image_eight from "../../../assets/images/cards/eight.jpg";
+import image_nine from "../../../assets/images/cards/nine.jpg";
+import image_ten from "../../../assets/images/cards/ten.jpg";
 
 export interface IDbProducts {
   readonly id: number;
