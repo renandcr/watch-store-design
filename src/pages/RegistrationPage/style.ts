@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const MainRegistrationForm = styled.main`
   display: flex;
   justify-content: center;
-  padding-bottom: 30px;
 `;
 
 export const RegistrationPageContainer = styled.section`

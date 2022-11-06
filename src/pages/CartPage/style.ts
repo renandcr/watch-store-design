@@ -3,7 +3,24 @@ import styled from "styled-components";
 
 export const MainPageCart = styled.main`
   display: flex;
-  padding-bottom: 30px;
+  flex-direction: column;
+  h1 {
+    height: 40px;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: ${VARIABLES.fontSecondary};
+    margin: 160px 25px 40px 15px;
+    border-bottom: solid 1px rgb(204, 204, 204);
+    color: ${VARIABLES.colorBlue4};
+
+    @media only screen and (min-width: 500px) {
+      margin: 160px 25px 40px 15px;
+    }
+    @media only screen and (min-width: 768px) {
+      margin: 170px 50px 40px 50px;
+      font-size: 22px;
+    }
+  }
 `;
 
 export const CartPageContainer = styled.div`
@@ -12,16 +29,11 @@ export const CartPageContainer = styled.div`
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
-  margin-top: 215px;
 
-  @media only screen and (min-width: 500px) {
-    margin-top: 160px;
-  }
   @media only screen and (min-width: 768px) {
     flex-direction: row-reverse;
     align-items: flex-start;
     justify-content: center;
-    margin-top: 170px;
   }
   @media only screen and (min-width: 1024px) {
     column-gap: 70px;
@@ -31,34 +43,30 @@ export const CartPageContainer = styled.div`
   }
 `;
 
-export const GreetingContainer = styled.h2`
-  width: 100%;
-  font-size: 23.68px;
-  text-align: center;
-  margin-bottom: 50px;
-  font-family: ${VARIABLES.fontSecondary};
-  color: ${VARIABLES.colorGray1};
-  font-weight: 500;
-  span {
-    font-size: 22px;
-  }
-
-  @media only screen and (min-width: 768px) {
-    font-size: 28px;
-    span {
-      font-size: 27px;
-    }
-  }
-`;
-
 export const EmptyCartContainer = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   img {
     width: 90%;
-    max-width: 360px;
-    margin-right: 14px;
+    max-width: 200px;
+    margin-right: 25px;
+  }
+  h2 {
+    font-size: 23.68px;
+    margin-top: 20px;
+    font-family: ${VARIABLES.fontSecondary};
+    color: ${VARIABLES.colorGray1};
+    font-weight: 500;
+
+    @media only screen and (min-width: 768px) {
+      font-size: 26px;
+    }
+  }
+  button {
+    width: 200px;
+    margin-top: 40px;
   }
 `;
 

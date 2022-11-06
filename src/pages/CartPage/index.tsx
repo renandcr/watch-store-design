@@ -2,15 +2,16 @@ import CartProductCard from "../../components/CartProductCard";
 import EmptyCart from "../../assets/images/carrinho_vazio.png";
 import OrderSummary from "../../components/OrderSummary";
 import { useTypedSelector } from "../../store/modules";
+import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import {
   OrderSummarySection,
   EmptyCartContainer,
   CartPageContainer,
-  GreetingContainer,
   CartCardsSection,
   MainPageCart,
 } from "./style";
@@ -27,10 +28,8 @@ const CartPage: React.FC = (): JSX.Element => {
         transition={{ duration: 0.5 }}
       >
         <MainPageCart>
+          <h1>Meu carrinho</h1>
           <CartPageContainer>
-            {productCart.length < 1 && (
-              <GreetingContainer>Seu carrinho está vazio!</GreetingContainer>
-            )}
             {productCart.length > 0 ? (
               <OrderSummarySection>
                 <OrderSummary />
@@ -41,6 +40,10 @@ const CartPage: React.FC = (): JSX.Element => {
                   src={EmptyCart}
                   alt="Imagem ilustrativa de um carrinho vazio"
                 />
+                <h2>Carrinho vazio!</h2>
+                <Link to="/">
+                  <Button>Ver produtos</Button>
+                </Link>
               </EmptyCartContainer>
             )}
             <CartCardsSection>
@@ -50,8 +53,8 @@ const CartPage: React.FC = (): JSX.Element => {
             </CartCardsSection>
           </CartPageContainer>
         </MainPageCart>
-        <Footer />
       </motion.div>
+      <Footer />
     </>
   );
 };
