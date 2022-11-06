@@ -1,12 +1,12 @@
-import styled from "styled-components";
 import { VARIABLES } from "../../assets/globalStyle/style";
+import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  margin-top: 50px;
+  margin-top: 80px;
   border-top: solid 1px rgb(204, 204, 204);
   background-color: #f0f0f0;
   a {
@@ -14,7 +14,7 @@ export const FooterContainer = styled.footer`
   }
 
   @media only screen and (min-width: 768px) {
-    margin-top: 100px;
+    margin-top: 130px;
   }
 `;
 

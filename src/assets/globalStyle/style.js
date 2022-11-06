@@ -23,8 +23,9 @@ export const GlobalStyle = createGlobalStyle`
 
 export const VARIABLES = {
   colorBlue1: "#609cba",
-  colorBlue2: "#1768ac",
+  colorBlue2: "#0072bb",
   colorBlue3: "#5d8aa8",
+  colorBlue4: "#1768ac",
   colorSecondary: "#f45b69",
   colorAlternative: "#ff0054",
   colorGray1: "#495057",
