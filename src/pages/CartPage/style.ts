@@ -29,6 +29,9 @@ export const CartPageContainer = styled.div`
   align-items: center;
   width: 100%;
   flex-wrap: wrap;
+  .empty {
+    width: 100%;
+  }
 
   @media only screen and (min-width: 768px) {
     flex-direction: row-reverse;

@@ -2,23 +2,29 @@ import { IDbProducts } from "../../store/modules/dbProducts";
 import { dbProducts } from "../../store/modules/dbProducts";
 import { useTypedSelector } from "../../store/modules";
 import ProductCard from "../../components/ProductCard";
+import { IHeaderHiden } from "../../components/Header";
 import { items } from "../../store/modules/dbImages";
 import "react-alice-carousel/lib/alice-carousel.css";
 import AliceCarousel from "react-alice-carousel";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { MainHomeContainer } from "./style";
+import Menu from "../../components/Menu";
 import { HomeContainer } from "./style";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const Home: React.FC = (): JSX.Element => {
+  const [isVisible, setVisibility] = useState<IHeaderHiden | any>(false);
+
   const researchProducts: Array<IDbProducts> = useTypedSelector(
     (state) => state.home
   );
 
   return (
     <>
-      <Header />
+      <Header setVisibility={setVisibility} />
+      <Menu setVisibility={setVisibility} isVisible={isVisible} />
       <motion.div
         initial={{ y: -30 }}
         animate={{ y: 0 }}
@@ -33,7 +39,7 @@ const Home: React.FC = (): JSX.Element => {
             infinite={true}
             mouseTracking
           />
-          <h1>Acessórios</h1>
+          <h1>Relógios</h1>
           <HomeContainer>
             {researchProducts.length > 0
               ? researchProducts.map((product, index) => (
@@ -44,8 +50,8 @@ const Home: React.FC = (): JSX.Element => {
                 ))}
           </HomeContainer>
         </MainHomeContainer>
-        <Footer />
       </motion.div>
+      <Footer />
     </>
   );
 };
