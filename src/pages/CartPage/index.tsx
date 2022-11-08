@@ -35,16 +35,23 @@ const CartPage: React.FC = (): JSX.Element => {
                 <OrderSummary />
               </OrderSummarySection>
             ) : (
-              <EmptyCartContainer>
-                <img
-                  src={EmptyCart}
-                  alt="Imagem ilustrativa de um carrinho vazio"
-                />
-                <h2>Carrinho vazio!</h2>
-                <Link to="/">
-                  <Button>Ver produtos</Button>
-                </Link>
-              </EmptyCartContainer>
+              <motion.div
+                className="empty"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <EmptyCartContainer>
+                  <img
+                    src={EmptyCart}
+                    alt="Imagem ilustrativa de um carrinho vazio"
+                  />
+                  <h2>Carrinho vazio!</h2>
+                  <Link to="/">
+                    <Button>Ver produtos</Button>
+                  </Link>
+                </EmptyCartContainer>
+              </motion.div>
             )}
             <CartCardsSection>
               {productCart.map((product, index) => (

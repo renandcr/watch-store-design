@@ -17,9 +17,14 @@ import {
 
 export interface IHeaderHiden {
   display?: string;
+  isVisible?: boolean;
+  setVisibility?: boolean | any;
 }
 
-const Header: React.FC<IHeaderHiden> = ({ display }): JSX.Element => {
+const Header: React.FC<IHeaderHiden> = ({
+  display,
+  setVisibility,
+}): JSX.Element => {
   const [search, setSearch] = useState("");
   const cartProducts = useTypedSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -67,22 +72,22 @@ const Header: React.FC<IHeaderHiden> = ({ display }): JSX.Element => {
           </button>
         </div>
       </TopContainer>
-      <OptionsContainer>
-        <div>
+      <OptionsContainer display={display}>
+        <div onClick={() => setVisibility(true)}>
           <MenuIcon className="menu-icon" />
         </div>
         <ul>
-          <Link to="">
-            <li>Sair</li>
-          </Link>
           <Link to="/">
             <li>Voltar</li>
           </Link>
           <Link to="/registration-page">
-            <li>Cadastro</li>
+            <li>Cadastrar</li>
           </Link>
           <Link to="/login-page">
-            <li>Login</li>
+            <li>Entrar</li>
+          </Link>
+          <Link to="">
+            <li>Minha conta</li>
           </Link>
         </ul>
       </OptionsContainer>

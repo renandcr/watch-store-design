@@ -134,15 +134,17 @@ export const LogoContainer = styled.div`
   }
 `;
 
-export const OptionsContainer = styled.div`
+export const OptionsContainer = styled.div<IHeaderHiden>`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100vw;
+  min-height: 46px;
   padding: 10px 25px 10px 15px;
   margin-top: -1px;
   background-color: ${VARIABLES.colorBlue1};
   .menu-icon {
+    display: ${(props) => props.display};
     color: ${VARIABLES.colorAlternative};
     cursor: pointer;
     :hover {
@@ -158,7 +160,7 @@ export const OptionsContainer = styled.div`
     display: flex;
     align-items: center;
     li {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
       font-family: ${VARIABLES.fontSecondary};
       color: #ffffff;
@@ -172,6 +174,9 @@ export const OptionsContainer = styled.div`
 
       @media only screen and (min-width: 375px) {
         margin-left: 19px;
+        li {
+          font-size: 11px;
+        }
       }
       @media only screen and (min-width: 425px) {
         margin-left: 34px;

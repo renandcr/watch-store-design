@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
         box-sizing: border-box;
         font-size: 16px;
+
     }
     body {
         background-color: #edf6f9;
@@ -37,6 +38,7 @@ export const VARIABLES = {
   colorShadow2:
     "0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%)",
   colorShadow3: "0 4px 34px -7px #6c757d",
+  colorDarkBackground: "rgba(0, 0, 0, 0.75)",
 
   fontSecondary: "Poppins, sans-serif",
   fontThirdy: "Open Sans, sans-serif",
