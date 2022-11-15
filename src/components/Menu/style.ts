@@ -24,7 +24,7 @@ export const MenuContainer = styled.div`
       height: 65px;
       color: #ffffff;
       pointer-events: none;
-      background-color: ${VARIABLES.colorGray1};
+      background-color: ${VARIABLES.colorBlue4};
       margin-bottom: 5px;
       filter: none;
       border: none;

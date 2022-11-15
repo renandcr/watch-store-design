@@ -1,12 +1,12 @@
 import { actionSearchProduct } from "../../store/modules/home/actions";
 import { useTypedSelector } from "../../store/modules/index";
+import { useState, SetStateAction, Dispatch } from "react";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { FiSearch } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Badge } from "@mui/material";
-import { useState } from "react";
 
 import {
   OptionsContainer,
@@ -15,18 +15,18 @@ import {
   TopContainer,
 } from "./style";
 
-export interface IHeaderHiden {
+export interface IHeader {
   display?: string;
-  isVisible?: boolean;
-  setVisibility?: boolean | any;
+  setMenuVisibility?: Dispatch<SetStateAction<boolean>> | any;
 }
 
-const Header: React.FC<IHeaderHiden> = ({
+const Header: React.FC<IHeader> = ({
   display,
-  setVisibility,
+  setMenuVisibility,
 }): JSX.Element => {
   const [search, setSearch] = useState("");
   const cartProducts = useTypedSelector((state) => state.cart);
+  const users = useTypedSelector((state) => state.users);
   const dispatch = useDispatch();
 
   return (
@@ -51,7 +51,9 @@ const Header: React.FC<IHeaderHiden> = ({
             <span>
               Bem-vindo :<span className="smile">)</span>,
             </span>
-            <span className="header-name">Renan</span>
+            <span className="header-name">
+              {users.length > 0 ? users[0].name : "usuário"}
+            </span>
           </li>
           <li className="li-icon-cart">
             <Link to="/cart-page">
@@ -73,7 +75,7 @@ const Header: React.FC<IHeaderHiden> = ({
         </div>
       </TopContainer>
       <OptionsContainer display={display}>
-        <div onClick={() => setVisibility(true)}>
+        <div onClick={() => setMenuVisibility(true)}>
           <MenuIcon className="menu-icon" />
         </div>
         <ul>

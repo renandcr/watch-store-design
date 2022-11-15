@@ -1,14 +1,17 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
+import { IButton } from "./index";
 
-const ButtonContainer = styled.button`
+const ButtonContainer = styled.button<IButton>`
   width: 100%;
   height: 42px;
   border: none;
   padding: 10px;
   border-radius: 4px;
   background-color: ${VARIABLES.colorBlue2};
-  font-size: ${VARIABLES.fontSize4};
+  background-color: ${(props) => props.backgroundColor};
+  font-size: 11px;
+  font-family: ${VARIABLES.fontThirdy};
   color: #ffffff;
   :hover {
     filter: brightness(75%);

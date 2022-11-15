@@ -1,13 +1,15 @@
 import { GlobalStyle } from "./assets/globalStyle/style";
-import React from "react";
-import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Routes from "./routes";
+import "./App.css";
 
 function App() {
   return (
     <>
       <GlobalStyle />
       <Routes />
+      <ToastContainer autoClose={1000} />
     </>
   );
 }
