@@ -1,6 +1,6 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
-import { IHeaderHiden } from ".";
+import { IHeader } from ".";
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -11,7 +11,7 @@ export const HeaderContainer = styled.header`
   z-index: 2;
 `;
 
-export const TopContainer = styled.div<IHeaderHiden>`
+export const TopContainer = styled.div<IHeader>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -134,7 +134,7 @@ export const LogoContainer = styled.div`
   }
 `;
 
-export const OptionsContainer = styled.div<IHeaderHiden>`
+export const OptionsContainer = styled.div<IHeader>`
   display: flex;
   justify-content: space-between;
   align-items: center;

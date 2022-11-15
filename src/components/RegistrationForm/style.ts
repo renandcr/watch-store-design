@@ -15,10 +15,12 @@ export const InsideFormContainer = styled.form`
   padding: 30px 20px 32px 20px;
   border-radius: 4px;
   h1 {
-    font-size: 24px;
-    color: ${VARIABLES.colorGray2};
+    width: 100%;
+    font-size: 26px;
     font-weight: 500;
-    margin-bottom: 30px;
+    color: ${VARIABLES.colorGray2};
+    text-align: left;
+    margin-bottom: 20px;
   }
   .textField {
     width: 100%;

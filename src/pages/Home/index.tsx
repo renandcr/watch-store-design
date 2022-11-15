@@ -2,7 +2,6 @@ import { IDbProducts } from "../../store/modules/dbProducts";
 import { dbProducts } from "../../store/modules/dbProducts";
 import { useTypedSelector } from "../../store/modules";
 import ProductCard from "../../components/ProductCard";
-import { IHeaderHiden } from "../../components/Header";
 import { items } from "../../store/modules/dbImages";
 import "react-alice-carousel/lib/alice-carousel.css";
 import AliceCarousel from "react-alice-carousel";
@@ -15,16 +14,18 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 const Home: React.FC = (): JSX.Element => {
-  const [isVisible, setVisibility] = useState<IHeaderHiden | any>(false);
-
+  const [menuIsVisible, setMenuVisibility] = useState<boolean>(false);
   const researchProducts: Array<IDbProducts> = useTypedSelector(
     (state) => state.home
   );
 
   return (
     <>
-      <Header setVisibility={setVisibility} />
-      <Menu setVisibility={setVisibility} isVisible={isVisible} />
+      <Header setMenuVisibility={setMenuVisibility} />
+      <Menu
+        setMenuVisibility={setMenuVisibility}
+        menuIsVisible={menuIsVisible}
+      />
       <motion.div
         initial={{ y: -30 }}
         animate={{ y: 0 }}

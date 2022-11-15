@@ -1,16 +1,21 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { IHeaderHiden } from "../Header";
+import { Dispatch, SetStateAction } from "react";
 import { MenuContainer } from "./style";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const Menu: React.FC<IHeaderHiden> = ({
-  setVisibility,
-  isVisible,
+interface IMenu {
+  setMenuVisibility: Dispatch<SetStateAction<boolean>>;
+  menuIsVisible: boolean;
+}
+
+const Menu: React.FC<IMenu> = ({
+  setMenuVisibility,
+  menuIsVisible,
 }): JSX.Element => {
   return (
     <>
-      {isVisible && (
+      {menuIsVisible && (
         <MenuContainer>
           <motion.ul
             className="menu"
@@ -22,7 +27,10 @@ const Menu: React.FC<IHeaderHiden> = ({
               <span>
                 Olá, <span className="name">Renan</span>
               </span>
-              <span className="close-icon" onClick={() => setVisibility(false)}>
+              <span
+                className="close-icon"
+                onClick={() => setMenuVisibility(false)}
+              >
                 <CloseIcon />
               </span>
             </li>
@@ -55,7 +63,13 @@ const Menu: React.FC<IHeaderHiden> = ({
             <Link to="">
               <li className="up">Política de Privacidade</li>
             </Link>
-            <Link to="">
+            <Link
+              to="/"
+              onClick={() => {
+                localStorage.clear();
+                setMenuVisibility(false);
+              }}
+            >
               <li className="under">Sair</li>
             </Link>
           </motion.ul>

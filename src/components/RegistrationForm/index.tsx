@@ -1,9 +1,13 @@
+import { IUserRegistration } from "../../store/modules/users/actions";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import WebSiteLogo from "../WebSiteLogo";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import api from "../../assets/axios";
 import Button from "../Button";
 import * as yup from "yup";
 
@@ -12,14 +16,6 @@ import {
   InsideFormContainer,
   FormContainer,
 } from "./style";
-
-export interface IRegistration {
-  name: string;
-  last_name: string;
-  email: string;
-  password: string;
-  confirm_password?: string;
-}
 
 const RegistrationForm: React.FC = (): JSX.Element => {
   const FormSchema = yup.object().shape({
@@ -46,18 +42,29 @@ const RegistrationForm: React.FC = (): JSX.Element => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IRegistration>({ resolver: yupResolver(FormSchema) });
+  } = useForm<IUserRegistration>({ resolver: yupResolver(FormSchema) });
 
-  const submissionMethod = (data: IRegistration) => {
+  const history = useHistory();
+
+  const submissionMethod = (data: IUserRegistration) => {
     delete data.confirm_password;
-    console.log(data);
+
+    api
+      .post("/create", data)
+      .then((_) => {
+        history.push("/login-page");
+        toast.success("Cadastro realizado com sucesso");
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
   };
 
   return (
     <FormContainer>
       <WebSiteLogo />
       <InsideFormContainer onSubmit={handleSubmit(submissionMethod)}>
-        <h1>Cadastre-se aqui</h1>
+        <h1>Criar conta</h1>
         <TextField
           className="textField"
           label="Nome"
@@ -129,7 +136,7 @@ const RegistrationForm: React.FC = (): JSX.Element => {
             <span>Fazer login</span>
           </Link>
         </LoginShortcutContainer>
-        <Button>Cadastrar</Button>
+        <Button>Continuar</Button>
       </InsideFormContainer>
     </FormContainer>
   );

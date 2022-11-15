@@ -1,17 +1,20 @@
+import { actionUserLogin, IUserLogin } from "../../store/modules/users/actions";
 import { InsideFormContainer } from "../RegistrationForm/style";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { VARIABLES } from "../../assets/globalStyle/style";
 import { FormContainer } from "../RegistrationForm/style";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
+import UnderLoginContainer from "./style";
 import WebSiteLogo from "../WebSiteLogo";
+import { toast } from "react-toastify";
+import api from "../../assets/axios";
 import Button from "../Button";
+import jwt from "jwt-decode";
 import * as yup from "yup";
-
-export interface ILogin {
-  email: string;
-  password: string;
-}
 
 const LoginForm: React.FC = (): JSX.Element => {
   const formSchema = yup.object().shape({
@@ -23,15 +26,34 @@ const LoginForm: React.FC = (): JSX.Element => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ILogin>({ resolver: yupResolver(formSchema) });
+  } = useForm<IUserLogin>({ resolver: yupResolver(formSchema) });
 
-  const submissionMethod = (data: ILogin) => {
-    console.log(data);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const submissionMethod = async (data: IUserLogin) => {
+    await api
+      .post("/login", data)
+      .then((responseToken) => {
+        const decode: any = jwt(responseToken.data.token);
+        api
+          .get(`/${decode.id_token}`, {
+            headers: { Authorization: `bearer: ${responseToken.data.token}` },
+          })
+          .then((response) => {
+            history.push("/cart-page");
+            toast.success("Login realizado com sucesso");
+            dispatch(actionUserLogin(response.data, responseToken.data.token));
+          });
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
   };
 
   return (
     <FormContainer>
-      <WebSiteLogo marginBottom="90px" />
+      <WebSiteLogo />
       <InsideFormContainer onSubmit={handleSubmit(submissionMethod)}>
         <h1>Fazer login</h1>
         <TextField
@@ -61,6 +83,18 @@ const LoginForm: React.FC = (): JSX.Element => {
           </p>
         )}
         <Button>Login</Button>
+        <UnderLoginContainer>
+          <div>
+            <span className="border"></span>
+            <span className="border-middle">É novo na Watch Store?</span>
+            <span className="border"></span>
+          </div>
+          <Link to="/registration-page">
+            <Button backgroundColor={VARIABLES.colorBlue5}>
+              Crie sua conta
+            </Button>
+          </Link>
+        </UnderLoginContainer>
       </InsideFormContainer>
     </FormContainer>
   );

@@ -1,12 +1,14 @@
 import CartProductCard from "../../components/CartProductCard";
 import EmptyCart from "../../assets/images/carrinho_vazio.png";
 import OrderSummary from "../../components/OrderSummary";
+import ModalAddress from "../../components/ModalAddress";
 import { useTypedSelector } from "../../store/modules";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 import {
   OrderSummarySection,
@@ -18,10 +20,15 @@ import {
 
 const CartPage: React.FC = (): JSX.Element => {
   const productCart = useTypedSelector((state) => state.cart);
+  const [showAddressModal, setShowAddressModal] = useState<boolean>(false);
 
   return (
     <>
       <Header display="none" />
+      <ModalAddress
+        showAddressModal={showAddressModal}
+        setShowAddressModal={setShowAddressModal}
+      />
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -32,7 +39,7 @@ const CartPage: React.FC = (): JSX.Element => {
           <CartPageContainer>
             {productCart.length > 0 ? (
               <OrderSummarySection>
-                <OrderSummary />
+                <OrderSummary setShowAddressModal={setShowAddressModal} />
               </OrderSummarySection>
             ) : (
               <motion.div
