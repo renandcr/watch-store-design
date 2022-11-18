@@ -1,5 +1,6 @@
 import CartProductCard from "../../components/CartProductCard";
 import EmptyCart from "../../assets/images/carrinho_vazio.png";
+import { IDbProducts } from "../../store/modules/dbProducts";
 import OrderSummary from "../../components/OrderSummary";
 import ModalAddress from "../../components/ModalAddress";
 import { useTypedSelector } from "../../store/modules";
@@ -19,7 +20,9 @@ import {
 } from "./style";
 
 const CartPage: React.FC = (): JSX.Element => {
-  const productCart = useTypedSelector((state) => state.cart);
+  const productCart: Array<IDbProducts> = useTypedSelector(
+    (state) => state.cart
+  );
   const [showAddressModal, setShowAddressModal] = useState<boolean>(false);
 
   return (
@@ -62,7 +65,11 @@ const CartPage: React.FC = (): JSX.Element => {
             )}
             <CartCardsSection>
               {productCart.map((product, index) => (
-                <CartProductCard key={index} product={product} />
+                <CartProductCard
+                  key={index}
+                  product={product}
+                  showDisplay={false}
+                />
               ))}
             </CartCardsSection>
           </CartPageContainer>

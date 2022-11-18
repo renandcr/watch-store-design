@@ -1,11 +1,11 @@
 import { legacy_createStore as createStore, combineReducers } from "redux";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import usersReducer from "./users/reducer";
+import userReducer from "./user/reducer";
 import cartReducer from "./cart/reducer";
 import homeReducer from "./home/reducer";
 
 const reducers = combineReducers({
-  users: usersReducer,
+  user: userReducer,
   home: homeReducer,
   cart: cartReducer,
 });

@@ -1,16 +1,16 @@
 import { IDatabaseUser, IUserLoginAction } from "./actions";
 import { USER_LOGIN } from "./constants";
 
-const usersReducer = (
+const userReducer = (
   state: Array<IDatabaseUser> = JSON.parse(
-    localStorage.getItem("@watchStore: users") || JSON.stringify("")
+    localStorage.getItem("@watchStore: user") || JSON.stringify("")
   ) || [],
   action: IUserLoginAction
 ) => {
   switch (action.type) {
     case USER_LOGIN:
       localStorage.setItem(
-        "@watchStore: users",
+        "@watchStore: user",
         JSON.stringify([{ ...action.payload, token: action.token }])
       );
 
@@ -20,4 +20,4 @@ const usersReducer = (
   }
 };
 
-export default usersReducer;
+export default userReducer;

@@ -1,5 +1,7 @@
 import { actionSearchProduct } from "../../store/modules/home/actions";
+import { IDatabaseUser } from "../../store/modules/user/actions";
 import { useTypedSelector } from "../../store/modules/index";
+import { IDbProducts } from "../../store/modules/dbProducts";
 import { useState, SetStateAction, Dispatch } from "react";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -25,8 +27,10 @@ const Header: React.FC<IHeader> = ({
   setMenuVisibility,
 }): JSX.Element => {
   const [search, setSearch] = useState("");
-  const cartProducts = useTypedSelector((state) => state.cart);
-  const users = useTypedSelector((state) => state.users);
+  const productCart: Array<IDbProducts> = useTypedSelector(
+    (state) => state.cart
+  );
+  const user: Array<IDatabaseUser> = useTypedSelector((state) => state.user);
   const dispatch = useDispatch();
 
   return (
@@ -52,12 +56,12 @@ const Header: React.FC<IHeader> = ({
               Bem-vindo :<span className="smile">)</span>,
             </span>
             <span className="header-name">
-              {users.length > 0 ? users[0].name : "usuário"}
+              {user.length > 0 ? user[0].name : "usuário"}
             </span>
           </li>
           <li className="li-icon-cart">
             <Link to="/cart-page">
-              <Badge badgeContent={cartProducts.length} color={"primary"}>
+              <Badge badgeContent={productCart.length} color={"primary"}>
                 <ShoppingCartOutlined className="icon-cart" />
               </Badge>
             </Link>

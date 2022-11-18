@@ -1,5 +1,6 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
+
 const UnderLoginContainer = styled.div`
   width: 100%;
   margin-top: 30px;

@@ -50,7 +50,6 @@ const homeReducer = (
       }
 
       return state;
-
     default:
       return state;
   }

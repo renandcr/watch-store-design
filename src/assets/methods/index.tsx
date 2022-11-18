@@ -4,3 +4,10 @@ export const normalizedText = (text: string) => {
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
 };
+
+export const formatPrices = (value: number) => {
+  return value.toLocaleString("pt-br", {
+    style: "currency",
+    currency: "BRL",
+  });
+};

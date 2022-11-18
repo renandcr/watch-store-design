@@ -9,7 +9,7 @@ function App() {
     <>
       <GlobalStyle />
       <Routes />
-      <ToastContainer autoClose={1000} />
+      <ToastContainer autoClose={2000} />
     </>
   );
 }

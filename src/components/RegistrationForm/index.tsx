@@ -1,4 +1,4 @@
-import { IUserRegistration } from "../../store/modules/users/actions";
+import { IUserRegistration } from "../../store/modules/user/actions";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";

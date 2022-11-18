@@ -1,10 +1,11 @@
-import { IAddAndRemoveProductsAction } from "./actions";
+import { IAddAndRemoveProductsAction, IUpdateUnitsAction } from "./actions";
 import { IDbProducts } from "../dbProducts";
 
 import {
   REMOVE_PRODUCT_FROM_CART,
   ADD_PRODUCT_TO_CART,
   SUBTRACT_UNITS,
+  UPDATE_UNITS,
   ADD_UNITS,
 } from "./constants";
 
@@ -12,7 +13,7 @@ const cartReducer = (
   state: Array<IDbProducts> = JSON.parse(
     localStorage.getItem("@watchStore: cartProducts") || JSON.stringify("")
   ) || [],
-  action: IAddAndRemoveProductsAction
+  action: IAddAndRemoveProductsAction & IUpdateUnitsAction
 ) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
@@ -45,7 +46,6 @@ const cartReducer = (
     case ADD_UNITS:
       action.payload.units += 1;
       localStorage.setItem("@watchStore: cartProducts", JSON.stringify(state));
-
       return [...state];
 
     case SUBTRACT_UNITS:
@@ -59,6 +59,11 @@ const cartReducer = (
 
       return [...state];
 
+    case UPDATE_UNITS:
+      action.payload.units = action.units;
+      localStorage.setItem("@watchStore: cartProducts", JSON.stringify(state));
+
+      return [...state];
     default:
       return state;
   }

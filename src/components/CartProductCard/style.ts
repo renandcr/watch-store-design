@@ -1,18 +1,23 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
+import { ICartProductCard } from ".";
 
-export const CartProductCardContainer = styled.div`
+export const CartProductCardContainer = styled.div<ICartProductCard>`
   display: flex;
-  justify-content: space-between;
   width: 100%;
-  height: 115px;
-  border-radius: 4px;
-  box-shadow: ${VARIABLES.colorShadow2};
   background-color: rgb(255, 255, 255);
+  height: ${(props) => (props.showDisplay ? "185px" : "115px")};
+  padding-bottom: ${(props) => (props.showDisplay ? "20px" : "0")};
+  border-radius: ${(props) => (props.showDisplay ? "0" : "4px")};
+  border-bottom: solid 1px ${VARIABLES.lightBorderColor};
+  box-shadow: ${(props) =>
+    props.showDisplay ? "none" : VARIABLES.colorShadow2};
+  justify-content: ${(props) =>
+    props.showDisplay ? "unset" : "space-between"};
 `;
 
-export const CartImageContainer = styled.div`
-  width: 115px;
+export const CartImageContainer = styled.div<ICartProductCard>`
+  min-width: ${(props) => (props.showDisplay ? "115px" : "90px")};
   height: 100%;
   img {
     width: 100%;
@@ -22,33 +27,116 @@ export const CartImageContainer = styled.div`
   }
 `;
 
-export const CartDescriptionContainer = styled.div`
+export const CartDescriptionContainer = styled.div<ICartProductCard>`
   width: 65%;
   text-align: left;
-  margin: 10px 5px 0 10px;
+  margin: ${(props) =>
+    props.showDisplay ? "0 5px 0 10px" : "10px 5px 0 10px"};
   h2 {
-    line-height: 18px;
+    line-height: 22px;
     color: ${VARIABLES.colorGray1};
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    font-weight: ${(props) => (props.showDisplay ? "600" : "400")};
   }
   span {
     margin-top: 15px;
     display: block;
-    color: ${VARIABLES.colorGold2};
     font-weight: 500;
     font-size: ${VARIABLES.fontSize2};
+    color: ${(props) =>
+      props.showDisplay ? VARIABLES.colorRed2 : VARIABLES.colorGold2};
   }
 `;
 
-export const UnitsContainerAndDeletion = styled.div`
+export const BottomContainer = styled.div<ICartProductCard>`
+  flex-direction: column;
+  margin-top: 5px;
+  display: ${(props) => (props.showDisplay ? "flex" : "none")};
+  span {
+    font-size: ${VARIABLES.fontSize3};
+    font-weight: 500;
+    margin-top: 7px;
+  }
+  .inventory {
+    color: ${VARIABLES.colorGreen2};
+    font-weight: 400;
+  }
+  .units {
+    display: flex;
+    align-items: center;
+    span {
+      color: ${VARIABLES.colorGray3};
+    }
+    .quantity {
+      margin-right: 3px;
+      font-size: 14px;
+    }
+    .change {
+      color: ${VARIABLES.colorBlue2};
+      margin-left: 5px;
+    }
+  }
+  .units-change {
+    color: ${VARIABLES.colorBlue2};
+    width: min-content;
+    cursor: pointer;
+    :hover {
+      color: ${VARIABLES.colorSecondary};
+      transition: 0.3s;
+    }
+  }
+`;
+
+export const QuantityInputContainer = styled.div`
   display: flex;
+  align-items: center;
+  margin-top: 7px;
+  width: min-content;
+  .bar {
+    color: ${VARIABLES.colorBlue2};
+    margin: 0 4px 0 4px;
+  }
+  span {
+    margin-top: 0;
+    font-size: 12px;
+  }
+  div {
+    width: 40px;
+    border-radius: 4px;
+    height: 23px;
+    margin-right: 10px;
+    border: 1px solid ${VARIABLES.colorOrange2};
+    box-shadow: 0 0 4px ${VARIABLES.colorOrange1};
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 4px;
+      padding-left: 5px;
+      font-size: 13px;
+      color: ${VARIABLES.colorGray1};
+      font-weight: 500;
+      :focus {
+        outline: none;
+      }
+      ::placeholder {
+        font-size: 4px;
+        font-weight: 100;
+        color: ${VARIABLES.colorGray2};
+      }
+    }
+  }
+`;
+
+export const UnitsContainerAndDeletion = styled.div<ICartProductCard>`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin: 8px 5px 5px 0;
+  display: ${(props) => (props.showDisplay ? "none" : "flex")};
 `;
 
 export const AddAndSubtractComponent = styled.div`
