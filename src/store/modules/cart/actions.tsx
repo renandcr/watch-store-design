@@ -2,6 +2,7 @@ import {
   REMOVE_PRODUCT_FROM_CART,
   ADD_PRODUCT_TO_CART,
   SUBTRACT_UNITS,
+  UPDATE_UNITS,
   ADD_UNITS,
 } from "./constants";
 import { IDbProducts } from "../dbProducts";
@@ -9,6 +10,10 @@ import { IDbProducts } from "../dbProducts";
 export interface IAddAndRemoveProductsAction {
   type: string;
   payload: IDbProducts;
+}
+
+export interface IUpdateUnitsAction extends IAddAndRemoveProductsAction {
+  units: number;
 }
 
 export const actionAddProductToCart = (product: IDbProducts) => {
@@ -35,5 +40,13 @@ export const actionSubtractUnits = (product: IDbProducts) => {
   return {
     type: SUBTRACT_UNITS,
     payload: product,
+  };
+};
+
+export const actionUpdateUnits = (product: IDbProducts, units: number) => {
+  return {
+    type: UPDATE_UNITS,
+    payload: product,
+    units: units,
   };
 };

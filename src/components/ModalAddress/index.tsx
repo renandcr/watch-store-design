@@ -1,10 +1,12 @@
 import { FormContainer, InsideFormContainer } from "../RegistrationForm/style";
-import { actionUserLogin } from "../../store/modules/users/actions";
+import { actionUserLogin } from "../../store/modules/user/actions";
 import { useTypedSelector } from "../../store/modules/index";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { VARIABLES } from "../../assets/globalStyle/style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SetStateAction, Dispatch } from "react";
 import { ModalAddressContainer } from "./style";
+import { useHistory } from "react-router-dom";
 import api from "../../assets/axios/index";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
@@ -14,7 +16,7 @@ import { toast } from "react-toastify";
 import Button from "../Button";
 import * as yup from "yup";
 
-interface IUserAddress {
+export interface IUserAddress {
   street: string;
   district: string;
   house_number: number;
@@ -74,30 +76,32 @@ const ModalAddress: React.FC<IAddressModal> = ({
     formState: { errors },
   } = useForm<IUserAddress>({ resolver: yupResolver(formSchema) });
 
-  const user = useTypedSelector((state) => state.users);
+  const user = useTypedSelector((state) => state.user)[0];
   const dispatch = useDispatch();
 
   const submissionMethod = async (data: IUserAddress) => {
     await api
-      .post(`/address/create/${user[0].id}`, data, {
+      .post(`/address/create/${user.id}`, data, {
         headers: {
-          Authorization: `bearer: ${user[0].token}`,
+          Authorization: `bearer: ${user.token}`,
         },
       })
       .then((_) => {
         toast.success("Endereço cadastrado com sucesso");
         api
-          .get(`/${user[0].id}`, {
-            headers: { Authorization: `bearer ${user[0].token}` },
+          .get(`/${user.id}`, {
+            headers: { Authorization: `bearer ${user.token}` },
           })
           .then((response) => {
-            dispatch(actionUserLogin(response.data, user[0].token));
+            dispatch(actionUserLogin(response.data, user.token));
           });
       })
       .catch((err) => {
         toast.error(err.response.data.message);
       });
   };
+
+  const history = useHistory();
 
   return (
     <>
@@ -215,13 +219,16 @@ const ModalAddress: React.FC<IAddressModal> = ({
                 <div className="button-container">
                   <Button
                     onClick={() => {
-                      setTimeout(() => setShowAddressModal(false), 2000);
+                      setTimeout(() => {
+                        setShowAddressModal(false);
+                        history.push("/checkout-page");
+                      }, 2000);
                     }}
                   >
-                    Finalizar Cadastro
+                    Salvar endereço
                   </Button>
                   <Button
-                    backgroundColor="red"
+                    backgroundColor={VARIABLES.colorRed2}
                     onClick={() => setShowAddressModal(false)}
                   >
                     Cancelar

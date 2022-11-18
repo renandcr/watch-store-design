@@ -11,6 +11,7 @@ const ButtonContainer = styled.button<IButton>`
   background-color: ${VARIABLES.colorBlue2};
   background-color: ${(props) => props.backgroundColor};
   font-size: 11px;
+  font-weight: 500;
   font-family: ${VARIABLES.fontThirdy};
   color: #ffffff;
   :hover {

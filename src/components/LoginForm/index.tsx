@@ -1,4 +1,4 @@
-import { actionUserLogin, IUserLogin } from "../../store/modules/users/actions";
+import { actionUserLogin, IUserLogin } from "../../store/modules/user/actions";
 import { InsideFormContainer } from "../RegistrationForm/style";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { VARIABLES } from "../../assets/globalStyle/style";

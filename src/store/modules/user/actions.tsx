@@ -1,3 +1,4 @@
+import { IUserAddress } from "../../../components/ModalAddress/index";
 import { USER_LOGIN } from "./constants";
 
 export interface IUserRegistration {
@@ -8,11 +9,18 @@ export interface IUserRegistration {
   confirm_password?: string;
 }
 
+export interface IUserAddressesDatabase extends IUserAddress {
+  id: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
 export interface IDatabaseUser extends IUserRegistration {
   id: string;
   created_at: Date;
   updated_at: Date;
   token: string;
+  addresses: Array<IUserAddressesDatabase>;
 }
 
 export interface IUserLogin {
