@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
   flex-direction: column;
   position: fixed;
   width: 100vw;
-  box-shadow: ${VARIABLES.colorShadow3};
+  box-shadow: ${VARIABLES.colorShadow2};
   z-index: 2;
 `;
 

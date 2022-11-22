@@ -21,7 +21,7 @@ const Menu: React.FC<IMenu> = ({
             className="menu"
             initial={{ x: -400, opacity: 0 }}
             animate={{ x: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.4 }}
           >
             <li className="first-child">
               <span>

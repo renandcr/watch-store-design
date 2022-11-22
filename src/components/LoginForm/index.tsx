@@ -1,4 +1,7 @@
-import { actionUserLogin, IUserLogin } from "../../store/modules/user/actions";
+import {
+  actionUpdateUserState,
+  IUserLogin,
+} from "../../store/modules/user/actions";
 import { InsideFormContainer } from "../RegistrationForm/style";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { VARIABLES } from "../../assets/globalStyle/style";
@@ -43,7 +46,9 @@ const LoginForm: React.FC = (): JSX.Element => {
           .then((response) => {
             history.push("/cart-page");
             toast.success("Login realizado com sucesso");
-            dispatch(actionUserLogin(response.data, responseToken.data.token));
+            dispatch(
+              actionUpdateUserState(response.data, responseToken.data.token)
+            );
           });
       })
       .catch((err) => {

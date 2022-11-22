@@ -1,5 +1,4 @@
-import { IUserAddress } from "../../../components/ModalAddress/index";
-import { USER_LOGIN } from "./constants";
+import { UPDATE_USER_STATE } from "./constants";
 
 export interface IUserRegistration {
   name: string;
@@ -9,7 +8,19 @@ export interface IUserRegistration {
   confirm_password?: string;
 }
 
-export interface IUserAddressesDatabase extends IUserAddress {
+export interface IUserAddress {
+  street: string;
+  district: string;
+  house_number: number;
+  complement: string;
+  city: string;
+  state: string;
+  zip_code: string;
+  phone: string;
+}
+
+export interface IAddressesDatabase extends IUserAddress {
+  main?: boolean;
   id: string;
   created_at: Date;
   updated_at: Date;
@@ -20,7 +31,7 @@ export interface IDatabaseUser extends IUserRegistration {
   created_at: Date;
   updated_at: Date;
   token: string;
-  addresses: Array<IUserAddressesDatabase>;
+  addresses: Array<IAddressesDatabase>;
 }
 
 export interface IUserLogin {
@@ -28,15 +39,15 @@ export interface IUserLogin {
   password: string;
 }
 
-export interface IUserLoginAction {
+export interface IUserAction {
   type: string;
   payload: IDatabaseUser;
   token: string;
 }
 
-export const actionUserLogin = (user: IUserLogin, token: string) => {
+export const actionUpdateUserState = (user: IUserLogin, token: string) => {
   return {
-    type: USER_LOGIN,
+    type: UPDATE_USER_STATE,
     payload: user,
     token: token,
   };

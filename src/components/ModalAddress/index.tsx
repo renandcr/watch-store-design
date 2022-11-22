@@ -1,5 +1,5 @@
 import { FormContainer, InsideFormContainer } from "../RegistrationForm/style";
-import { actionUserLogin } from "../../store/modules/user/actions";
+import { actionUpdateUserState } from "../../store/modules/user/actions";
 import { useTypedSelector } from "../../store/modules/index";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { VARIABLES } from "../../assets/globalStyle/style";
@@ -16,25 +16,31 @@ import { toast } from "react-toastify";
 import Button from "../Button";
 import * as yup from "yup";
 
-export interface IUserAddress {
-  street: string;
-  district: string;
-  house_number: number;
-  complement: string;
-  city: string;
-  state: string;
-  zip_code: string;
-  phone: string;
-}
+import {
+  IAddressesDatabase,
+  IUserAddress,
+} from "../../store/modules/user/actions";
 
-interface IAddressModal {
-  showAddressModal: boolean;
-  setShowAddressModal: Dispatch<SetStateAction<boolean>>;
+export interface IAddressModal {
+  setAnimationOption2?: Dispatch<SetStateAction<boolean>>;
+  setShowAddressModal?: Dispatch<SetStateAction<boolean>>;
+  setIsItUpdateEvent?: Dispatch<SetStateAction<boolean>>;
+  addressToBeUpdated?: IAddressesDatabase;
+  animationOption2?: boolean;
+  showAddressModal?: boolean;
+  isItUpdateEvent?: boolean;
+  showDisplay?: boolean;
 }
 
 const ModalAddress: React.FC<IAddressModal> = ({
-  showAddressModal,
+  setAnimationOption2,
   setShowAddressModal,
+  setIsItUpdateEvent,
+  addressToBeUpdated,
+  showAddressModal,
+  animationOption2,
+  isItUpdateEvent,
+  showDisplay,
 }): JSX.Element => {
   const formSchema = yup.object().shape({
     street: yup
@@ -78,40 +84,74 @@ const ModalAddress: React.FC<IAddressModal> = ({
 
   const user = useTypedSelector((state) => state.user)[0];
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const submissionMethod = async (data: IUserAddress) => {
-    await api
-      .post(`/address/create/${user.id}`, data, {
-        headers: {
-          Authorization: `bearer: ${user.token}`,
-        },
-      })
-      .then((_) => {
-        toast.success("Endereço cadastrado com sucesso");
-        api
-          .get(`/${user.id}`, {
+    setAnimationOption2?.(false);
+    isItUpdateEvent
+      ? await api
+          .patch(`/address/update/${addressToBeUpdated?.id}`, data, {
             headers: { Authorization: `bearer ${user.token}` },
           })
-          .then((response) => {
-            dispatch(actionUserLogin(response.data, user.token));
+          .then((_) => {
+            setIsItUpdateEvent?.(false);
+            history.push("/checkout-page");
+            api
+              .get(`/${user.id}`, {
+                headers: {
+                  Authorization: `bearer ${user.token}`,
+                },
+              })
+              .then((response) => {
+                dispatch(actionUpdateUserState(response.data, user.token));
+                toast.success("Endereço atualizado com sucesso");
+              });
+          })
+          .catch((err) => toast.error(err.response.data.message))
+      : await api
+          .post(`/address/create/${user.id}`, data, {
+            headers: {
+              Authorization: `bearer: ${user.token}`,
+            },
+          })
+          .then((_) => {
+            setTimeout(() => {
+              setShowAddressModal?.(false);
+              history.push("/checkout-page");
+            }, 2000);
+            toast.success("Endereço cadastrado com sucesso");
+            api
+              .get(`/${user.id}`, {
+                headers: { Authorization: `bearer ${user.token}` },
+              })
+              .then((response) => {
+                dispatch(actionUpdateUserState(response.data, user.token));
+              });
+          })
+          .catch((err) => {
+            toast.error(err.response.data.message);
           });
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      });
   };
 
-  const history = useHistory();
+  const variants1 = {
+    visible: { opacity: 1, transition: { duration: 0.5 } },
+    hidden: { opacity: 0 },
+  };
+
+  const variants2 = {
+    visible: { y: 1, opacity: 1, transition: { duration: 0.4 } },
+    hidden: { y: -400, opacity: 0 },
+  };
 
   return (
     <>
       {showAddressModal && (
-        <ModalAddressContainer>
+        <ModalAddressContainer showDisplay={showDisplay}>
           <motion.div
             className="menu"
-            initial={{ y: -400, opacity: 0 }}
-            animate={{ y: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
+            initial="hidden"
+            animate="visible"
+            variants={animationOption2 ? variants1 : variants2}
           >
             <FormContainer className="form-container">
               <InsideFormContainer onSubmit={handleSubmit(submissionMethod)}>
@@ -120,6 +160,9 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   className="textField"
                   type="text"
                   label="Endereço"
+                  defaultValue={
+                    isItUpdateEvent ? addressToBeUpdated?.street : null
+                  }
                   {...register("street")}
                 />
                 {errors.street && (
@@ -132,6 +175,9 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   className="textField"
                   type="text"
                   label="Bairro"
+                  defaultValue={
+                    isItUpdateEvent ? addressToBeUpdated?.district : null
+                  }
                   {...register("district")}
                 />
                 {errors.district && (
@@ -144,6 +190,9 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   className="textField"
                   type="text"
                   label="Número da residência"
+                  defaultValue={
+                    isItUpdateEvent ? addressToBeUpdated?.house_number : null
+                  }
                   placeholder="Ex: Número ou s/n"
                   {...register("house_number")}
                 />
@@ -157,6 +206,9 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   className="textField"
                   type="text"
                   label="Complemento (opcional)"
+                  defaultValue={
+                    isItUpdateEvent ? addressToBeUpdated?.complement : null
+                  }
                   placeholder="Ex: Apartamento, sala, conjunto, edifío, andar, etc."
                   {...register("complement")}
                 />
@@ -170,6 +222,9 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   className="textField"
                   type="text"
                   label="Cidade"
+                  defaultValue={
+                    isItUpdateEvent ? addressToBeUpdated?.city : null
+                  }
                   {...register("city")}
                 />
                 {errors.city && (
@@ -182,6 +237,9 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   className="textField"
                   type="text"
                   label="Estado"
+                  defaultValue={
+                    isItUpdateEvent ? addressToBeUpdated?.state : null
+                  }
                   placeholder="Ex: PR"
                   {...register("state")}
                 />
@@ -195,6 +253,9 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   className="textField"
                   type="text"
                   label="Cep"
+                  defaultValue={
+                    isItUpdateEvent ? addressToBeUpdated?.zip_code : null
+                  }
                   placeholder="Ex: 87655544"
                   {...register("zip_code")}
                 />
@@ -208,6 +269,9 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   className="textField"
                   type="text"
                   label="Telefone"
+                  defaultValue={
+                    isItUpdateEvent ? addressToBeUpdated?.phone : null
+                  }
                   {...register("phone")}
                 />
                 {errors.phone && (
@@ -217,19 +281,16 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   </p>
                 )}
                 <div className="button-container">
-                  <Button
-                    onClick={() => {
-                      setTimeout(() => {
-                        setShowAddressModal(false);
-                        history.push("/checkout-page");
-                      }, 2000);
-                    }}
-                  >
+                  <Button backgroundColor={VARIABLES.colorBlue5}>
                     Salvar endereço
                   </Button>
                   <Button
                     backgroundColor={VARIABLES.colorRed2}
-                    onClick={() => setShowAddressModal(false)}
+                    onClick={() => {
+                      setShowAddressModal?.(false);
+                      setIsItUpdateEvent?.(false);
+                      setAnimationOption2?.(false);
+                    }}
                   >
                     Cancelar
                   </Button>

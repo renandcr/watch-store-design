@@ -23,6 +23,7 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const VARIABLES = {
+  colorBackground: "#edf6f9",
   colorBlue1: "#609cba",
   colorBlue2: "#0072bb",
   colorBlue3: "#5d8aa8",
@@ -41,12 +42,9 @@ export const VARIABLES = {
   colorGold2: "#a47e1b",
   colorOrange1: "#ed9121",
   colorOrange2: "#ffbc40",
-  colorShadow1: "0 4px 34px -10px #6c757d",
+  colorShadow1: "0 0 16px 0 rgb(9 30 66 / 20%), 0 0 0 1px rgb(9 30 66 / 8%)",
   colorShadow2:
-    "0 8px 16px -4px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%)",
-  colorShadow3: "0 4px 34px -7px #6c757d",
-  colorShadow4:
-    "0 8px 16px -10px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%)",
+    "0 5px 16px 5px rgb(9 30 66 / 25%), 0 0 0 1px rgb(9 30 66 / 8%)",
   colorDarkBackground: "rgba(0, 0, 0, 0.75)",
   lightBorderColor: "rgb(204,204,204)",
 

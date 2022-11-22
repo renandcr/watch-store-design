@@ -5,8 +5,8 @@ export const OrderSummaryContainer = styled.div`
   width: 100%;
   height: 257px;
   border-radius: 4px;
-  box-shadow: ${VARIABLES.colorShadow2};
-  background-color: rgb(255, 255, 255);
+  box-shadow: ${VARIABLES.colorShadow1};
+  background-color: #ffffff;
 `;
 
 export const TitleContainer = styled.div`

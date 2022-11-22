@@ -16,10 +16,14 @@ import {
   FooterContainer,
 } from "./style";
 
-const Footer: React.FC = (): JSX.Element => {
+export interface IFooter {
+  showDisplay?: boolean;
+}
+
+const Footer: React.FC<IFooter> = ({ showDisplay }): JSX.Element => {
   return (
-    <FooterContainer>
-      <FooterTopContainer>
+    <FooterContainer showDisplay={showDisplay}>
+      <FooterTopContainer showDisplay={showDisplay}>
         <FooterLogoContainer>
           <span className="watch-store larger">Watch</span>
           <span className="watch-store smaller">Store</span>
