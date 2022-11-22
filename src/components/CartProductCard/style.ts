@@ -5,13 +5,13 @@ import { ICartProductCard } from ".";
 export const CartProductCardContainer = styled.div<ICartProductCard>`
   display: flex;
   width: 100%;
-  background-color: rgb(255, 255, 255);
+  background-color: #ffffff;
   height: ${(props) => (props.showDisplay ? "185px" : "115px")};
   padding-bottom: ${(props) => (props.showDisplay ? "20px" : "0")};
   border-radius: ${(props) => (props.showDisplay ? "0" : "4px")};
   border-bottom: solid 1px ${VARIABLES.lightBorderColor};
   box-shadow: ${(props) =>
-    props.showDisplay ? "none" : VARIABLES.colorShadow2};
+    props.showDisplay ? "none" : VARIABLES.colorShadow1};
   justify-content: ${(props) =>
     props.showDisplay ? "unset" : "space-between"};
 `;

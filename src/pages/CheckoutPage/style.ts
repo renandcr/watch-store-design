@@ -1,10 +1,14 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
+import { ICheckoutPage } from ".";
 
 export const MainCheckoutPageContainer = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  .motion-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .logo-container {
     display: flex;
     flex-direction: column;
@@ -69,7 +73,7 @@ export const PurchaseSummaryContainer = styled.div`
   border-radius: 4px;
   padding: 15px;
   background-color: #ffffff;
-  box-shadow: ${VARIABLES.colorShadow4};
+  box-shadow: ${VARIABLES.colorShadow1};
   p {
     font-size: 13px;
     text-align: center;
@@ -128,21 +132,30 @@ export const LeftCheckoutPageContainer = styled.section`
   }
 `;
 
-export const AddressInformationContainer = styled.div`
+export const AddressInformationContainer = styled.div<ICheckoutPage>`
   width: 100%;
   border-radius: 4px;
   padding: 15px 15px 5px 15px;
   background-color: #ffffff;
-  box-shadow: ${VARIABLES.colorShadow4};
+  box-shadow: ${(props) =>
+    props.showDisplay ? "none" : VARIABLES.colorShadow1};
   ul {
     display: flex;
     flex-direction: column;
     row-gap: 7px;
     li {
       font-size: 15px;
+      line-height: 16px;
+      max-width: 40ch;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .upper {
       text-transform: uppercase;
+    }
+    .name {
+      font-weight: 500;
     }
     .flag-card {
       display: flex;
@@ -167,7 +180,7 @@ export const ShoppingContainer = styled.div`
   width: 100%;
   border-radius: 4px;
   padding: 15px;
-  box-shadow: ${VARIABLES.colorShadow4};
+  box-shadow: ${VARIABLES.colorShadow1};
   background-color: #ffffff;
   h1 {
     font-size: 17px;

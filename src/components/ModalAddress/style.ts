@@ -1,29 +1,35 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
+import { IAddressModal } from ".";
 
-export const ModalAddressContainer = styled.div`
+export const ModalAddressContainer = styled.div<IAddressModal>`
+  display: flex;
   width: 100%;
   height: 100%;
-  background-color: ${VARIABLES.colorDarkBackground};
-  position: fixed;
   z-index: 3;
-  display: flex;
-  justify-content: center;
+  background-color: ${(props) =>
+    props.showDisplay ? "#ffffff" : VARIABLES.colorDarkBackground};
+  position: ${(props) => (props.showDisplay ? "none" : "fixed")};
+  justify-content: ${(props) => (props.showDisplay ? "flex-start" : "center")};
+  h1 {
+    display: ${(props) => (props.showDisplay ? "none" : "flex")};
+  }
   .menu {
     width: 100%;
     max-width: 450px;
     border-radius: 4px;
-    overflow-y: auto;
     margin: 12px 0 12px 0;
     ::-webkit-scrollbar {
       display: none;
     }
+    overflow-y: ${(props) => (props.showDisplay ? "unset" : "auto")};
     .form-container {
       border-radius: 4px;
-      background-color: rgb(244, 244, 244);
-      max-width: 100%;
+      background-color: #ffffff;
+      min-width: 100%;
       form {
-        padding: 23px 20px 24px 20px;
+        padding: ${(props) =>
+          props.showDisplay ? "0 0 0 15px" : "23px 20px 24px 20px"};
         h1 {
           font-size: 24px;
           margin-bottom: 8px;

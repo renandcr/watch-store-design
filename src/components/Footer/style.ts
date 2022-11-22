@@ -1,30 +1,32 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
+import { IFooter } from ".";
 
-export const FooterContainer = styled.footer`
+export const FooterContainer = styled.footer<IFooter>`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  margin-top: 80px;
   border-top: solid 1px rgb(204, 204, 204);
   background-color: #f0f0f0;
+  margin-top: ${(props) => (props.showDisplay ? "0" : "80px")};
   a {
     color: gray;
   }
 
   @media only screen and (min-width: 768px) {
-    margin-top: 130px;
+    margin-top: ${(props) => (props.showDisplay ? "0" : "130px")};
   }
 `;
 
-export const FooterTopContainer = styled.div`
+export const FooterTopContainer = styled.div<IFooter>`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100vw;
-  background-color: #edf6f9;
   padding: 15px;
+  background-color: ${(props) =>
+    props.showDisplay ? "#ffffff" : VARIABLES.colorBackground};
 
   @media only screen and (min-width: 768px) {
     justify-content: flex-start;
