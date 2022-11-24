@@ -2,11 +2,13 @@ import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
 
 export const MainCompletedPurchasePage = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: #ffffff;
   padding-bottom: 80px;
+  .motion-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   @media only screen and (min-width: 768px) {
     padding-bottom: 130px;
@@ -43,8 +45,8 @@ export const CompletedPurchasePageContainer = styled.section`
     font-family: ${VARIABLES.fontSecondary};
     line-height: 26px;
     width: 100%;
-    color: ${VARIABLES.colorGray1};
-    margin-bottom: 30px;
+    color: ${VARIABLES.colorGray3};
+    margin-bottom: 25px;
   }
   .delivery-title {
     font-size: 18px;
@@ -62,7 +64,7 @@ export const OrderDescriptionContainer = styled.ul`
   flex-wrap: wrap;
   width: 100%;
   padding: 15px;
-  border-radius: 4px 4px 0 0;
+  border-radius: 8px 8px 0 0;
   row-gap: 20px;
   border: solid 1px ${VARIABLES.lightBorderColor};
   background-color: ${VARIABLES.colorBackgroundGray};

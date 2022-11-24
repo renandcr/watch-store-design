@@ -37,6 +37,9 @@ const Menu: React.FC<IMenu> = ({
             <Link to="/">
               <li className="up">Minha conta</li>
             </Link>
+            <Link to="/my-requests-page">
+              <li className="up">Seus pedidos</li>
+            </Link>
             <Link to="/registration-page">
               <li>Cadastrar</li>
             </Link>

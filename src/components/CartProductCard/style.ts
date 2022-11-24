@@ -6,10 +6,11 @@ export const CartProductCardContainer = styled.div<ICartProductCard>`
   display: flex;
   width: 100%;
   background-color: #ffffff;
-  height: ${(props) => (props.showDisplay ? "185px" : "118px")};
+  height: ${(props) => (props.showDisplay ? "185px" : "120px")};
   padding-bottom: ${(props) => (props.showDisplay ? "20px" : "0")};
   border-radius: ${(props) => (props.showDisplay ? "0" : "4px")};
-  border-bottom: solid 1px ${VARIABLES.lightBorderColor};
+  border-bottom: ${(props) =>
+    props.showDisplay ? `solid 1px ${VARIABLES.lightBorderColor}` : "none"};
   box-shadow: ${(props) =>
     props.showDisplay ? "none" : VARIABLES.colorShadow1};
   justify-content: ${(props) =>
@@ -30,10 +31,11 @@ export const CartImageContainer = styled.div<ICartProductCard>`
 export const CartDescriptionContainer = styled.div<ICartProductCard>`
   display: flex;
   flex-direction: column;
-  row-gap: 7px;
+  row-gap: 10px;
   width: 65%;
   text-align: left;
-  margin: ${(props) => (props.showDisplay ? "0 5px 0 5px" : "10px 5px 0 5px")};
+  margin: ${(props) =>
+    props.showDisplay ? "5px 5px 0 5px" : "10px 5px 0 5px"};
   h2 {
     line-height: 20px;
     color: ${VARIABLES.colorGray1};

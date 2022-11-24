@@ -4,12 +4,12 @@ import styled from "styled-components";
 
 export const AddressInformationContainer = styled.div<IAddressInformation>`
   width: 100%;
-  border-radius: 4px;
   background-color: #ffffff;
   color: ${VARIABLES.colorGray3};
   padding: ${(props) => (props.showDisplay ? "15px" : "15px 15px 10px 15px")};
   box-shadow: ${(props) =>
     props.showDisplay ? "none" : VARIABLES.colorShadow1};
+  border-radius: ${(props) => (props.border ? "8px" : "4px")};
   border: ${(props) =>
     props.border ? `1px solid ${VARIABLES.lightBorderColor}` : "none"};
   .link-change {

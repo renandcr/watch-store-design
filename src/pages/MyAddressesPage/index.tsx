@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import api from "../../assets/axios";
+import { useEffect } from "react";
 import { useState } from "react";
 
 import {
@@ -27,6 +28,10 @@ import {
 } from "../../store/modules/user/actions";
 
 const MyAddressesPage: React.FC = (): JSX.Element => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const [showAddressModal, setShowAddressModal] = useState<boolean>(false);
   const [isItUpdateEvent, setIsItUpdateEvent] = useState<boolean>(false);

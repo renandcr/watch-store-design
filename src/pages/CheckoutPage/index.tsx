@@ -9,6 +9,7 @@ import { Link, useHistory } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 import {
   LeftCheckoutPageContainer,
@@ -19,6 +20,10 @@ import {
 } from "./style";
 
 const CheckoutPage: React.FC = (): JSX.Element => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const history = useHistory();
 
   const productCart: Array<IDbProducts> = useTypedSelector(
