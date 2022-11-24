@@ -6,9 +6,8 @@ export const FooterContainer = styled.footer<IFooter>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  border-top: solid 1px rgb(204, 204, 204);
-  background-color: #f0f0f0;
+  border-top: solid 1px ${VARIABLES.lightBorderColor};
+  background-color: ${VARIABLES.colorGray4};
   margin-top: ${(props) => (props.showDisplay ? "0" : "80px")};
   a {
     color: gray;
@@ -23,7 +22,7 @@ export const FooterTopContainer = styled.div<IFooter>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   padding: 15px;
   background-color: ${(props) =>
     props.showDisplay ? "#ffffff" : VARIABLES.colorBackground};
@@ -61,7 +60,7 @@ export const FooterMidleContainer = styled.div`
   @media only screen and (min-width: 768px) {
     display: flex;
     justify-content: space-between;
-    width: 100vw;
+    width: 100%;
     .fake-div {
       display: flex;
       width: 22.5%;
@@ -115,7 +114,7 @@ export const CreditCardsContainer = styled.div`
 
 export const FooterBottomContainer = styled.div`
   margin: 60px 0 35px 0;
-  width: 100vw;
+  width: 100%;
   h2 {
     color: rgb(150, 150, 150);
     text-align: center;

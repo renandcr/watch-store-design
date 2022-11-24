@@ -61,7 +61,6 @@ const Footer: React.FC<IFooter> = ({ showDisplay }): JSX.Element => {
           <div>
             <h2>Formas de pagamento:</h2>
           </div>
-
           <div className="credit-cards-img">
             <img
               src={Credit}

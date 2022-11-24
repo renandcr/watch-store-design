@@ -1,5 +1,5 @@
 import { actionUpdateUserState } from "../../store/modules/user/actions";
-import { AddressInformationContainer } from "../CheckoutPage/style";
+import AddressInformation from "../../components/AddressInformation";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import ModalAddress from "../../components/ModalAddress";
 import WebSiteLogo from "../../components/WebSiteLogo";
@@ -105,21 +105,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
               )}
               {user.addresses.map((address) => (
                 <SavedAddressContainer key={address.id}>
-                  <AddressInformationContainer showDisplay>
-                    <ul>
-                      <li className="upper">
-                        {address.street} {address.house_number}
-                      </li>
-                      <li className="upper">
-                        {address.complement} {address.district}
-                      </li>
-                      <li>
-                        {address.city}, {address.state} {address.zip_code}
-                      </li>
-                      <li>Brasil</li>
-                      <li>Telefone: {address.phone}</li>
-                    </ul>
-                  </AddressInformationContainer>
+                  <AddressInformation showDisplay />
                   <div className="button-container">
                     <Button
                       backgroundColor={VARIABLES.colorBlue5}
