@@ -1,3 +1,4 @@
+import CompletedPurchasePage from "../pages/CompletedPurchasePage";
 import RegistrationPage from "../pages/RegistrationPage";
 import MyAddressesPage from "../pages/MyAddressesPage";
 import { Switch, Route } from "react-router-dom";
@@ -15,6 +16,10 @@ const Routes = () => {
       <Route component={CheckoutPage} path="/checkout-page" />
       <Route component={MyAddressesPage} path="/my-addresses-page" />
       <Route component={RegistrationPage} path="/registration-page" />
+      <Route
+        component={CompletedPurchasePage}
+        path="/completed-purchase-page"
+      />
     </Switch>
   );
 };

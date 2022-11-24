@@ -6,7 +6,7 @@ export const CartProductCardContainer = styled.div<ICartProductCard>`
   display: flex;
   width: 100%;
   background-color: #ffffff;
-  height: ${(props) => (props.showDisplay ? "185px" : "115px")};
+  height: ${(props) => (props.showDisplay ? "185px" : "118px")};
   padding-bottom: ${(props) => (props.showDisplay ? "20px" : "0")};
   border-radius: ${(props) => (props.showDisplay ? "0" : "4px")};
   border-bottom: solid 1px ${VARIABLES.lightBorderColor};
@@ -28,12 +28,14 @@ export const CartImageContainer = styled.div<ICartProductCard>`
 `;
 
 export const CartDescriptionContainer = styled.div<ICartProductCard>`
+  display: flex;
+  flex-direction: column;
+  row-gap: 7px;
   width: 65%;
   text-align: left;
-  margin: ${(props) =>
-    props.showDisplay ? "0 5px 0 10px" : "10px 5px 0 10px"};
+  margin: ${(props) => (props.showDisplay ? "0 5px 0 5px" : "10px 5px 0 5px")};
   h2 {
-    line-height: 22px;
+    line-height: 20px;
     color: ${VARIABLES.colorGray1};
     overflow: hidden;
     display: -webkit-box;
@@ -42,12 +44,15 @@ export const CartDescriptionContainer = styled.div<ICartProductCard>`
     font-weight: ${(props) => (props.showDisplay ? "600" : "400")};
   }
   span {
-    margin-top: 15px;
-    display: block;
     font-weight: 500;
     font-size: ${VARIABLES.fontSize2};
     color: ${(props) =>
       props.showDisplay ? VARIABLES.colorRed2 : VARIABLES.colorGold2};
+  }
+  .inventory {
+    color: ${VARIABLES.colorGreen2};
+    font-weight: 500;
+    font-size: 11px;
   }
 `;
 
@@ -59,10 +64,6 @@ export const BottomContainer = styled.div<ICartProductCard>`
     font-size: ${VARIABLES.fontSize3};
     font-weight: 500;
     margin-top: 7px;
-  }
-  .inventory {
-    color: ${VARIABLES.colorGreen2};
-    font-weight: 400;
   }
   .units {
     display: flex;

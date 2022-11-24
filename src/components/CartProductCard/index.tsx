@@ -62,8 +62,8 @@ const CartProductCard: React.FC<
       <CartDescriptionContainer showDisplay={showDisplay}>
         <h2>{product.description}</h2>
         <span>{formatPrices(product.price)}</span>
+        <span className="inventory">Em estoque</span>
         <BottomContainer showDisplay={showDisplay}>
-          <span className="inventory">Em estoque</span>
           {showInput ? (
             <QuantityInputContainer>
               <div>

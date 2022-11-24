@@ -1,6 +1,5 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
-import { ICheckoutPage } from ".";
 
 export const MainCheckoutPageContainer = styled.main`
   .motion-container {
@@ -129,47 +128,6 @@ export const LeftCheckoutPageContainer = styled.section`
 
   @media only screen and (min-width: 768px) {
     max-width: 550px;
-  }
-`;
-
-export const AddressInformationContainer = styled.div<ICheckoutPage>`
-  width: 100%;
-  border-radius: 4px;
-  padding: 15px 15px 5px 15px;
-  background-color: #ffffff;
-  box-shadow: ${(props) =>
-    props.showDisplay ? "none" : VARIABLES.colorShadow1};
-  ul {
-    display: flex;
-    flex-direction: column;
-    row-gap: 7px;
-    li {
-      font-size: 15px;
-      line-height: 16px;
-      max-width: 40ch;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .upper {
-      text-transform: uppercase;
-    }
-    .name {
-      font-weight: 500;
-    }
-    .flag-card {
-      display: flex;
-      align-items: center;
-      margin: -5px 0 0 -5px;
-      img {
-        width: 43px;
-        height: 38px;
-      }
-      span {
-        font-size: 14px;
-        margin-right: 3px;
-      }
-    }
   }
 `;
 

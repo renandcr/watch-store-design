@@ -20,7 +20,6 @@ export const ProductCardContainer = styled.li`
 
 export const ImageContainer = styled.div`
   max-width: 100%;
-  height: 232px;
   overflow: hidden;
   margin: 3px 3px 10px 3px;
   img {
@@ -56,5 +55,9 @@ export const DescriptionContainer = styled.div`
     margin-bottom: 10px;
     color: ${VARIABLES.colorSecondary};
     font-size: ${VARIABLES.fontSize3};
+  }
+  .inventory {
+    color: ${VARIABLES.colorGreen2};
+    font-size: 11px;
   }
 `;

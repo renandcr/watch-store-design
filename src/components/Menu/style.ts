@@ -13,7 +13,7 @@ export const MenuContainer = styled.div`
     align-items: center;
     width: 100%;
     max-width: 420px;
-    background-color: rgb(244, 244, 244);
+    background-color: ${VARIABLES.colorBackgroundGray};
     padding-bottom: 1px;
     border-radius: 0 0 4px 0;
     .first-child {

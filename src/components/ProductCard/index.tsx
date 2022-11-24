@@ -26,6 +26,7 @@ const ProductCard: React.FC<{ product: IDbProducts }> = ({
       </ImageContainer>
       <DescriptionContainer>
         <h2>{product.description}</h2>
+        <span className="inventory">Em estoque</span>
         <span>{productPrice}</span>
         <Button onClick={() => dispatch(actionAddProductToCart(product))}>
           Adicionar ao carrinho
