@@ -3,8 +3,13 @@ import LoginForm from "../../components/LoginForm";
 import BigLogo from "../../components/BigLogo";
 import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 const LoginPage: React.FC = (): JSX.Element => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <motion.div

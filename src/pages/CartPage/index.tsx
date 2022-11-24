@@ -9,6 +9,7 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useState } from "react";
 
 import {
@@ -20,6 +21,10 @@ import {
 } from "./style";
 
 const CartPage: React.FC = (): JSX.Element => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const productCart: Array<IDbProducts> = useTypedSelector(
     (state) => state.cart
   );

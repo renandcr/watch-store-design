@@ -11,9 +11,14 @@ import { MainHomeContainer } from "./style";
 import Menu from "../../components/Menu";
 import { HomeContainer } from "./style";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 import { useState } from "react";
 
 const Home: React.FC = (): JSX.Element => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [menuIsVisible, setMenuVisibility] = useState<boolean>(false);
   const researchProducts: Array<IDbProducts> = useTypedSelector(
     (state) => state.home

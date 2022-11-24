@@ -1,21 +1,15 @@
-import AddressInformation from "../../components/AddressInformation";
+import { MainMyRequestsPageContainer, MyRequestsPageContainer } from "./style";
+import { OrderDescriptionContainer } from "../CompletedPurchasePage/style";
 import { IDbProducts } from "../../store/modules/dbProducts";
 import OrderDetails from "../../components/OrderDetails";
-import { useTypedSelector } from "../../store/modules";
 import WebSiteLogo from "../../components/WebSiteLogo";
+import { useTypedSelector } from "../../store/modules";
 import { formatPrices } from "../../assets/methods";
 import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 
-import {
-  CompletedPurchasePageTitleContainer,
-  CompletedPurchasePageContainer,
-  MainCompletedPurchasePage,
-  OrderDescriptionContainer,
-} from "./style";
-
-const CompletedPurchasePage: React.FC = (): JSX.Element => {
+export const MyRequestsPage: React.FC = (): JSX.Element => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -29,30 +23,18 @@ const CompletedPurchasePage: React.FC = (): JSX.Element => {
     0
   );
 
-  const newDate = new Date().toDateString().split(" ");
-  const deliveryDate = `${Number(newDate[2]) + 7} de ${newDate[1]} ${
-    newDate[3]
-  }`;
-
   return (
     <>
-      <MainCompletedPurchasePage>
-        <CompletedPurchasePageTitleContainer>
-          <h1>Compra finalizada com sucesso!</h1>
-        </CompletedPurchasePageTitleContainer>
+      <MainMyRequestsPageContainer>
         <motion.div
           className="motion-container"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <CompletedPurchasePageContainer>
-            <WebSiteLogo />
-            <h2>Detalhes do pedido</h2>
-            <AddressInformation showDisplay border />
-            <h2 className="delivery-title">
-              Entrega prevista para o dia {deliveryDate}
-            </h2>
+          <WebSiteLogo />
+          <h1>Seus pedidos</h1>
+          <MyRequestsPageContainer>
             <OrderDescriptionContainer>
               <li>
                 <div>
@@ -71,12 +53,10 @@ const CompletedPurchasePage: React.FC = (): JSX.Element => {
             {productCart.map((product) => (
               <OrderDetails key={product.id} product={product} />
             ))}
-          </CompletedPurchasePageContainer>
+          </MyRequestsPageContainer>
         </motion.div>
-      </MainCompletedPurchasePage>
+      </MainMyRequestsPageContainer>
       <Footer showDisplay />
     </>
   );
 };
-
-export default CompletedPurchasePage;
