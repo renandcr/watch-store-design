@@ -69,7 +69,7 @@ const CartPage: React.FC = (): JSX.Element => {
                     alt="Imagem ilustrativa de um carrinho vazio"
                   />
                   <Link to="/">
-                    <Button backgroundColor={VARIABLES.colorBlue5}>
+                    <Button backgroundColor={VARIABLES.colorBlue6}>
                       Ver produtos
                     </Button>
                   </Link>

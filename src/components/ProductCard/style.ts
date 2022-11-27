@@ -27,7 +27,7 @@ export const ImageContainer = styled.div`
     border-radius: 4px 4px 0 0;
     transition: all 0.3s;
     :hover {
-      transform: scale(1.3);
+      transform: scale(1.5);
     }
   }
 

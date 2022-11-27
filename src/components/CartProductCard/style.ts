@@ -31,7 +31,7 @@ export const CartImageContainer = styled.div<ICartProductCard>`
 export const CartDescriptionContainer = styled.div<ICartProductCard>`
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 8px;
   width: 65%;
   text-align: left;
   margin: ${(props) =>
@@ -60,12 +60,11 @@ export const CartDescriptionContainer = styled.div<ICartProductCard>`
 
 export const BottomContainer = styled.div<ICartProductCard>`
   flex-direction: column;
-  margin-top: 5px;
   display: ${(props) => (props.showDisplay ? "flex" : "none")};
+  row-gap: 8px;
   span {
     font-size: ${VARIABLES.fontSize3};
     font-weight: 500;
-    margin-top: 7px;
   }
   .units {
     display: flex;
@@ -109,10 +108,9 @@ export const QuantityInputContainer = styled.div`
   div {
     width: 40px;
     border-radius: 4px;
-    height: 23px;
+    height: 22px;
     margin-right: 10px;
-    border: 1px solid ${VARIABLES.colorOrange2};
-    box-shadow: 0 0 4px ${VARIABLES.colorOrange1};
+    box-shadow: ${VARIABLES.colorShadow3};
     input {
       width: 100%;
       height: 100%;

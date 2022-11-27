@@ -66,13 +66,18 @@ export const SavedAddressesContainer = styled.section`
       display: flex;
       column-gap: 10px;
       button {
-        color: ${VARIABLES.colorBlue5};
+        color: ${VARIABLES.colorBlue6};
         font-weight: 600;
-        border: 1px solid ${VARIABLES.colorBlue5};
+        border: 1px solid ${VARIABLES.colorBlue6};
         :hover {
-          color: ${VARIABLES.colorBlue4};
-          border-color: ${VARIABLES.colorBlue2};
           filter: none;
+          background-color: ${VARIABLES.colorOrange2};
+          border: 1px solid ${VARIABLES.colorOrange2};
+          color: #ffffff;
+        }
+        :active {
+          filter: brightness(1.6);
+          transition: 0.3s;
         }
       }
     }
@@ -102,6 +107,7 @@ export const NewAddressContainer = styled.section`
       flex-direction: row;
       align-items: center;
       button {
+        font-weight: 600;
         margin-left: 20px;
         margin-top: 0;
       }

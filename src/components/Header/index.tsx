@@ -92,7 +92,7 @@ const Header: React.FC<IHeader> = ({
           <Link to="/login-page">
             <li>Entrar</li>
           </Link>
-          <Link to="">
+          <Link to="/my-account-page">
             <li>Minha conta</li>
           </Link>
         </ul>

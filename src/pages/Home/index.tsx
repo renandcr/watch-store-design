@@ -44,15 +44,31 @@ const Home: React.FC = (): JSX.Element => {
             infinite={true}
             mouseTracking
           />
-          <h1>Relógios</h1>
+          <h1 className="first-title">Relógios Masculinos</h1>
           <HomeContainer>
             {researchProducts.length > 0
               ? researchProducts.map((product, index) => (
                   <ProductCard key={index} product={product} />
                 ))
-              : dbProducts.map((product, index) => (
+              : dbProducts.map(
+                  (product, index) =>
+                    product.genre === "male" && (
+                      <ProductCard key={index} product={product} />
+                    )
+                )}
+          </HomeContainer>
+          <h1>Relógios Femininos</h1>
+          <HomeContainer>
+            {researchProducts.length > 0
+              ? researchProducts.map((product, index) => (
                   <ProductCard key={index} product={product} />
-                ))}
+                ))
+              : dbProducts.map(
+                  (product, index) =>
+                    product.genre === "female" && (
+                      <ProductCard key={index} product={product} />
+                    )
+                )}
           </HomeContainer>
         </MainHomeContainer>
       </motion.div>
