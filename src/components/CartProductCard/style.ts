@@ -213,5 +213,7 @@ export const TrashContainer = styled.div`
   }
   :active {
     background-color: gray;
+    filter: brightness(1.6);
+    transition: 0.5s;
   }
 `;

@@ -12,7 +12,6 @@ export const InsideFormContainer = styled.form`
   align-items: center;
   row-gap: 10px;
   width: 100%;
-  padding: 30px 20px 32px 20px;
   border-radius: 4px;
   h1 {
     width: 100%;
@@ -38,6 +37,11 @@ export const InsideFormContainer = styled.form`
     height: 48px;
     font-size: ${VARIABLES.fontSize3};
     margin-top: 10px;
+  }
+  .button-container {
+    display: flex;
+    column-gap: 10px;
+    width: 100%;
   }
 `;
 

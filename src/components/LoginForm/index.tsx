@@ -1,7 +1,3 @@
-import {
-  actionUpdateUserState,
-  IUserLogin,
-} from "../../store/modules/user/actions";
 import { InsideFormContainer } from "../RegistrationForm/style";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { VARIABLES } from "../../assets/globalStyle/style";
@@ -18,6 +14,11 @@ import api from "../../assets/axios";
 import Button from "../Button";
 import jwt from "jwt-decode";
 import * as yup from "yup";
+
+import {
+  actionUpdateUserState,
+  IUserLogin,
+} from "../../store/modules/user/actions";
 
 const LoginForm: React.FC = (): JSX.Element => {
   const formSchema = yup.object().shape({
@@ -65,7 +66,7 @@ const LoginForm: React.FC = (): JSX.Element => {
           className="textField"
           type="text"
           label="E-mail"
-          autoComplete="current-password"
+          autoFocus
           {...register("email")}
         />
         {errors.email && (
@@ -78,7 +79,6 @@ const LoginForm: React.FC = (): JSX.Element => {
           className="textField"
           type="password"
           label="Senha"
-          autoComplete="current-password"
           {...register("password")}
         />
         {errors.password && (
@@ -87,7 +87,7 @@ const LoginForm: React.FC = (): JSX.Element => {
             {errors.password?.message}
           </p>
         )}
-        <Button>Login</Button>
+        <Button backgroundColor={VARIABLES.colorBlue5}>Login</Button>
         <UnderLoginContainer>
           <div>
             <span className="border"></span>
@@ -95,7 +95,7 @@ const LoginForm: React.FC = (): JSX.Element => {
             <span className="border"></span>
           </div>
           <Link to="/registration-page">
-            <Button backgroundColor={VARIABLES.colorBlue5}>
+            <Button backgroundColor={VARIABLES.colorGreen1}>
               Crie sua conta
             </Button>
           </Link>

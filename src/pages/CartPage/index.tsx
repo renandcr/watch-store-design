@@ -1,6 +1,7 @@
 import CartProductCard from "../../components/CartProductCard";
 import EmptyCart from "../../assets/images/carrinho_vazio.png";
 import { IDbProducts } from "../../store/modules/dbProducts";
+import { VARIABLES } from "../../assets/globalStyle/style";
 import OrderSummary from "../../components/OrderSummary";
 import ModalAddress from "../../components/ModalAddress";
 import { useTypedSelector } from "../../store/modules";
@@ -39,11 +40,14 @@ const CartPage: React.FC = (): JSX.Element => {
       />
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
+        animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
       >
         <MainPageCart>
-          <h1>Meu carrinho</h1>
+          {!productCart.length ? (
+            <h1>Seu carrinho está vazio!</h1>
+          ) : (
+            <h1>Meu carrinho</h1>
+          )}
           <CartPageContainer>
             {productCart.length > 0 ? (
               <OrderSummarySection>
@@ -53,17 +57,21 @@ const CartPage: React.FC = (): JSX.Element => {
               <motion.div
                 className="empty"
                 initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  transition: { duration: 0.5 },
+                }}
               >
                 <EmptyCartContainer>
                   <img
                     src={EmptyCart}
                     alt="Imagem ilustrativa de um carrinho vazio"
                   />
-                  <h2>Carrinho vazio!</h2>
                   <Link to="/">
-                    <Button>Ver produtos</Button>
+                    <Button backgroundColor={VARIABLES.colorBlue5}>
+                      Ver produtos
+                    </Button>
                   </Link>
                 </EmptyCartContainer>
               </motion.div>

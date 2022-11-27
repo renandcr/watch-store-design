@@ -22,6 +22,7 @@ export const TopContainer = styled.div<IHeader>`
     display: flex;
     width: 100%;
     margin-top: 10px;
+
     @media only screen and (min-width: 500px) {
       display: none;
     }
@@ -29,6 +30,7 @@ export const TopContainer = styled.div<IHeader>`
   .input-desktop {
     width: 40%;
     display: none;
+
     @media only screen and (min-width: 500px) {
       display: flex;
     }

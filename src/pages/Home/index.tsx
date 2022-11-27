@@ -33,8 +33,7 @@ const Home: React.FC = (): JSX.Element => {
       />
       <motion.div
         initial={{ y: -30 }}
-        animate={{ y: 0 }}
-        transition={{ type: "spring", stiffness: 100 }}
+        animate={{ y: 0, transition: { type: "spring", stiffness: 100 } }}
       >
         <MainHomeContainer>
           <AliceCarousel

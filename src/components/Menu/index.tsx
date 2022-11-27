@@ -20,8 +20,7 @@ const Menu: React.FC<IMenu> = ({
           <motion.ul
             className="menu"
             initial={{ x: -400, opacity: 0 }}
-            animate={{ x: 1, opacity: 1 }}
-            transition={{ duration: 0.4 }}
+            animate={{ x: 1, opacity: 1, transition: { duration: 0.4 } }}
           >
             <li className="first-child">
               <span>
@@ -34,7 +33,7 @@ const Menu: React.FC<IMenu> = ({
                 <CloseIcon />
               </span>
             </li>
-            <Link to="/">
+            <Link to="/my-account-page">
               <li className="up">Minha conta</li>
             </Link>
             <Link to="/my-requests-page">
