@@ -1,4 +1,3 @@
-import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
 
 export const BigLogoContainer = styled.div`
@@ -10,7 +9,16 @@ export const BigLogoContainer = styled.div`
   width: 503px;
   height: 503px;
   border-radius: 50%;
-  background-color: ${VARIABLES.colorAlternative};
+  background: #667db6;
+  background: -webkit-linear-gradient(
+    to right,
+    #667db6,
+    #0082c8,
+    #0082c8,
+    #667db6
+  );
+  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+
   .watch-store {
     font-family: "Righteous", cursive;
     color: #ffffff;

@@ -56,13 +56,6 @@ const Menu: React.FC<IMenu> = ({
               <li>Relógios Femininos</li>
             </Link>
             <Link to="">
-              {" "}
-              <li>Perfumes Masculinos</li>
-            </Link>
-            <Link to="">
-              <li className="under">Perfumes Femininos</li>
-            </Link>
-            <Link to="">
               <li className="up">Política de Privacidade</li>
             </Link>
             <Link
@@ -72,7 +65,7 @@ const Menu: React.FC<IMenu> = ({
                 setMenuVisibility(false);
               }}
             >
-              <li className="under">Sair</li>
+              <li className="under">Sair da conta</li>
             </Link>
           </motion.ul>
         </MenuContainer>

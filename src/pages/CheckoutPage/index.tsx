@@ -93,7 +93,8 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                 </Link>
               </span>
               <Button
-                backgroundColor={VARIABLES.colorOrange1}
+                backgroundColor={VARIABLES.backgroundGradient3}
+                color={VARIABLES.colorGray3}
                 onClick={() => history.push("/completed-purchase-page")}
               >
                 Finalizar compra

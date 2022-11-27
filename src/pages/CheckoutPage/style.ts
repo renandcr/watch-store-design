@@ -78,7 +78,6 @@ export const PurchaseSummaryContainer = styled.div`
     text-align: center;
     margin-bottom: 5px;
     line-height: 20px;
-    font-weight: 500;
     color: ${VARIABLES.colorGray2};
   }
   .store-name {
@@ -113,6 +112,7 @@ export const PurchaseSummaryContainer = styled.div`
   }
   button {
     margin-top: 10px;
+    font-weight: 600;
   }
 
   @media only screen and (min-width: 768px) {

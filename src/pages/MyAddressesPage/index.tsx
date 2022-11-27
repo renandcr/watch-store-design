@@ -113,7 +113,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
                   <AddressInformation showDisplay address={address} />
                   <div className="button-container">
                     <Button
-                      backgroundColor={VARIABLES.colorBlue5}
+                      backgroundColor={VARIABLES.colorBlue6}
                       height="36px"
                       onClick={() => {
                         handleRequests(address.id, "update-main");
@@ -152,6 +152,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
                   <h1>Deseja adicionar um novo endereço?</h1>
                   <Button
                     backgroundColor={VARIABLES.colorOrange2}
+                    color={VARIABLES.colorGray3}
                     onClick={() => {
                       setShowAddressModal(true);
                       setAnimationOption2(true);

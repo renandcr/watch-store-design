@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const OrderSummaryContainer = styled.div`
   width: 100%;
-  height: 257px;
   border-radius: 4px;
   box-shadow: ${VARIABLES.colorShadow1};
   background-color: #ffffff;
@@ -16,7 +15,7 @@ export const TitleContainer = styled.div`
   width: 100%;
   height: 50px;
   border-radius: 4px 4px 0 0;
-  background-color: ${VARIABLES.colorAlternative};
+  background-color: ${VARIABLES.colorBlue3};
   h2 {
     font-family: ${VARIABLES.fontSecondary};
     color: #ffffff;
@@ -28,7 +27,14 @@ export const OrderBodyContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px 25px 20px;
+  padding: 15px 20px 20px 20px;
+  p {
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 20px;
+    color: ${VARIABLES.colorGray2};
+  }
 `;
 
 export const PaymentInformationContainer = styled.div`

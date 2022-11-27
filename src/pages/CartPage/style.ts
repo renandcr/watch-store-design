@@ -10,7 +10,7 @@ export const MainPageCart = styled.main`
     font-weight: 500;
     font-family: ${VARIABLES.fontSecondary};
     margin: 160px 25px 40px 15px;
-    border-bottom: solid 1px rgb(204, 204, 204);
+    border-bottom: solid 1px ${VARIABLES.lightBorderColor};
     color: ${VARIABLES.colorBlue2};
 
     @media only screen and (min-width: 500px) {

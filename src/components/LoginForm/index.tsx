@@ -87,7 +87,7 @@ const LoginForm: React.FC = (): JSX.Element => {
             {errors.password?.message}
           </p>
         )}
-        <Button backgroundColor={VARIABLES.colorBlue5}>Login</Button>
+        <Button backgroundColor={VARIABLES.colorBlue6}>Login</Button>
         <UnderLoginContainer>
           <div>
             <span className="border"></span>

@@ -39,8 +39,8 @@ export const TopContainer = styled.div<IHeader>`
     border-radius: 4px;
     height: 45px;
     :focus-within {
-      border: 1px solid ${VARIABLES.colorOrange1};
-      box-sizing: content-box;
+      box-shadow: ${VARIABLES.colorShadow3};
+      transition: 0.3s;
     }
     input {
       width: 100%;
@@ -170,15 +170,18 @@ export const OptionsContainer = styled.div<IHeader>`
         color: ${VARIABLES.colorOrange1};
         transition: 0.3s;
       }
+
+      @media only screen and (min-width: 375px) {
+        li {
+          font-size: 11px;
+        }
+      }
     }
     a + a {
       margin-left: 10px;
 
       @media only screen and (min-width: 375px) {
         margin-left: 19px;
-        li {
-          font-size: 11px;
-        }
       }
       @media only screen and (min-width: 425px) {
         margin-left: 34px;

@@ -1,6 +1,7 @@
 import { IDatabaseUser } from "../../store/modules/user/actions";
 import { useTypedSelector } from "../../store/modules/index";
 import { IDbProducts } from "../../store/modules/dbProducts";
+import { VARIABLES } from "../../assets/globalStyle/style";
 import { Dispatch, SetStateAction } from "react";
 import { useHistory } from "react-router-dom";
 import { BsBagFill } from "react-icons/bs";
@@ -52,6 +53,9 @@ const OrderSummary: React.FC<IOrderSummary> = ({
         <h2>Resumo do pedido</h2>
       </TitleContainer>
       <OrderBodyContainer>
+        <p>
+          Aviso: Opós fechar, você ainda poderá fazer alterações no seu pedido.{" "}
+        </p>
         <PaymentInformationContainer>
           <span>{totalUnits} unidades</span>
           <span>{totalPrice}</span>
@@ -62,7 +66,12 @@ const OrderSummary: React.FC<IOrderSummary> = ({
             Continuar comprando
           </KeepBuyingContainer>
         </Link>
-        <Button onClick={handleCloseOrderEvent}>Fechar pedido</Button>
+        <Button
+          backgroundColor={VARIABLES.backgroundGradient2}
+          onClick={handleCloseOrderEvent}
+        >
+          Fechar pedido
+        </Button>
       </OrderBodyContainer>
     </OrderSummaryContainer>
   );

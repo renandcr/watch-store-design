@@ -282,7 +282,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   </p>
                 )}
                 <div className="button-container">
-                  <Button backgroundColor={VARIABLES.colorBlue5}>
+                  <Button backgroundColor={VARIABLES.colorBlue6}>
                     Salvar endereço
                   </Button>
                   <Button

@@ -180,10 +180,10 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
           </LoginShortcutContainer>
         )}
         {!updateForm ? (
-          <Button backgroundColor={VARIABLES.colorBlue5}>Continuar</Button>
+          <Button backgroundColor={VARIABLES.colorBlue6}>Continuar</Button>
         ) : (
           <div className="button-container">
-            <Button backgroundColor={VARIABLES.colorBlue5}>
+            <Button backgroundColor={VARIABLES.colorBlue6}>
               Salvar alterações
             </Button>
             <Button

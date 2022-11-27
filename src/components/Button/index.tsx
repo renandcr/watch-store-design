@@ -6,6 +6,7 @@ export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   backgroundColor?: string;
   width?: string;
   height?: string;
+  color?: string;
 }
 
 const Button: React.FC<IButton> = ({
@@ -13,6 +14,7 @@ const Button: React.FC<IButton> = ({
   backgroundColor,
   width,
   height,
+  color,
   ...rest
 }): JSX.Element => {
   return (
@@ -20,6 +22,7 @@ const Button: React.FC<IButton> = ({
       backgroundColor={backgroundColor}
       width={width}
       height={height}
+      color={color}
       {...rest}
     >
       {children}

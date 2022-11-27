@@ -41,7 +41,16 @@ const AddressInformation: React.FC<
         <li className="weight">
           Forma de pagamento
           <Link to="/checkout-page">
-            <span className="link-change">Alterar</span>
+            <span
+              className="link-change"
+              onClick={() =>
+                alert(
+                  "Desculpe, por enquanto esta ação ainda não está habilitada"
+                )
+              }
+            >
+              Alterar
+            </span>
           </Link>
         </li>
         <li className="flag-card weight">
