@@ -11,7 +11,7 @@ export const MainPageCart = styled.main`
     font-family: ${VARIABLES.fontSecondary};
     margin: 160px 25px 40px 15px;
     border-bottom: solid 1px rgb(204, 204, 204);
-    color: ${VARIABLES.colorBlue4};
+    color: ${VARIABLES.colorBlue2};
 
     @media only screen and (min-width: 500px) {
       margin: 160px 25px 40px 15px;
@@ -53,19 +53,8 @@ export const EmptyCartContainer = styled.div`
   width: 100%;
   img {
     width: 90%;
-    max-width: 200px;
+    max-width: 270px;
     margin-right: 25px;
-  }
-  h2 {
-    font-size: 23.68px;
-    margin-top: 20px;
-    font-family: ${VARIABLES.fontSecondary};
-    color: ${VARIABLES.colorGray1};
-    font-weight: 500;
-
-    @media only screen and (min-width: 768px) {
-      font-size: 26px;
-    }
   }
   button {
     width: 200px;

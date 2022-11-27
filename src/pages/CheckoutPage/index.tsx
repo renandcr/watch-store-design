@@ -1,4 +1,6 @@
+import { IAddressesDatabase } from "../../store/modules/user/actions";
 import AddressInformation from "../../components/AddressInformation";
+import { IDatabaseUser } from "../../store/modules/user/actions";
 import CartProductCard from "../../components/CartProductCard";
 import { IDbProducts } from "../../store/modules/dbProducts";
 import { VARIABLES } from "../../assets/globalStyle/style";
@@ -42,14 +44,20 @@ const CheckoutPage: React.FC = (): JSX.Element => {
     newDate[3]
   }`;
 
+  const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
+  const address: IAddressesDatabase | undefined = user.addresses.find(
+    (address) => {
+      return address.main === true;
+    }
+  );
+
   return (
     <>
       <MainCheckoutPageContainer>
         <motion.div
           className="motion-container"
           initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
         >
           <div className="logo-container">
             <WebSiteLogo />
@@ -92,7 +100,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               </Button>
             </PurchaseSummaryContainer>
             <LeftCheckoutPageContainer>
-              <AddressInformation />
+              <AddressInformation address={address} />
               <ShoppingContainer>
                 <h1>Entrega prevista para {deliveryDate}</h1>
                 <h2 className="weight">

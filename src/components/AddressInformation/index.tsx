@@ -1,3 +1,4 @@
+import { IAddressesDatabase } from "../../store/modules/user/actions";
 import MasterCard from "../../assets/images/icon-master-card.png";
 import { IDatabaseUser } from "../../store/modules/user/actions";
 import { useTypedSelector } from "../../store/modules";
@@ -9,14 +10,10 @@ export interface IAddressInformation {
   border?: boolean;
 }
 
-const AddressInformation: React.FC<IAddressInformation> = ({
-  showDisplay,
-  border,
-}): JSX.Element => {
+const AddressInformation: React.FC<
+  { address: IAddressesDatabase | undefined } & IAddressInformation
+> = ({ showDisplay, border, address }): JSX.Element => {
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
-  const mainAddress = user.addresses.find((address) => {
-    return address.main === true;
-  });
 
   return (
     <AddressInformationContainer showDisplay={showDisplay} border={border}>
@@ -31,16 +28,16 @@ const AddressInformation: React.FC<IAddressInformation> = ({
           {user.name} {user.last_name}
         </li>
         <li className="upper">
-          {mainAddress?.street} {mainAddress?.house_number}
+          {address?.street} {address?.house_number}
         </li>
         <li className="upper">
-          {mainAddress?.complement} {mainAddress?.district}
+          {address?.complement} {address?.district}
         </li>
         <li>
-          {mainAddress?.city}, {mainAddress?.state} {mainAddress?.zip_code}
+          {address?.city}, {address?.state} {address?.zip_code}
         </li>
         <li>Brasil</li>
-        <li>Telefone: {mainAddress?.phone}</li>
+        <li>Telefone: {address?.phone}</li>
         <li className="weight">
           Forma de pagamento
           <Link to="/checkout-page">

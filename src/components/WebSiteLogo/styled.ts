@@ -6,7 +6,7 @@ const WebSiteLogoContainer = styled.div<IWebSiteLogoStyle>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   margin-bottom: ${(props) => props.marginBottom};
   a {
     color: ${VARIABLES.colorAlternative};

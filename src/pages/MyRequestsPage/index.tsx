@@ -29,8 +29,7 @@ export const MyRequestsPage: React.FC = (): JSX.Element => {
         <motion.div
           className="motion-container"
           initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
         >
           <WebSiteLogo />
           <h1>Seus pedidos</h1>

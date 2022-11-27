@@ -52,7 +52,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             headers: { Authorization: `bearer ${user.token}` },
           }
         )
-        .then((_) => {
+        .then((response1) => {
           api
             .get(`/${user.id}`, {
               headers: {
@@ -62,7 +62,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             .then((response) => {
               dispatch(actionUpdateUserState(response.data, user.token));
               history.push("/checkout-page");
-              toast.success("Endereço principal atualizado com sucesso");
+              toast.success(response1.data.message);
             });
         })
         .catch((err) => toast.error(err.response.data.message));
@@ -84,6 +84,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             })
             .then((response) => {
               dispatch(actionUpdateUserState(response.data, user.token));
+              toast.success("Endereço excluído com sucesso");
             });
         })
         .catch((err) => toast.error(err.response.data.message));
@@ -96,8 +97,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
         <motion.div
           className="motion-container"
           initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
         >
           <MyAddressesPageContainer>
             <WebSiteLogo />
@@ -110,7 +110,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
               )}
               {user.addresses.map((address) => (
                 <SavedAddressContainer key={address.id}>
-                  <AddressInformation showDisplay />
+                  <AddressInformation showDisplay address={address} />
                   <div className="button-container">
                     <Button
                       backgroundColor={VARIABLES.colorBlue5}
@@ -126,10 +126,10 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
                         backgroundColor="#ffffff"
                         height="30px"
                         onClick={() => {
-                          setAddressToBeUpdated(address);
-                          setShowAddressModal(true);
                           setIsItUpdateEvent(true);
+                          setShowAddressModal(true);
                           setAnimationOption2(true);
+                          setAddressToBeUpdated(address);
                         }}
                       >
                         Atualizar

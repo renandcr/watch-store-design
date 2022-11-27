@@ -93,7 +93,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
           .patch(`/address/update/${addressToBeUpdated?.id}`, data, {
             headers: { Authorization: `bearer ${user.token}` },
           })
-          .then((_) => {
+          .then((response1) => {
             setIsItUpdateEvent?.(false);
             history.push("/checkout-page");
             api
@@ -104,7 +104,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
               })
               .then((response) => {
                 dispatch(actionUpdateUserState(response.data, user.token));
-                toast.success("Endereço atualizado com sucesso");
+                toast.success(response1.data.message);
               });
           })
           .catch((err) => toast.error(err.response.data.message))
@@ -114,12 +114,12 @@ const ModalAddress: React.FC<IAddressModal> = ({
               Authorization: `bearer: ${user.token}`,
             },
           })
-          .then((_) => {
+          .then((response1) => {
             setTimeout(() => {
               setShowAddressModal?.(false);
               history.push("/checkout-page");
             }, 2000);
-            toast.success("Endereço cadastrado com sucesso");
+            toast.success(response1.data.message);
             api
               .get(`/${user.id}`, {
                 headers: { Authorization: `bearer ${user.token}` },
@@ -160,6 +160,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   className="textField"
                   type="text"
                   label="Endereço"
+                  autoFocus={true}
                   defaultValue={
                     isItUpdateEvent ? addressToBeUpdated?.street : null
                   }
