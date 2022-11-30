@@ -38,7 +38,7 @@ export const ImageContainer = styled.div`
 
 export const DescriptionContainer = styled.div`
   max-width: 100%;
-  padding: 0 10px 13px 10px;
+  padding: 0 10px 10px 10px;
   h2 {
     height: 40px;
     margin-bottom: 10px;

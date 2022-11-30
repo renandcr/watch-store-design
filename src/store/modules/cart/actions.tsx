@@ -1,3 +1,5 @@
+import { IDbProducts } from "../dbProducts/actions";
+
 import {
   REMOVE_PRODUCT_FROM_CART,
   ADD_PRODUCT_TO_CART,
@@ -5,7 +7,6 @@ import {
   UPDATE_UNITS,
   ADD_UNITS,
 } from "./constants";
-import { IDbProducts } from "../dbProducts";
 
 export interface IAddAndRemoveProductsAction {
   type: string;

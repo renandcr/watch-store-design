@@ -1,6 +1,6 @@
+import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import CartProductCard from "../../components/CartProductCard";
 import EmptyCart from "../../assets/images/carrinho_vazio.png";
-import { IDbProducts } from "../../store/modules/dbProducts";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import OrderSummary from "../../components/OrderSummary";
 import ModalAddress from "../../components/ModalAddress";

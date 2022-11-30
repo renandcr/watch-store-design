@@ -1,8 +1,7 @@
 import { normalizedText } from "../../../assets/methods";
+import { IDbProducts } from "../dbProducts/actions";
 import { ISearchProductAction } from "./actions";
 import { SEARCH_PRODUCT } from "./constants";
-import { IDbProducts } from "../dbProducts";
-import { dbProducts } from "../dbProducts";
 
 const homeReducer = (
   state: Array<IDbProducts> = JSON.parse(
@@ -17,7 +16,7 @@ const homeReducer = (
       const search = action.payload.split(" ");
 
       if (search.length > 1) {
-        const researchProducts = dbProducts.filter((product) => {
+        const researchProducts = action.dbProducts.filter((product) => {
           const normalizedTextOne = normalizedText(product.description);
           return normalizedTextTwo === normalizedTextOne;
         });
@@ -30,7 +29,7 @@ const homeReducer = (
           return researchProducts;
         }
       } else {
-        dbProducts.forEach((product) => {
+        action.dbProducts.forEach((product) => {
           let arrayString = product.description.split(" ");
           arrayString.forEach((word) => {
             const normalizedTextOne = normalizedText(word);

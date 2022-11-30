@@ -1,7 +1,7 @@
 import { actionSearchProduct } from "../../store/modules/home/actions";
+import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { IDatabaseUser } from "../../store/modules/user/actions";
 import { useTypedSelector } from "../../store/modules/index";
-import { IDbProducts } from "../../store/modules/dbProducts";
 import { useState, SetStateAction, Dispatch } from "react";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -30,6 +30,9 @@ const Header: React.FC<IHeader> = ({
   const productCart: Array<IDbProducts> = useTypedSelector(
     (state) => state.cart
   );
+  const dbProducts: Array<IDbProducts> = useTypedSelector(
+    (state) => state.products
+  );
   const user: Array<IDatabaseUser> = useTypedSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -46,7 +49,9 @@ const Header: React.FC<IHeader> = ({
             placeholder="O que você precisa?"
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button onClick={() => dispatch(actionSearchProduct(search))}>
+          <button
+            onClick={() => dispatch(actionSearchProduct(search, dbProducts))}
+          >
             <FiSearch className="search-icon" />
           </button>
         </div>
@@ -73,7 +78,9 @@ const Header: React.FC<IHeader> = ({
             placeholder="O que você precisa?"
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button onClick={() => dispatch(actionSearchProduct(search))}>
+          <button
+            onClick={() => dispatch(actionSearchProduct(search, dbProducts))}
+          >
             <FiSearch className="search-icon" />
           </button>
         </div>

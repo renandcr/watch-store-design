@@ -1,5 +1,5 @@
 import { IAddAndRemoveProductsAction, IUpdateUnitsAction } from "./actions";
-import { IDbProducts } from "../dbProducts";
+import { IDbProducts } from "../dbProducts/actions";
 
 import {
   REMOVE_PRODUCT_FROM_CART,
@@ -33,7 +33,7 @@ const cartReducer = (
 
     case REMOVE_PRODUCT_FROM_CART:
       const updatedCart = state.filter((product) => {
-        action.payload.units = 1;
+        // action.payload.units = 1;
         return product.id !== action.payload.id;
       });
       localStorage.setItem(
@@ -44,23 +44,23 @@ const cartReducer = (
       return updatedCart;
 
     case ADD_UNITS:
-      action.payload.units += 1;
+      // action.payload.units += 1;
       localStorage.setItem("@watchStore: cartProducts", JSON.stringify(state));
       return [...state];
 
     case SUBTRACT_UNITS:
-      if (action.payload.units > 1) {
-        action.payload.units -= 1;
-        localStorage.setItem(
-          "@watchStore: cartProducts",
-          JSON.stringify(state)
-        );
-      }
+      // if (action.payload.units > 1) {
+      //   action.payload.units -= 1;
+      //   localStorage.setItem(
+      //     "@watchStore: cartProducts",
+      //     JSON.stringify(state)
+      //   );
+      // }
 
       return [...state];
 
     case UPDATE_UNITS:
-      action.payload.units = action.units;
+      // action.payload.units = action.units;
       localStorage.setItem("@watchStore: cartProducts", JSON.stringify(state));
 
       return [...state];

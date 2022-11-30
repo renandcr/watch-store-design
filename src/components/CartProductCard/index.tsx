@@ -1,5 +1,5 @@
 import { actionUpdateUnits } from "../../store/modules/cart/actions";
-import { IDbProducts } from "../../store/modules/dbProducts";
+import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { formatPrices } from "../../assets/methods";
 import { RiSubtractLine } from "react-icons/ri";
 import { RiAddLine } from "react-icons/ri";
@@ -34,25 +34,25 @@ export interface ICartProductCard {
 const CartProductCard: React.FC<
   { product: IDbProducts } & ICartProductCard
 > = ({ product, showDisplay }): JSX.Element => {
-  const [units, setUnits] = useState<string>(product.units.toString());
+  // const [units, setUnits] = useState<string>(product.units.toString());
   const [showInput, setShowInput] = useState<boolean>(false);
   const dispatch = useDispatch();
 
-  const handleUnitUpdateEvent = () => {
-    if (units.length) {
-      if (units === "0") return dispatch(actionRemoveProductFromCart(product));
-      else {
-        for (let i = 0; i < units.length; i++) {
-          if (Number.isNaN(parseInt(units[i]))) {
-            setUnits(product.units.toString());
-            return alert("Digite apenas números");
-          }
-        }
-      }
-    } else return setUnits(product.units.toString());
-    setShowInput(false);
-    return dispatch(actionUpdateUnits(product, Number(units)));
-  };
+  // const handleUnitUpdateEvent = () => {
+  //   if (units.length) {
+  //     if (units === "0") return dispatch(actionRemoveProductFromCart(product));
+  //     else {
+  //       for (let i = 0; i < units.length; i++) {
+  //         if (Number.isNaN(parseInt(units[i]))) {
+  //           setUnits(product.units.toString());
+  //           return alert("Digite apenas números");
+  //         }
+  //       }
+  //     }
+  //   } else return setUnits(product.units.toString());
+  //   setShowInput(false);
+  //   return dispatch(actionUpdateUnits(product, Number(units)));
+  // };
 
   return (
     <CartProductCardContainer showDisplay={showDisplay}>
@@ -69,22 +69,22 @@ const CartProductCard: React.FC<
               <div>
                 <input
                   type="text"
-                  value={units}
+                  // value={units}
                   onChange={(e) => {
                     e.preventDefault();
-                    setUnits(e.target.value);
+                    // setUnits(e.target.value);
                   }}
                 />
               </div>
-              <span className="units-change" onClick={handleUnitUpdateEvent}>
+              {/* <span className="units-change" onClick={handleUnitUpdateEvent}>
                 Atualizar
-              </span>
+              </span> */}
               <span className="bar">|</span>
               <span
                 className="units-change"
                 onClick={() => {
                   setShowInput(false);
-                  setUnits(product.units.toString());
+                  // setUnits(product.units.toString());
                 }}
               >
                 Cancelar
@@ -93,7 +93,7 @@ const CartProductCard: React.FC<
           ) : (
             <div className="units">
               <span className="quantity">Quantidade:</span>
-              <span className="quantity"> {product.units}</span>
+              {/* <span className="quantity"> {product.units}</span> */}
               <span
                 className="change units-change"
                 onClick={() => setShowInput(true)}
@@ -116,7 +116,7 @@ const CartProductCard: React.FC<
           <AddContainer onClick={() => dispatch(actionAddUnits(product))}>
             <RiAddLine />
           </AddContainer>
-          <QuantityContainer>{product.units}</QuantityContainer>
+          {/* <QuantityContainer>{product.units}</QuantityContainer> */}
           <SubtractContainer
             onClick={() => dispatch(actionSubtractUnits(product))}
           >
