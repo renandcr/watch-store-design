@@ -27,7 +27,7 @@ export const OrderBodyContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 20px 20px 20px;
+  padding: 15px;
   p {
     font-size: 13px;
     text-align: center;

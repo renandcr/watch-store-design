@@ -1,5 +1,5 @@
 import AddressInformation from "../../components/AddressInformation";
-import { IDbProducts } from "../../store/modules/dbProducts";
+import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import OrderDetails from "../../components/OrderDetails";
 import { useTypedSelector } from "../../store/modules";
 import WebSiteLogo from "../../components/WebSiteLogo";
@@ -29,10 +29,10 @@ const CompletedPurchasePage: React.FC = (): JSX.Element => {
     (state) => state.cart
   );
 
-  const priceOfItems = productCart.reduce(
-    (acc, product) => product.price * product.units + acc,
-    0
-  );
+  // const priceOfItems = productCart.reduce(
+  //   (acc, product) => product.price * product.units + acc,
+  //   0
+  // );
 
   const newDate = new Date().toDateString().split(" ");
   const deliveryDate = `${Number(newDate[2]) + 7} de ${newDate[1]} ${
@@ -71,7 +71,7 @@ const CompletedPurchasePage: React.FC = (): JSX.Element => {
                   <span>23 de Nov 2022</span>
                 </div>
                 <div>
-                  <span>TOTAL</span> <span>{formatPrices(priceOfItems)}</span>
+                  {/* <span>TOTAL</span> <span>{formatPrices(priceOfItems)}</span> */}
                 </div>
               </li>
               <li>

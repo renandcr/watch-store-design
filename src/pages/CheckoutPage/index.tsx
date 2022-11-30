@@ -1,8 +1,8 @@
 import { IAddressesDatabase } from "../../store/modules/user/actions";
 import AddressInformation from "../../components/AddressInformation";
+import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { IDatabaseUser } from "../../store/modules/user/actions";
 import CartProductCard from "../../components/CartProductCard";
-import { IDbProducts } from "../../store/modules/dbProducts";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import WebSiteLogo from "../../components/WebSiteLogo";
 import { useTypedSelector } from "../../store/modules";
@@ -32,12 +32,12 @@ const CheckoutPage: React.FC = (): JSX.Element => {
     (state) => state.cart
   );
 
-  const priceOfItems = productCart.reduce(
-    (acc, product) => product.price * product.units + acc,
-    0
-  );
+  // const priceOfItems = productCart.reduce(
+  //   (acc, product) => product.price * product.units + acc,
+  //   0
+  // );
   const shipping = productCart.length ? 18.9 : 0;
-  const amount = shipping + priceOfItems;
+  // const amount = shipping + priceOfItems;
 
   const newDate = new Date().toDateString().split(" ");
   const deliveryDate = `${Number(newDate[2]) + 7} de ${newDate[1]} ${
@@ -76,7 +76,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               <h2 className="weight">Resumo do pedido</h2>
               <div>
                 <span>Itens:</span>
-                <span>{formatPrices(priceOfItems)}</span>
+                {/* <span>{formatPrices(priceOfItems)}</span> */}
               </div>
               <div>
                 <span>Frete:</span>
@@ -84,10 +84,10 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               </div>
               <div className="total-description">
                 <span>Total do pedido:</span>
-                <span>{formatPrices(amount)}</span>
+                {/* <span>{formatPrices(amount)}</span> */}
               </div>
               <span>
-                Em 1x de {formatPrices(amount)} sem juros{" "}
+                {/* Em 1x de {formatPrices(amount)} sem juros{" "} */}
                 <Link to="/checkout-page">
                   <span className="link-change">Alterar</span>
                 </Link>

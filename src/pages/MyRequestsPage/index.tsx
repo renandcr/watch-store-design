@@ -1,6 +1,6 @@
 import { MainMyRequestsPageContainer, MyRequestsPageContainer } from "./style";
 import { OrderDescriptionContainer } from "../CompletedPurchasePage/style";
-import { IDbProducts } from "../../store/modules/dbProducts";
+import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import OrderDetails from "../../components/OrderDetails";
 import WebSiteLogo from "../../components/WebSiteLogo";
 import { useTypedSelector } from "../../store/modules";
@@ -18,10 +18,10 @@ export const MyRequestsPage: React.FC = (): JSX.Element => {
     (state) => state.cart
   );
 
-  const priceOfItems = productCart.reduce(
-    (acc, product) => product.price * product.units + acc,
-    0
-  );
+  // const priceOfItems = productCart.reduce(
+  //   (acc, product) => product.price * product.units + acc,
+  //   0
+  // );
 
   return (
     <>
@@ -41,7 +41,7 @@ export const MyRequestsPage: React.FC = (): JSX.Element => {
                   <span>23 de Nov 2022</span>
                 </div>
                 <div>
-                  <span>TOTAL</span> <span>{formatPrices(priceOfItems)}</span>
+                  {/* <span>TOTAL</span> <span>{formatPrices(priceOfItems)}</span> */}
                 </div>
               </li>
               <li>

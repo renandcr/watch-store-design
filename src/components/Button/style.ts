@@ -7,7 +7,6 @@ const ButtonContainer = styled.button<IButton>`
   height: 42px;
   color: #ffffff;
   background: ${VARIABLES.colorBlue2};
-  background: ${VARIABLES.backgroundGradient1};
   border: none;
   padding: 5px;
   border-radius: 4px;

@@ -1,5 +1,6 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
+import { IHome } from "./index";
 
 export const MainHomeContainer = styled.main`
   display: flex;
@@ -59,26 +60,28 @@ export const MainHomeContainer = styled.main`
     font-family: ${VARIABLES.fontThirdy};
     border-bottom: solid 1px ${VARIABLES.lightBorderColor};
     padding-bottom: 13px;
-    margin: 40px 0 40px 0;
     width: 50%;
     text-align: center;
+    margin: 40px 0 40px 0;
   }
   .first-title {
-    margin: 215px 0 40px 0;
-
-    @media only screen and (min-width: 500px) {
-      margin: 159px 0 40px 0;
-    }
-    @media only screen and (min-width: 768px) {
-      margin: 40px 0 40px 0;
-    }
+    margin: 0 0 40px 0;
   }
 `;
 
-export const HomeContainer = styled.ul`
+export const HomeContainer = styled.ul<IHome>`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
   max-width: 1440px;
+  padding-top: ${(props) => props.areResearchProducts && "40px"};
+  margin-top: ${(props) => props.areResearchProducts && "180px"};
+
+  @media only screen and (min-width: 500px) {
+    margin-top: ${(props) => props.areResearchProducts && "125px"};
+  }
+  @media only screen and (min-width: 768px) {
+    margin: ${(props) => props.areResearchProducts && "0"};
+  }
 `;
