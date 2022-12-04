@@ -1,21 +1,23 @@
-import { actionUpdateUserState } from "../../store/modules/user/actions";
-import { IUserRegistration } from "../../store/modules/user/actions";
-import { IDatabaseUser } from "../../store/modules/user/actions";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import { useTypedSelector } from "../../store/modules";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useHistory, Link } from "react-router-dom";
 import { Dispatch, SetStateAction } from "react";
-import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
 import WebSiteLogo from "../WebSiteLogo";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../assets/axios";
 import Button from "../Button";
 import * as yup from "yup";
+
+import {
+  actionUpdateUserState,
+  IUserRegistration,
+  IDatabaseUser,
+} from "../../store/modules/user/actions";
 
 import {
   LoginShortcutContainer,
@@ -64,10 +66,8 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
   const history = useHistory();
 
   const submissionMethod = (data: IUserRegistration) => {
-    console.log("passou aqui");
     delete data.confirm_password;
     if (data.password === "password491") data.password = "";
-    console.log("passou aqui 2");
 
     !updateForm
       ? api
@@ -76,28 +76,26 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
             history.push("/login-page");
             toast.success("Cadastro realizado com sucesso");
           })
-          .catch((err) => {
-            toast.error(err.response.data.message);
+          .catch((_) => {
+            toast.error("Falha ao tentar cadastrar seus dados");
           })
       : api
           .patch(`/update/${user.id}`, data, {
             headers: { Authorization: `bearer ${user.token}` },
           })
-          .then((response) => {
-            console.log("response update", response);
+          .then((_) => {
+            setUpdateForm?.(false);
+            toast.success("Dados atualizados com sucesso");
             api
               .get(`/${user.id}`, {
                 headers: { Authorization: `bearer ${user.token}` },
               })
               .then((response) => {
-                console.log("response profile", response);
                 dispatch(actionUpdateUserState(response.data, user.token));
-                setUpdateForm?.(false);
-                toast.success("Dados atualizados com sucesso");
               })
-              .catch((err) => console.log("error profile", err));
+              .catch((err) => console.log(err));
           })
-          .catch((err) => toast.error(err.response.data.message));
+          .catch((_) => toast.error("Falha ao tentar atualizar seus dados"));
   };
 
   return (
@@ -180,9 +178,7 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
           </LoginShortcutContainer>
         )}
         {!updateForm ? (
-          <Button backgroundColor={VARIABLES.backgroundGradient2}>
-            Continuar
-          </Button>
+          <Button backgroundColor={VARIABLES.colorBlue5}>Continuar</Button>
         ) : (
           <div className="button-container">
             <Button backgroundColor={VARIABLES.colorBlue6}>

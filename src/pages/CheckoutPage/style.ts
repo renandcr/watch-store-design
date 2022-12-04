@@ -100,14 +100,14 @@ export const PurchaseSummaryContainer = styled.div`
     color: ${VARIABLES.colorRed2};
     border-top: solid 1px ${VARIABLES.lightBorderColor};
     padding-top: 20px;
-    margin-bottom: -7px;
+    margin-bottom: -5px;
     span {
       font-weight: 500;
       font-size: 17px;
     }
   }
   > span {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
   }
   button {

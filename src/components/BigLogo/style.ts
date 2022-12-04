@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { VARIABLES } from "../../assets/globalStyle/style";
 
 export const BigLogoContainer = styled.div`
   display: flex;
@@ -9,15 +10,21 @@ export const BigLogoContainer = styled.div`
   width: 503px;
   height: 503px;
   border-radius: 50%;
-  background: #667db6;
+  background: ${VARIABLES.colorPurple};
   background: -webkit-linear-gradient(
     to right,
-    #667db6,
-    #0082c8,
-    #0082c8,
-    #667db6
+    ${VARIABLES.colorPurple},
+    ${VARIABLES.colorBlue6},
+    ${VARIABLES.colorBlue6},
+    ${VARIABLES.colorPurple}
   );
-  background: linear-gradient(to right, #667db6, #0082c8, #0082c8, #667db6);
+  background: linear-gradient(
+    to right,
+    ${VARIABLES.colorPurple},
+    ${VARIABLES.colorBlue6},
+    ${VARIABLES.colorBlue6},
+    ${VARIABLES.colorPurple}
+  );
 
   .watch-store {
     font-family: "Righteous", cursive;

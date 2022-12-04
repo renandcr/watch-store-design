@@ -31,10 +31,10 @@ export const AddressInformationContainer = styled.div<IAddressInformation>`
   ul {
     display: flex;
     flex-direction: column;
-    row-gap: 7px;
+    row-gap: 5px;
     li {
       font-size: 15px;
-      line-height: 16px;
+      line-height: 18px;
       max-width: 40ch;
       overflow: hidden;
       text-overflow: ellipsis;

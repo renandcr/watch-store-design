@@ -13,7 +13,7 @@ const OrderDetails: React.FC<{ product: IDbProducts }> = ({
       <div className="description-container">
         <h2>{product.description}</h2>
         <span>{formatPrices(product.price)}</span>
-        {/* <span>Quantidade: {product.units}</span> */}
+        <span>Quantidade: {product.purchase_units}</span>
       </div>
     </OrderDetailsContainer>
   );

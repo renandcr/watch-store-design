@@ -1,3 +1,4 @@
+import { IDbProducts } from "../dbProducts/actions";
 import { UPDATE_USER_STATE } from "./constants";
 
 export interface IUserRegistration {
@@ -26,12 +27,28 @@ export interface IAddressesDatabase extends IUserAddress {
   updated_at: Date;
 }
 
+export interface ICart {
+  id: string;
+  total_units: number;
+  amount: number;
+  products: Array<IDbProducts>;
+}
+
+export interface IPurchaseOrder {
+  id: string;
+  purchase_units: number;
+  total_price: number;
+  products: Array<IDbProducts>;
+}
+
 export interface IDatabaseUser extends IUserRegistration {
   id: string;
   created_at: Date;
   updated_at: Date;
   token: string;
   addresses: Array<IAddressesDatabase>;
+  cart: ICart;
+  purchaseOrders: Array<IPurchaseOrder>;
 }
 
 export interface IUserLogin {
@@ -45,7 +62,7 @@ export interface IUserAction {
   token: string;
 }
 
-export const actionUpdateUserState = (user: IUserLogin, token: string) => {
+export const actionUpdateUserState = (user: IDatabaseUser, token: string) => {
   return {
     type: UPDATE_USER_STATE,
     payload: user,

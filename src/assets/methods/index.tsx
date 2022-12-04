@@ -11,3 +11,8 @@ export const formatPrices = (value: number) => {
     currency: "BRL",
   });
 };
+
+export const deliveryDate = () => {
+  const newDate = new Date().toDateString().split(" ");
+  return `${Number(newDate[2]) + 7} de ${newDate[1]} ${newDate[3]}`;
+};

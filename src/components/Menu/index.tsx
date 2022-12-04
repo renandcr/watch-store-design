@@ -65,7 +65,9 @@ const Menu: React.FC<IMenu> = ({
                 setMenuVisibility(false);
               }}
             >
-              <li className="under">Sair da conta</li>
+              <li className="under" onClick={() => window.location.reload()}>
+                Sair da conta
+              </li>
             </Link>
           </motion.ul>
         </MenuContainer>

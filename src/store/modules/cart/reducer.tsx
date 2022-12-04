@@ -1,5 +1,6 @@
 import { IAddAndRemoveProductsAction, IUpdateUnitsAction } from "./actions";
 import { IDbProducts } from "../dbProducts/actions";
+import { toast } from "react-toastify";
 
 import {
   REMOVE_PRODUCT_FROM_CART,
@@ -17,25 +18,35 @@ const cartReducer = (
 ) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
-      const comparePartProducts = state.find(
+      const repeatProduct = state.find(
         (product) => product.id === action.payload.id
       );
-      if (!comparePartProducts) {
+      if (!repeatProduct) {
         localStorage.setItem(
           "@watchStore: cartProducts",
           JSON.stringify([...state, action.payload])
         );
 
         return [...state, action.payload];
+      } else {
+        toast.error("Desculpe, você já adicionou este item ao carrinho");
       }
 
       return state;
 
     case REMOVE_PRODUCT_FROM_CART:
-      const updatedCart = state.filter((product) => {
-        // action.payload.units = 1;
-        return product.id !== action.payload.id;
-      });
+      let updatedCart: Array<IDbProducts> = [];
+      if (action.how_many === "one") {
+        updatedCart = state.filter((product) => {
+          // action.payload.units = 1;
+          return product.id !== action.payload.id;
+        });
+      }
+
+      if (action.how_many === "all") {
+        updatedCart = [];
+      }
+
       localStorage.setItem(
         "@watchStore: cartProducts",
         JSON.stringify(updatedCart)

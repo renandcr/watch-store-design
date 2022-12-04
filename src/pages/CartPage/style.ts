@@ -53,12 +53,13 @@ export const EmptyCartContainer = styled.div`
   width: 100%;
   img {
     width: 90%;
-    max-width: 270px;
-    margin-right: 25px;
+    max-width: 285px;
+    margin-right: 40px;
   }
   button {
-    width: 200px;
+    width: 220px;
     margin-top: 40px;
+    font-weight: 600;
   }
 `;
 

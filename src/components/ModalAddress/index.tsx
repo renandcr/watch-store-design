@@ -1,5 +1,4 @@
 import { FormContainer, InsideFormContainer } from "../RegistrationForm/style";
-import { actionUpdateUserState } from "../../store/modules/user/actions";
 import { useTypedSelector } from "../../store/modules/index";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { VARIABLES } from "../../assets/globalStyle/style";
@@ -17,6 +16,7 @@ import Button from "../Button";
 import * as yup from "yup";
 
 import {
+  actionUpdateUserState,
   IAddressesDatabase,
   IUserAddress,
 } from "../../store/modules/user/actions";
@@ -93,9 +93,10 @@ const ModalAddress: React.FC<IAddressModal> = ({
           .patch(`/address/update/${addressToBeUpdated?.id}`, data, {
             headers: { Authorization: `bearer ${user.token}` },
           })
-          .then((response1) => {
+          .then((_) => {
             setIsItUpdateEvent?.(false);
             history.push("/checkout-page");
+            toast.success("Endereço atualizado com sucesso");
             api
               .get(`/${user.id}`, {
                 headers: {
@@ -104,32 +105,33 @@ const ModalAddress: React.FC<IAddressModal> = ({
               })
               .then((response) => {
                 dispatch(actionUpdateUserState(response.data, user.token));
-                toast.success(response1.data.message);
-              });
+              })
+              .catch((err) => console.log(err));
           })
-          .catch((err) => toast.error(err.response.data.message))
+          .catch((_) => toast.error("Falha ao tentar alterar o endereço"))
       : await api
           .post(`/address/create/${user.id}`, data, {
             headers: {
               Authorization: `bearer: ${user.token}`,
             },
           })
-          .then((response1) => {
+          .then((_) => {
             setTimeout(() => {
               setShowAddressModal?.(false);
               history.push("/checkout-page");
+              toast.success("Endereço cadastrado com sucesso");
             }, 2000);
-            toast.success(response1.data.message);
             api
               .get(`/${user.id}`, {
                 headers: { Authorization: `bearer ${user.token}` },
               })
               .then((response) => {
                 dispatch(actionUpdateUserState(response.data, user.token));
-              });
+              })
+              .catch((err) => console.log(err));
           })
-          .catch((err) => {
-            toast.error(err.response.data.message);
+          .catch((_) => {
+            toast.error("Falha ao tentar cadastrar o endereço");
           });
   };
 
