@@ -1,7 +1,10 @@
+import { actionRemoveProductFromCart } from "../../store/modules/cart/actions";
+import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { InsideFormContainer } from "../RegistrationForm/style";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import { FormContainer } from "../RegistrationForm/style";
+import { useTypedSelector } from "../../store/modules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -17,6 +20,7 @@ import * as yup from "yup";
 
 import {
   actionUpdateUserState,
+  IDatabaseUser,
   IUserLogin,
 } from "../../store/modules/user/actions";
 
@@ -32,6 +36,8 @@ const LoginForm: React.FC = (): JSX.Element => {
     formState: { errors },
   } = useForm<IUserLogin>({ resolver: yupResolver(formSchema) });
 
+  const cart: Array<IDbProducts> = useTypedSelector((state) => state.cart);
+  const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -40,20 +46,43 @@ const LoginForm: React.FC = (): JSX.Element => {
       .post("/login", data)
       .then((responseToken) => {
         const decode: any = jwt(responseToken.data.token);
-        api
-          .get(`/${decode.id_token}`, {
-            headers: { Authorization: `bearer: ${responseToken.data.token}` },
-          })
-          .then((response) => {
-            history.push("/cart-page");
-            toast.success("Login realizado com sucesso");
-            dispatch(
-              actionUpdateUserState(response.data, responseToken.data.token)
-            );
-          });
+        if (!user && cart.length) {
+          let product_id: Array<string> = [];
+          for (let product in cart) product_id.push(cart[product].id);
+          dispatch(actionRemoveProductFromCart("all"));
+          api
+            .post(
+              `/cart/add/${decode.id_token}`,
+              { product_id: ["first-login", ...product_id] },
+              {
+                headers: {
+                  Authorization: `bearer ${responseToken.data.token}`,
+                },
+              }
+            )
+            .then()
+            .catch((err) => console.log(err));
+        }
+        setTimeout(() => {
+          api
+            .get(`/${decode.id_token}`, {
+              headers: { Authorization: `bearer: ${responseToken.data.token}` },
+            })
+            .then((response) => {
+              response.data.cart.products.length
+                ? history.push("/cart-page")
+                : history.push("/");
+
+              dispatch(
+                actionUpdateUserState(response.data, responseToken.data.token)
+              );
+              toast.success("Login realizado com sucesso");
+            })
+            .catch((err) => console.log(err));
+        }, 1000);
       })
-      .catch((err) => {
-        toast.error(err.response.data.message);
+      .catch((_) => {
+        toast.error("Verifique se a senha e o e-mail estão corretos.");
       });
   };
 
@@ -87,7 +116,7 @@ const LoginForm: React.FC = (): JSX.Element => {
             {errors.password?.message}
           </p>
         )}
-        <Button backgroundColor={VARIABLES.backgroundGradient2}>Entrar</Button>
+        <Button backgroundColor={VARIABLES.colorBlue5}>Entrar</Button>
         <UnderLoginContainer>
           <div>
             <span className="border"></span>

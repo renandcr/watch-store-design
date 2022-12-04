@@ -1,6 +1,7 @@
 import { actionSearchProduct } from "../../store/modules/home/actions";
 import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { IDatabaseUser } from "../../store/modules/user/actions";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useTypedSelector } from "../../store/modules/index";
 import { useState, SetStateAction, Dispatch } from "react";
 import { ShoppingCartOutlined } from "@mui/icons-material";
@@ -27,14 +28,17 @@ const Header: React.FC<IHeader> = ({
   setMenuVisibility,
 }): JSX.Element => {
   const [search, setSearch] = useState("");
-  const productCart: Array<IDbProducts> = useTypedSelector(
-    (state) => state.cart
-  );
   const dbProducts: Array<IDbProducts> = useTypedSelector(
     (state) => state.products
   );
-  const user: Array<IDatabaseUser> = useTypedSelector((state) => state.user);
+  const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
+  const cart: Array<IDbProducts> = useTypedSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  const total_units = cart.reduce(
+    (acc, product) => product.purchase_units + acc,
+    0
+  );
 
   return (
     <HeaderContainer>
@@ -60,15 +64,23 @@ const Header: React.FC<IHeader> = ({
             <span>
               Bem-vindo :<span className="smile">)</span>,
             </span>
-            <span className="header-name">
-              {user.length > 0 ? user[0].name : "usuário"}
-            </span>
+            <span className="header-name">{user ? user.name : "usuário"}</span>
           </li>
           <li className="li-icon-cart">
             <Link to="/cart-page">
-              <Badge badgeContent={productCart.length} color={"primary"}>
-                <ShoppingCartOutlined className="icon-cart" />
-              </Badge>
+              {user && (
+                <Badge
+                  badgeContent={user && user.cart.total_units}
+                  color={"primary"}
+                >
+                  <ShoppingCartOutlined className="icon-cart" />
+                </Badge>
+              )}
+              {!user && (
+                <Badge badgeContent={total_units} color={"primary"}>
+                  <ShoppingCartOutlined className="icon-cart" />
+                </Badge>
+              )}
             </Link>
           </li>
         </ul>
@@ -91,7 +103,9 @@ const Header: React.FC<IHeader> = ({
         </div>
         <ul>
           <Link to="/">
-            <li>Voltar</li>
+            <li>
+              <HomeOutlinedIcon />
+            </li>
           </Link>
           <Link to="/registration-page">
             <li>Cadastrar</li>

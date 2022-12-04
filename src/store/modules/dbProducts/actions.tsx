@@ -7,6 +7,7 @@ export interface IDbProducts {
   readonly description: string;
   readonly price: number;
   readonly stock_quantity: number;
+  readonly purchase_units: number;
   readonly category: string;
   readonly genre: string;
   readonly created_at: string;

@@ -1,6 +1,6 @@
 import { MainMyRequestsPageContainer, MyRequestsPageContainer } from "./style";
 import { OrderDescriptionContainer } from "../CompletedPurchasePage/style";
-import { IDbProducts } from "../../store/modules/dbProducts/actions";
+import { IDatabaseUser } from "../../store/modules/user/actions";
 import OrderDetails from "../../components/OrderDetails";
 import WebSiteLogo from "../../components/WebSiteLogo";
 import { useTypedSelector } from "../../store/modules";
@@ -14,14 +14,7 @@ export const MyRequestsPage: React.FC = (): JSX.Element => {
     window.scrollTo(0, 0);
   }, []);
 
-  const productCart: Array<IDbProducts> = useTypedSelector(
-    (state) => state.cart
-  );
-
-  // const priceOfItems = productCart.reduce(
-  //   (acc, product) => product.price * product.units + acc,
-  //   0
-  // );
+  const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
 
   return (
     <>
@@ -41,7 +34,8 @@ export const MyRequestsPage: React.FC = (): JSX.Element => {
                   <span>23 de Nov 2022</span>
                 </div>
                 <div>
-                  {/* <span>TOTAL</span> <span>{formatPrices(priceOfItems)}</span> */}
+                  <span>TOTAL</span>{" "}
+                  <span>{formatPrices(user.cart.amount)}</span>
                 </div>
               </li>
               <li>
@@ -49,7 +43,7 @@ export const MyRequestsPage: React.FC = (): JSX.Element => {
                 <span>45f5ggd54s1sxs45s6a6asz5ss</span>
               </li>
             </OrderDescriptionContainer>
-            {productCart.map((product) => (
+            {user.cart.products.map((product) => (
               <OrderDetails key={product.id} product={product} />
             ))}
           </MyRequestsPageContainer>

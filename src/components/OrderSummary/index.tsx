@@ -2,10 +2,10 @@ import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { IDatabaseUser } from "../../store/modules/user/actions";
 import { useTypedSelector } from "../../store/modules/index";
 import { VARIABLES } from "../../assets/globalStyle/style";
+import { useHistory, Link } from "react-router-dom";
+import { formatPrices } from "../../assets/methods";
 import { Dispatch, SetStateAction } from "react";
-import { useHistory } from "react-router-dom";
 import { BsBagFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
 import Button from "../Button";
 
 import {
@@ -23,24 +23,23 @@ interface IOrderSummary {
 const OrderSummary: React.FC<IOrderSummary> = ({
   setShowAddressModal,
 }): JSX.Element => {
-  const user: Array<IDatabaseUser> = useTypedSelector((state) => state.user);
-  // const productCart: Array<IDbProducts> = useTypedSelector(
-  //   (state) => state.cart
-  // );
+  const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
+  const cart: Array<IDbProducts> = useTypedSelector((state) => state.cart);
   const history = useHistory();
 
-  // const totalUnits = productCart.reduce(
-  //   (acc, product) => product.units + acc,
-  //   0
-  // );
+  const total_units = cart.reduce(
+    (acc, product) => product.purchase_units + acc,
+    0
+  );
 
-  // const totalPrice = productCart
-  //   .reduce((acc, product) => product.price * product.units + acc, 0)
-  //   .toLocaleString("pt-br", { style: "currency", currency: "BRL" });
+  const amount = cart.reduce(
+    (acc, product) => product.price * product.purchase_units + acc,
+    0
+  );
 
   const handleCloseOrderEvent = () => {
-    if (user.length) {
-      if (user[0].addresses.length) history.push("/checkout-page");
+    if (user) {
+      if (user.addresses.length > 0) history.push("/checkout-page");
       else setShowAddressModal(true);
     } else {
       history.push("/login-page");
@@ -57,8 +56,14 @@ const OrderSummary: React.FC<IOrderSummary> = ({
           Aviso: Opós fechar, você ainda poderá fazer alterações no seu pedido.{" "}
         </p>
         <PaymentInformationContainer>
-          {/* <span>{totalUnits} unidades</span>
-          <span>{totalPrice}</span> */}
+          <span>
+            {(user && user.cart.total_units) || (!user && total_units)} unidade
+            {(user && user.cart.total_units > 1 && "s") ||
+              (cart.length > 1 && "s")}
+          </span>
+          <span>
+            {(user && formatPrices(user.cart.amount)) || formatPrices(amount)}
+          </span>
         </PaymentInformationContainer>
         <Link to="/">
           <KeepBuyingContainer>
@@ -67,7 +72,7 @@ const OrderSummary: React.FC<IOrderSummary> = ({
           </KeepBuyingContainer>
         </Link>
         <Button
-          backgroundColor={VARIABLES.backgroundGradient2}
+          backgroundColor={VARIABLES.colorBlue6}
           onClick={handleCloseOrderEvent}
         >
           Fechar pedido

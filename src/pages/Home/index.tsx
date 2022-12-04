@@ -21,17 +21,14 @@ export interface IHome {
   areResearchProducts?: boolean;
 }
 
-const Home: React.FC<IHome> = (): JSX.Element => {
+const Home: React.FC = (): JSX.Element => {
   const [menuIsVisible, setMenuVisibility] = useState<boolean>(false);
-
   const researchProducts: Array<IDbProducts> = useTypedSelector(
     (state) => state.home
   );
-
   const dbProducts: Array<IDbProducts> = useTypedSelector(
     (state) => state.products
   );
-
   const dispatch = useDispatch();
 
   useEffect(() => {

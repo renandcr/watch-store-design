@@ -11,6 +11,7 @@ import {
 export interface IAddAndRemoveProductsAction {
   type: string;
   payload: IDbProducts;
+  how_many?: string;
 }
 
 export interface IUpdateUnitsAction extends IAddAndRemoveProductsAction {
@@ -23,9 +24,14 @@ export const actionAddProductToCart = (product: IDbProducts) => {
     payload: product,
   };
 };
-export const actionRemoveProductFromCart = (product: IDbProducts) => {
+
+export const actionRemoveProductFromCart = (
+  how_many: string,
+  product?: IDbProducts
+) => {
   return {
     type: REMOVE_PRODUCT_FROM_CART,
+    how_many: how_many,
     payload: product,
   };
 };

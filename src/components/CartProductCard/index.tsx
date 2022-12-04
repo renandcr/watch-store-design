@@ -1,11 +1,18 @@
-import { actionUpdateUnits } from "../../store/modules/cart/actions";
+import { actionRemoveProductFromCart } from "../../store/modules/cart/actions";
 import { IDbProducts } from "../../store/modules/dbProducts/actions";
+import { RiSubtractLine, RiAddLine } from "react-icons/ri";
+import { useTypedSelector } from "../../store/modules";
 import { formatPrices } from "../../assets/methods";
-import { RiSubtractLine } from "react-icons/ri";
-import { RiAddLine } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
+import api from "../../assets/axios";
 import { useState } from "react";
+
+import {
+  actionUpdateUserState,
+  IDatabaseUser,
+} from "../../store/modules/user/actions";
 
 import {
   UnitsContainerAndDeletion,
@@ -21,11 +28,11 @@ import {
   AddContainer,
 } from "./style";
 
-import {
-  actionRemoveProductFromCart,
-  actionSubtractUnits,
-  actionAddUnits,
-} from "../../store/modules/cart/actions";
+// import {
+//   actionRemoveProductFromCart,
+//   actionSubtractUnits,
+//   actionAddUnits,
+// } from "../../store/modules/cart/actions";
 
 export interface ICartProductCard {
   showDisplay?: boolean;
@@ -53,6 +60,29 @@ const CartProductCard: React.FC<
   //   setShowInput(false);
   //   return dispatch(actionUpdateUnits(product, Number(units)));
   // };
+  const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
+
+  const handleRequest = (product: IDbProducts) => {
+    if (!user) {
+      dispatch(actionRemoveProductFromCart("one", product));
+    } else {
+      api
+        .delete(`/cart/remove/${user.id}/${product.id}`, {
+          headers: { Authorization: `bearer ${user.token}` },
+        })
+        .then((_) => {
+          api
+            .get(`/${user.id}`, {
+              headers: { Authorization: `bearer ${user.token}` },
+            })
+            .then((response) => {
+              dispatch(actionUpdateUserState(response.data, user.token));
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => toast.error(err.response.data.message));
+    }
+  };
 
   return (
     <CartProductCardContainer showDisplay={showDisplay}>
@@ -93,7 +123,7 @@ const CartProductCard: React.FC<
           ) : (
             <div className="units">
               <span className="quantity">Quantidade:</span>
-              {/* <span className="quantity"> {product.units}</span> */}
+              <span className="quantity"> {product.purchase_units}</span>
               <span
                 className="change units-change"
                 onClick={() => setShowInput(true)}
@@ -103,29 +133,25 @@ const CartProductCard: React.FC<
             </div>
           )}
 
-          <span
-            className="units-change"
-            onClick={() => dispatch(actionRemoveProductFromCart(product))}
-          >
+          <span className="units-change" onClick={() => handleRequest(product)}>
             Excluir
           </span>
         </BottomContainer>
       </CartDescriptionContainer>
       <UnitsContainerAndDeletion showDisplay={showDisplay}>
         <AddAndSubtractComponent>
-          <AddContainer onClick={() => dispatch(actionAddUnits(product))}>
+          {/* <AddContainer onClick={() => dispatch(actionAddUnits(product))}> */}
+          <AddContainer onClick={() => {}}>
             <RiAddLine />
           </AddContainer>
-          {/* <QuantityContainer>{product.units}</QuantityContainer> */}
+          <QuantityContainer>{product.purchase_units}</QuantityContainer>
           <SubtractContainer
-            onClick={() => dispatch(actionSubtractUnits(product))}
+          // onClick={() => dispatch(actionSubtractUnits(product))}
           >
             <RiSubtractLine />
           </SubtractContainer>
         </AddAndSubtractComponent>
-        <TrashContainer
-          onClick={() => dispatch(actionRemoveProductFromCart(product))}
-        >
+        <TrashContainer onClick={() => handleRequest(product)}>
           <span>
             <FaTrash />
           </span>

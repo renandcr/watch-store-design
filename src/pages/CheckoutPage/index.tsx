@@ -1,17 +1,19 @@
-import { IAddressesDatabase } from "../../store/modules/user/actions";
 import AddressInformation from "../../components/AddressInformation";
-import { IDbProducts } from "../../store/modules/dbProducts/actions";
-import { IDatabaseUser } from "../../store/modules/user/actions";
+import { formatPrices, deliveryDate } from "../../assets/methods";
 import CartProductCard from "../../components/CartProductCard";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import WebSiteLogo from "../../components/WebSiteLogo";
 import { useTypedSelector } from "../../store/modules";
-import { formatPrices } from "../../assets/methods";
 import { Link, useHistory } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
+
+import {
+  IAddressesDatabase,
+  IDatabaseUser,
+} from "../../store/modules/user/actions";
 
 import {
   LeftCheckoutPageContainer,
@@ -25,31 +27,15 @@ const CheckoutPage: React.FC = (): JSX.Element => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const history = useHistory();
-
-  const productCart: Array<IDbProducts> = useTypedSelector(
-    (state) => state.cart
-  );
-
-  // const priceOfItems = productCart.reduce(
-  //   (acc, product) => product.price * product.units + acc,
-  //   0
-  // );
-  const shipping = productCart.length ? 18.9 : 0;
-  // const amount = shipping + priceOfItems;
-
-  const newDate = new Date().toDateString().split(" ");
-  const deliveryDate = `${Number(newDate[2]) + 7} de ${newDate[1]} ${
-    newDate[3]
-  }`;
-
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const address: IAddressesDatabase | undefined = user.addresses.find(
     (address) => {
       return address.main === true;
     }
   );
+  const shipping = user.cart.products.length ? 18.9 : 0;
+  const amount = shipping + user.cart.amount;
+  const history = useHistory();
 
   return (
     <>
@@ -76,7 +62,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               <h2 className="weight">Resumo do pedido</h2>
               <div>
                 <span>Itens:</span>
-                {/* <span>{formatPrices(priceOfItems)}</span> */}
+                <span>{formatPrices(user.cart.amount)}</span>
               </div>
               <div>
                 <span>Frete:</span>
@@ -84,16 +70,25 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               </div>
               <div className="total-description">
                 <span>Total do pedido:</span>
-                {/* <span>{formatPrices(amount)}</span> */}
+                <span>{formatPrices(amount)}</span>
               </div>
               <span>
-                {/* Em 1x de {formatPrices(amount)} sem juros{" "} */}
+                Em 1x de {formatPrices(amount)} sem juros{" "}
                 <Link to="/checkout-page">
-                  <span className="link-change">Alterar</span>
+                  <span
+                    className="link-change"
+                    onClick={() =>
+                      alert(
+                        "Desculpe, por enquanto esta ação ainda não está habilitada"
+                      )
+                    }
+                  >
+                    Alterar
+                  </span>
                 </Link>
               </span>
               <Button
-                backgroundColor={VARIABLES.backgroundGradient3}
+                backgroundColor={VARIABLES.colorOrange2}
                 color={VARIABLES.colorGray3}
                 onClick={() => history.push("/completed-purchase-page")}
               >
@@ -103,13 +98,13 @@ const CheckoutPage: React.FC = (): JSX.Element => {
             <LeftCheckoutPageContainer>
               <AddressInformation address={address} />
               <ShoppingContainer>
-                <h1>Entrega prevista para {deliveryDate}</h1>
+                <h1>Entrega prevista para {deliveryDate()}</h1>
                 <h2 className="weight">
-                  {productCart.length
+                  {user.cart.products.length > 0
                     ? "Você está comprando:"
                     : "Seu carrinho está vazio!"}
                 </h2>
-                {productCart.map((product, index) => (
+                {user.cart.products.map((product, index) => (
                   <CartProductCard key={index} product={product} showDisplay />
                 ))}
               </ShoppingContainer>

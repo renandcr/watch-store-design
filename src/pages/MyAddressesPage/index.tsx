@@ -1,4 +1,3 @@
-import { actionUpdateUserState } from "../../store/modules/user/actions";
 import AddressInformation from "../../components/AddressInformation";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import ModalAddress from "../../components/ModalAddress";
@@ -7,12 +6,11 @@ import { useTypedSelector } from "../../store/modules";
 import { useHistory } from "react-router-dom";
 import Button from "../../components/Button";
 import Footer from "../../components/Footer";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import api from "../../assets/axios";
-import { useEffect } from "react";
-import { useState } from "react";
 
 import {
   MainMyAddressesPageContainer,
@@ -23,6 +21,7 @@ import {
 } from "./style";
 
 import {
+  actionUpdateUserState,
   IAddressesDatabase,
   IDatabaseUser,
 } from "../../store/modules/user/actions";
@@ -33,9 +32,10 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
   }, []);
 
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
+
   const [showAddressModal, setShowAddressModal] = useState<boolean>(false);
-  const [isItUpdateEvent, setIsItUpdateEvent] = useState<boolean>(false);
   const [animationOption2, setAnimationOption2] = useState<boolean>(false);
+  const [isItUpdateEvent, setIsItUpdateEvent] = useState<boolean>(false);
   const [addressToBeUpdated, setAddressToBeUpdated] =
     useState<IAddressesDatabase>();
 
@@ -52,7 +52,9 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             headers: { Authorization: `bearer ${user.token}` },
           }
         )
-        .then((response1) => {
+        .then((_) => {
+          history.push("/checkout-page");
+          toast.success("Endereço atualizado com sucesso");
           api
             .get(`/${user.id}`, {
               headers: {
@@ -61,11 +63,10 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             })
             .then((response) => {
               dispatch(actionUpdateUserState(response.data, user.token));
-              history.push("/checkout-page");
-              toast.success(response1.data.message);
-            });
+            })
+            .catch((err) => console.log(err));
         })
-        .catch((err) => toast.error(err.response.data.message));
+        .catch((_) => toast.error("Falha ao tentar atualizar o endereço"));
     }
 
     if (requestOptions === "delete") {
@@ -76,6 +77,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
           },
         })
         .then((_) => {
+          toast.success("Endereço excluído com sucesso");
           api
             .get(`/${user.id}`, {
               headers: {
@@ -84,10 +86,10 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             })
             .then((response) => {
               dispatch(actionUpdateUserState(response.data, user.token));
-              toast.success("Endereço excluído com sucesso");
-            });
+            })
+            .catch((err) => console.log(err));
         })
-        .catch((err) => toast.error(err.response.data.message));
+        .catch((_) => toast.error("Falha ao tentar excluir endereço"));
     }
   };
 

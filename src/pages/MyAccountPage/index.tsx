@@ -5,10 +5,14 @@ import WebSiteLogo from "../../components/WebSiteLogo";
 import { useTypedSelector } from "../../store/modules";
 import EditIcon from "@mui/icons-material/Edit";
 import Footer from "../../components/Footer";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useState } from "react";
 
 const MyAccountPage: React.FC = (): JSX.Element => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const [updateForm, setUpdateForm] = useState<boolean>(false);
 

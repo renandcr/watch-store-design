@@ -6,7 +6,7 @@ const ButtonContainer = styled.button<IButton>`
   width: 100%;
   height: 42px;
   color: #ffffff;
-  background: ${VARIABLES.colorBlue2};
+  background-color: ${VARIABLES.colorBlue2};
   border: none;
   padding: 5px;
   border-radius: 4px;
@@ -16,7 +16,7 @@ const ButtonContainer = styled.button<IButton>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   color: ${(props) => props.color};
-  background: ${(props) => props.backgroundColor};
+  background-color: ${(props) => props.backgroundColor};
   :hover {
     filter: brightness(75%);
     transition: 0.3s;

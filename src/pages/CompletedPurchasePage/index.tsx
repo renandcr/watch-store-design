@@ -1,9 +1,8 @@
 import AddressInformation from "../../components/AddressInformation";
-import { IDbProducts } from "../../store/modules/dbProducts/actions";
+import { formatPrices, deliveryDate } from "../../assets/methods";
 import OrderDetails from "../../components/OrderDetails";
 import { useTypedSelector } from "../../store/modules";
 import WebSiteLogo from "../../components/WebSiteLogo";
-import { formatPrices } from "../../assets/methods";
 import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
@@ -24,20 +23,6 @@ const CompletedPurchasePage: React.FC = (): JSX.Element => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const productCart: Array<IDbProducts> = useTypedSelector(
-    (state) => state.cart
-  );
-
-  // const priceOfItems = productCart.reduce(
-  //   (acc, product) => product.price * product.units + acc,
-  //   0
-  // );
-
-  const newDate = new Date().toDateString().split(" ");
-  const deliveryDate = `${Number(newDate[2]) + 7} de ${newDate[1]} ${
-    newDate[3]
-  }`;
 
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const address: IAddressesDatabase | undefined = user.addresses.find(
@@ -62,7 +47,7 @@ const CompletedPurchasePage: React.FC = (): JSX.Element => {
             <h2>Detalhes do pedido</h2>
             <AddressInformation showDisplay border address={address} />
             <h2 className="delivery-title">
-              Entrega prevista para o dia {deliveryDate}
+              Entrega prevista para o dia {deliveryDate()}
             </h2>
             <OrderDescriptionContainer>
               <li>
@@ -71,15 +56,15 @@ const CompletedPurchasePage: React.FC = (): JSX.Element => {
                   <span>23 de Nov 2022</span>
                 </div>
                 <div>
-                  {/* <span>TOTAL</span> <span>{formatPrices(priceOfItems)}</span> */}
+                  <span>TOTAL</span>{" "}
+                  <span>{formatPrices(user.cart.amount)}</span>
                 </div>
               </li>
               <li>
-                <span>Número do pedido</span>{" "}
-                <span>45f5ggd54s1sxs45s6a6asz5ss</span>
+                <span>Número do pedido</span> <span>{user.cart.id}</span>
               </li>
             </OrderDescriptionContainer>
-            {productCart.map((product) => (
+            {user.cart.products.map((product) => (
               <OrderDetails key={product.id} product={product} />
             ))}
           </CompletedPurchasePageContainer>
