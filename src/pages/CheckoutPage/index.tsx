@@ -1,3 +1,4 @@
+import { actionUpdateUserState } from "../../store/modules/user/actions";
 import AddressInformation from "../../components/AddressInformation";
 import { formatPrices, deliveryDate } from "../../assets/methods";
 import CartProductCard from "../../components/CartProductCard";
@@ -7,7 +8,10 @@ import { useTypedSelector } from "../../store/modules";
 import { Link, useHistory } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
+import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
+import api from "../../assets/axios";
+import { toast } from "react-toastify";
 import { useEffect } from "react";
 
 import {
@@ -27,6 +31,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const address: IAddressesDatabase | undefined = user.addresses.find(
     (address) => {
@@ -35,7 +40,35 @@ const CheckoutPage: React.FC = (): JSX.Element => {
   );
   const shipping = user.cart.products.length ? 18.9 : 0;
   const amount = shipping + user.cart.amount;
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  const handleRequest = () => {
+    api
+      .post(
+        `/purchase-order/${user.id}`,
+        {},
+        {
+          headers: { Authorization: `bearer ${user.token}` },
+        }
+      )
+      .then((_) => {
+        history.push("/completed-purchase-page");
+        api
+          .get(`/${user.id}`, {
+            headers: { Authorization: `bearer ${user.token}` },
+          })
+          .then((response) => {
+            dispatch(actionUpdateUserState(response.data, user.token));
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((_) =>
+        toast.error(
+          "Certifique-se de ter um endereço para entrega e produto(s) no seu carrinho"
+        )
+      );
+  };
 
   return (
     <>
@@ -90,7 +123,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               <Button
                 backgroundColor={VARIABLES.colorOrange2}
                 color={VARIABLES.colorGray3}
-                onClick={() => history.push("/completed-purchase-page")}
+                onClick={() => handleRequest()}
               >
                 Finalizar compra
               </Button>

@@ -1,8 +1,8 @@
 import AddressInformation from "../../components/AddressInformation";
-import { formatPrices, deliveryDate } from "../../assets/methods";
 import OrderDetails from "../../components/OrderDetails";
 import { useTypedSelector } from "../../store/modules";
 import WebSiteLogo from "../../components/WebSiteLogo";
+import { deliveryDate } from "../../assets/methods";
 import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
@@ -11,7 +11,6 @@ import {
   CompletedPurchasePageTitleContainer,
   CompletedPurchasePageContainer,
   MainCompletedPurchasePage,
-  OrderDescriptionContainer,
 } from "./style";
 
 import {
@@ -49,24 +48,9 @@ const CompletedPurchasePage: React.FC = (): JSX.Element => {
             <h2 className="delivery-title">
               Entrega prevista para o dia {deliveryDate()}
             </h2>
-            <OrderDescriptionContainer>
-              <li>
-                <div>
-                  <span>Realizado no dia</span>
-                  <span>23 de Nov 2022</span>
-                </div>
-                <div>
-                  <span>TOTAL</span>{" "}
-                  <span>{formatPrices(user.cart.amount)}</span>
-                </div>
-              </li>
-              <li>
-                <span>Número do pedido</span> <span>{user.cart.id}</span>
-              </li>
-            </OrderDescriptionContainer>
-            {user.cart.products.map((product) => (
-              <OrderDetails key={product.id} product={product} />
-            ))}
+            {user.purchaseOrders.length > 0 && (
+              <OrderDetails user={user} renderisionType={"one"} />
+            )}
           </CompletedPurchasePageContainer>
         </motion.div>
       </MainCompletedPurchasePage>

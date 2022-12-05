@@ -41,8 +41,12 @@ const Footer: React.FC<IFooter> = ({ showDisplay }): JSX.Element => {
               <TwitterIcon />
             </li>
           </Link>
-          <Link to="">
-            <li>
+          <Link to="/">
+            <li
+              onClick={() =>
+                window.location.replace("https://www.linkedin.com/in/renandcr/")
+              }
+            >
               <LinkedInIcon />
             </li>
           </Link>
