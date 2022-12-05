@@ -12,7 +12,15 @@ export const formatPrices = (value: number) => {
   });
 };
 
-export const deliveryDate = () => {
-  const newDate = new Date().toDateString().split(" ");
-  return `${Number(newDate[2]) + 7} de ${newDate[1]} ${newDate[3]}`;
+export const deliveryDate = (date?: Date) => {
+  if (date) {
+    return date.toLocaleDateString("pt-br", { dateStyle: "long" });
+  } else {
+    let newDate = new Date()
+      .toLocaleDateString("pt-br", { dateStyle: "long" })
+      .split(" ");
+    let day = newDate.shift();
+
+    return `${Number(day) + 7} ${[...newDate].join(" ").replace(/,/gi, "")}`;
+  }
 };

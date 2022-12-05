@@ -56,39 +56,3 @@ export const CompletedPurchasePageContainer = styled.section`
     margin-bottom: 15px;
   }
 `;
-
-export const OrderDescriptionContainer = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 15px;
-  border-radius: 8px 8px 0 0;
-  row-gap: 20px;
-  border: solid 1px ${VARIABLES.lightBorderColor};
-  background-color: ${VARIABLES.colorBackgroundGray};
-  li:first-child {
-    flex-direction: row;
-    column-gap: 50px;
-    row-gap: 20px;
-    flex-wrap: wrap;
-    div {
-      display: flex;
-      flex-direction: column;
-      row-gap: 7px;
-    }
-  }
-  li {
-    display: flex;
-    flex-direction: column;
-    row-gap: 7px;
-    margin-right: 10px;
-    span {
-      font-size: ${VARIABLES.fontSize3};
-      color: ${VARIABLES.colorGray2};
-      font-family: ${VARIABLES.fontSecondary};
-      text-transform: uppercase;
-    }
-  }
-`;

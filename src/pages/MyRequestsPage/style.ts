@@ -34,4 +34,5 @@ export const MainMyRequestsPageContainer = styled.main`
 export const MyRequestsPageContainer = styled.section`
   width: 90%;
   max-width: 900px;
+  min-height: 100px;
 `;
