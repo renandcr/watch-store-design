@@ -1,5 +1,9 @@
+import { actionSearchProduct } from "../../store/modules/home/actions";
+import { IDbProducts } from "../../store/modules/dbProducts/actions";
+import { useTypedSelector } from "../../store/modules/index";
 import CloseIcon from "@mui/icons-material/Close";
 import { Dispatch, SetStateAction } from "react";
+import { useDispatch } from "react-redux";
 import { MenuContainer } from "./style";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -13,6 +17,11 @@ const Menu: React.FC<IMenu> = ({
   setMenuVisibility,
   menuIsVisible,
 }): JSX.Element => {
+  const dbProducts: Array<IDbProducts> = useTypedSelector(
+    (state) => state.products
+  );
+  const dispatch = useDispatch();
+
   return (
     <>
       {menuIsVisible && (
@@ -20,7 +29,7 @@ const Menu: React.FC<IMenu> = ({
           <motion.ul
             className="menu"
             initial={{ x: -400, opacity: 0 }}
-            animate={{ x: 1, opacity: 1, transition: { duration: 0.4 } }}
+            animate={{ x: 1, opacity: 1, transition: { duration: 0.5 } }}
           >
             <li className="first-child">
               <span>
@@ -50,10 +59,25 @@ const Menu: React.FC<IMenu> = ({
             </Link>
             <Link to="">
               {" "}
-              <li className="up">Relógios Masculinos</li>
+              <li
+                className="up"
+                onClick={() => {
+                  dispatch(actionSearchProduct("male", dbProducts));
+                  setMenuVisibility(false);
+                }}
+              >
+                Relógios Masculinos
+              </li>
             </Link>
             <Link to="">
-              <li>Relógios Femininos</li>
+              <li
+                onClick={() => {
+                  dispatch(actionSearchProduct("female", dbProducts));
+                  setMenuVisibility(false);
+                }}
+              >
+                Relógios Femininos
+              </li>
             </Link>
             <Link to="">
               <li className="up">Política de Privacidade</li>

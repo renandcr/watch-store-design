@@ -141,7 +141,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
   };
 
   const variants2 = {
-    visible: { y: 1, opacity: 1, transition: { duration: 0.4 } },
+    visible: { y: 1, opacity: 1, transition: { duration: 0.5 } },
     hidden: { y: -400, opacity: 0 },
   };
 

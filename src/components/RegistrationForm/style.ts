@@ -54,7 +54,8 @@ export const LoginShortcutContainer = styled.div`
     color: ${VARIABLES.colorBlue2};
     :hover {
       text-decoration: underline;
-      color: ${VARIABLES.colorSecondary};
+      color: ${VARIABLES.colorRed2};
+      transition: 0.5s;
     }
     margin-bottom: 5px;
   }

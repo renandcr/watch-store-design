@@ -40,7 +40,7 @@ export const TopContainer = styled.div<IHeader>`
     height: 45px;
     :focus-within {
       box-shadow: ${VARIABLES.colorShadow3};
-      transition: 0.3s;
+      transition: 0.5s;
     }
     input {
       width: 100%;
@@ -73,6 +73,8 @@ export const TopContainer = styled.div<IHeader>`
         color: rgb(180, 180, 180);
         :hover {
           filter: brightness(75%);
+          color: ${VARIABLES.colorOrange2};
+          transition: 0.5s;
         }
       }
     }
@@ -101,7 +103,7 @@ export const TopContainer = styled.div<IHeader>`
   }
   .li-icon-cart:hover {
     filter: brightness(75%);
-    transition: 0.3s;
+    transition: 0.5s;
   }
 
   .icon-cart {
@@ -122,6 +124,7 @@ export const LogoContainer = styled.div`
   border-radius: 6px;
   background-color: ${VARIABLES.colorAlternative};
   padding: 3px 10px 3px 10px;
+  cursor: pointer;
   .watch-store {
     font-family: "Righteous", cursive;
     color: #ffffff;
@@ -151,7 +154,7 @@ export const OptionsContainer = styled.div<IHeader>`
     cursor: pointer;
     :hover {
       filter: brightness(75%);
-      transition: 0.3s;
+      transition: 0.5s;
     }
     :active {
       filter: brightness(1.6);
@@ -168,7 +171,7 @@ export const OptionsContainer = styled.div<IHeader>`
       color: #ffffff;
       :hover {
         color: ${VARIABLES.colorOrange1};
-        transition: 0.3s;
+        transition: 0.5s;
       }
 
       @media only screen and (min-width: 375px) {

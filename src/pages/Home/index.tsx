@@ -17,15 +17,10 @@ import {
   IDbProducts,
 } from "../../store/modules/dbProducts/actions";
 
-export interface IHome {
-  areResearchProducts?: boolean;
-}
-
 const Home: React.FC = (): JSX.Element => {
   const [menuIsVisible, setMenuVisibility] = useState<boolean>(false);
-  const researchProducts: Array<IDbProducts> = useTypedSelector(
-    (state) => state.home
-  );
+  const researchProducts: Array<IDbProducts & { no_result: string }> =
+    useTypedSelector((state) => state.home);
   const dbProducts: Array<IDbProducts> = useTypedSelector(
     (state) => state.products
   );
@@ -39,7 +34,7 @@ const Home: React.FC = (): JSX.Element => {
         dispatch(actionDatabaseProducts(response.data));
       })
       .catch((err) => console.log(err));
-  }, [dispatch]);
+  }, [dispatch, researchProducts]);
 
   return (
     <>
@@ -53,16 +48,27 @@ const Home: React.FC = (): JSX.Element => {
         animate={{ y: 0, transition: { type: "spring", stiffness: 100 } }}
       >
         <MainHomeContainer>
-          <AliceCarousel
-            items={items}
-            autoPlayInterval={6000}
-            autoPlayDirection="ltr"
-            autoPlay={true}
-            infinite={true}
-            mouseTracking
-          />
-          <HomeContainer areResearchProducts>
+          {!researchProducts.length && (
+            <AliceCarousel
+              items={items}
+              autoPlayInterval={6000}
+              autoPlayDirection="ltr"
+              autoPlay={true}
+              infinite={true}
+              mouseTracking
+            />
+          )}
+          {researchProducts.length > 0 && researchProducts[0]["no_result"] && (
+            <h1 className="results no-result">
+              {researchProducts[0]["no_result"]}
+            </h1>
+          )}
+          {researchProducts.length > 0 && !researchProducts[0]["no_result"] && (
+            <h1 className="results">Resultados da busca</h1>
+          )}
+          <HomeContainer>
             {researchProducts.length > 0 &&
+              !researchProducts[0]["no_result"] &&
               researchProducts.map((product, index) => (
                 <ProductCard key={index} product={product} />
               ))}

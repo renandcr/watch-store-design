@@ -42,7 +42,7 @@ const MyAccountPage: React.FC = (): JSX.Element => {
             <motion.div
               className="motion-container-form"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { duration: 0.7 } }}
+              animate={{ opacity: 1, transition: { duration: 0.5 } }}
             >
               <RegistrationForm
                 updateForm={updateForm}

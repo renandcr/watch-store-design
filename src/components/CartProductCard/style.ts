@@ -6,6 +6,10 @@ export const CartProductCardContainer = styled.div<ICartProductCard>`
   display: flex;
   width: 100%;
   background-color: #ffffff;
+  .bar {
+    color: ${VARIABLES.colorBlue2};
+    margin: 0 5px 0 5px;
+  }
   height: ${(props) => (props.showDisplay ? "185px" : "120px")};
   padding-bottom: ${(props) => (props.showDisplay ? "20px" : "0")};
   border-radius: ${(props) => (props.showDisplay ? "0" : "4px")};
@@ -48,8 +52,7 @@ export const CartDescriptionContainer = styled.div<ICartProductCard>`
   span {
     font-weight: 500;
     font-size: ${VARIABLES.fontSize2};
-    color: ${(props) =>
-      props.showDisplay ? VARIABLES.colorRed2 : VARIABLES.colorGold2};
+    color: ${VARIABLES.colorRed3};
   }
   .inventory {
     color: ${VARIABLES.colorGreen2};
@@ -69,25 +72,26 @@ export const BottomContainer = styled.div<ICartProductCard>`
   .units {
     display: flex;
     align-items: center;
-    span {
-      color: ${VARIABLES.colorGray3};
-    }
     .quantity {
       margin-right: 3px;
       font-size: 14px;
+      color: ${VARIABLES.colorGray3};
     }
     .change {
-      color: ${VARIABLES.colorBlue2};
       margin-left: 5px;
     }
   }
-  .units-change {
+  .link-change {
     color: ${VARIABLES.colorBlue2};
-    width: min-content;
+    margin-left: 0;
+    font-size: ${VARIABLES.fontSize3};
+    font-weight: 500;
+    text-transform: none;
     cursor: pointer;
     :hover {
-      color: ${VARIABLES.colorSecondary};
-      transition: 0.3s;
+      color: ${VARIABLES.colorRed2};
+      transition: 0.5s;
+      text-decoration: underline;
     }
   }
 `;
@@ -97,14 +101,6 @@ export const QuantityInputContainer = styled.div`
   align-items: center;
   margin-top: 7px;
   width: min-content;
-  .bar {
-    color: ${VARIABLES.colorBlue2};
-    margin: 0 4px 0 4px;
-  }
-  span {
-    margin-top: 0;
-    font-size: 12px;
-  }
   div {
     width: 40px;
     border-radius: 4px;
@@ -163,7 +159,7 @@ export const AddContainer = styled.div`
   :hover {
     color: #ffffff;
     background-color: lightgray;
-    transition: 0.3s;
+    transition: 0.5s;
   }
   :active {
     background-color: gray;
@@ -188,7 +184,7 @@ export const SubtractContainer = styled.div`
   :hover {
     color: #ffffff;
     background-color: lightgray;
-    transition: 0.3s;
+    transition: 0.5s;
   }
   :active {
     background-color: gray;
@@ -207,11 +203,11 @@ export const TrashContainer = styled.div`
   :hover {
     color: #ffffff;
     background-color: lightgray;
-    transition: 0.3s;
+    transition: 0.5s;
   }
   :active {
     background-color: gray;
     filter: brightness(1.6);
-    transition: 0.5s;
+    transition: 0.3s;
   }
 `;

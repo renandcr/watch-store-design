@@ -41,7 +41,7 @@ export interface ICartProductCard {
 const CartProductCard: React.FC<
   { product: IDbProducts } & ICartProductCard
 > = ({ product, showDisplay }): JSX.Element => {
-  // const [units, setUnits] = useState<string>(product.units.toString());
+  const [units, setUnits] = useState<string>(product.purchase_units.toString());
   const [showInput, setShowInput] = useState<boolean>(false);
   const dispatch = useDispatch();
 
@@ -99,19 +99,20 @@ const CartProductCard: React.FC<
               <div>
                 <input
                   type="text"
-                  // value={units}
+                  value={units}
                   onChange={(e) => {
                     e.preventDefault();
                     // setUnits(e.target.value);
                   }}
                 />
               </div>
-              {/* <span className="units-change" onClick={handleUnitUpdateEvent}>
+              {/* <span className="link-change" onClick={handleUnitUpdateEvent}>
                 Atualizar
               </span> */}
+              <span className="link-change">Atualizar</span>
               <span className="bar">|</span>
               <span
-                className="units-change"
+                className="link-change"
                 onClick={() => {
                   setShowInput(false);
                   // setUnits(product.units.toString());
@@ -125,23 +126,26 @@ const CartProductCard: React.FC<
               <span className="quantity">Quantidade:</span>
               <span className="quantity"> {product.purchase_units}</span>
               <span
-                className="change units-change"
+                className="change link-change"
                 onClick={() => setShowInput(true)}
               >
                 Alterar
               </span>
+              <span className="bar">|</span>
+              <span
+                className="link-change"
+                onClick={() => handleRequest(product)}
+              >
+                Excluir
+              </span>
             </div>
           )}
-
-          <span className="units-change" onClick={() => handleRequest(product)}>
-            Excluir
-          </span>
         </BottomContainer>
       </CartDescriptionContainer>
       <UnitsContainerAndDeletion showDisplay={showDisplay}>
         <AddAndSubtractComponent>
           {/* <AddContainer onClick={() => dispatch(actionAddUnits(product))}> */}
-          <AddContainer onClick={() => {}}>
+          <AddContainer>
             <RiAddLine />
           </AddContainer>
           <QuantityContainer>{product.purchase_units}</QuantityContainer>

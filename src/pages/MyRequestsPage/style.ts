@@ -12,7 +12,7 @@ export const MainMyRequestsPageContainer = styled.main`
       width: 90%;
       max-width: 900px;
       align-items: flex-start;
-      margin: 30px 0 50px 0;
+      margin: 30px 0 50px -20px;
     }
     > h1 {
       font-size: 22px;

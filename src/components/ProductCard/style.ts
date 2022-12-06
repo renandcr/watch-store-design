@@ -22,10 +22,11 @@ export const ImageContainer = styled.div`
   max-width: 100%;
   overflow: hidden;
   margin: 3px 3px 10px 3px;
+  border-radius: 4px 4px 0 0;
   img {
     max-width: 100%;
     border-radius: 4px 4px 0 0;
-    transition: all 0.3s;
+    transition: all 0.5s;
     :hover {
       transform: scale(1.5);
     }
@@ -53,11 +54,13 @@ export const DescriptionContainer = styled.div`
   span {
     display: block;
     margin-bottom: 10px;
-    color: ${VARIABLES.colorSecondary};
+    color: ${VARIABLES.colorRed3};
     font-size: ${VARIABLES.fontSize3};
+    font-weight: 500;
   }
   .inventory {
     color: ${VARIABLES.colorGreen2};
     font-size: 11px;
+    font-weight: 400;
   }
 `;

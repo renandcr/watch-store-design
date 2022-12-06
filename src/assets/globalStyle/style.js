@@ -35,6 +35,7 @@ export const VARIABLES = {
   colorGreen2: "#007600",
   colorRed1: "#b12704",
   colorRed2: "#e32636",
+  colorRed3: "#f04428",
   colorSecondary: "#f45b69",
   colorAlternative: "#ff0054",
   colorGray1: "#495057",
