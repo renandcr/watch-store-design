@@ -14,7 +14,7 @@ export const MainMyAccountPageContainer = styled.main`
     max-width: 450px;
     > div:first-child {
       align-items: flex-start;
-      margin: 30px 0 50px 0;
+      margin: 30px 0 50px -10px;
       width: 100%;
     }
     .title-container {
@@ -41,7 +41,7 @@ export const MainMyAccountPageContainer = styled.main`
         cursor: pointer;
         :hover {
           color: ${VARIABLES.colorSecondary};
-          transition: 0.3s;
+          transition: 0.5s;
         }
         .pen-icon {
           font-size: 16px;

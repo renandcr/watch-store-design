@@ -19,8 +19,9 @@ export const AddressInformationContainer = styled.div<IAddressInformation>`
     font-weight: 500;
     text-transform: none;
     :hover {
-      color: ${VARIABLES.colorSecondary};
-      transition: 0.3s;
+      color: ${VARIABLES.colorRed2};
+      transition: 0.5s;
+      text-decoration: underline;
     }
   }
   .weight {

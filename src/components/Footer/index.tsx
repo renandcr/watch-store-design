@@ -4,7 +4,6 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import { Link } from "react-router-dom";
 
 import {
   FooterBottomContainer,
@@ -31,35 +30,29 @@ const Footer: React.FC<IFooter> = ({ showDisplay }): JSX.Element => {
       </FooterTopContainer>
       <FooterMidleContainer>
         <SocialMediaContainer>
-          <Link to="">
-            <li>
-              <FacebookIcon />
-            </li>
-          </Link>
-          <Link to="">
-            <li>
-              <TwitterIcon />
-            </li>
-          </Link>
-          <Link to="/">
-            <li
-              onClick={() =>
-                window.location.replace("https://www.linkedin.com/in/renandcr/")
-              }
-            >
-              <LinkedInIcon />
-            </li>
-          </Link>
-          <Link to="">
-            <li>
-              <InstagramIcon />
-            </li>
-          </Link>
-          <Link to="">
-            <li>
-              <YouTubeIcon />
-            </li>
-          </Link>
+          <li
+            onClick={() =>
+              window.open("https://www.linkedin.com/in/renandcr/", "_blank")
+            }
+          >
+            <LinkedInIcon />
+          </li>
+          <li
+            onClick={() => window.open("https://www.facebook.com/", "_blank")}
+          >
+            <FacebookIcon />
+          </li>
+          <li onClick={() => window.open("https://twitter.com/", "_blank")}>
+            <TwitterIcon />
+          </li>
+          <li
+            onClick={() => window.open("https://www.instagram.com/", "_blank")}
+          >
+            <InstagramIcon />
+          </li>
+          <li onClick={() => window.open("https://www.youtube.com/", "_blank")}>
+            <YouTubeIcon />
+          </li>
         </SocialMediaContainer>
         <CreditCardsContainer>
           <div>

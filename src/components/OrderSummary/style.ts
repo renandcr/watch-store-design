@@ -44,10 +44,11 @@ export const PaymentInformationContainer = styled.div`
   margin-bottom: 45px;
   span:first-child {
     color: ${VARIABLES.colorGray1};
+    font-weight: 500;
   }
   span {
-    color: ${VARIABLES.colorGold2};
-    font-weight: 500;
+    color: ${VARIABLES.colorRed3};
+    font-weight: 600;
   }
 `;
 
@@ -55,12 +56,12 @@ export const KeepBuyingContainer = styled.span`
   display: block;
   width: 174px;
   margin-bottom: 20px;
-  border-bottom: solid 1px gray;
   color: gray;
   font-size: 11.8px;
   :hover {
-    filter: brightness(75%);
-    transition: 0.3s;
+    box-shadow: 0 1px 0 0 ${VARIABLES.colorRed2};
+    color: ${VARIABLES.colorRed2};
+    transition: 0.5s;
   }
   .bag_icon {
     margin-right: 5px;

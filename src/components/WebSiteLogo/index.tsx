@@ -10,11 +10,13 @@ const WebSiteLogo: React.FC<IWebSiteLogoStyle> = ({
 }): JSX.Element => {
   return (
     <WebSiteLogoContainer marginBottom={marginBottom}>
-      <Link to="/">
-        <span className="watch-store">
-          watchstore<span className="watch-store-inside">.com.br</span>
-        </span>
-      </Link>
+      <div>
+        <Link to="/">
+          <span className="watch-store">
+            watchstore<span className="watch-store-inside">.com.br</span>
+          </span>
+        </Link>
+      </div>
     </WebSiteLogoContainer>
   );
 };

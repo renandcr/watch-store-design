@@ -11,44 +11,64 @@ const homeReducer = (
 ) => {
   switch (action.type) {
     case SEARCH_PRODUCT:
-      const result: IDbProducts | any = [];
-      const normalizedTextTwo = normalizedText(action.payload);
-      const search = action.payload.split(" ");
+      const result: Array<IDbProducts> = [];
+      const receivedText = normalizedText(action.payload);
+      const longText = action.payload.split(" ");
 
-      if (search.length > 1) {
+      if (receivedText === "!h@e#n$r%y&" || receivedText === "") {
+        localStorage.setItem(
+          "@watchstore: researchProducts",
+          JSON.stringify([])
+        );
+        return [];
+      }
+
+      if (longText.length > 1) {
         const researchProducts = action.dbProducts.filter((product) => {
-          const normalizedTextOne = normalizedText(product.description);
-          return normalizedTextTwo === normalizedTextOne;
+          const productDescriptionText = normalizedText(product.description);
+          return receivedText === productDescriptionText;
         });
 
-        if (researchProducts) {
+        if (researchProducts.length) {
           localStorage.setItem(
             "@watchstore: researchProducts",
             JSON.stringify(researchProducts)
           );
           return researchProducts;
+        } else {
+          localStorage.setItem(
+            "@watchstore: researchProducts",
+            JSON.stringify([{ no_result: "Nenhum resultado!" }])
+          );
+          return [{ no_result: "Nenhum resultado!" }];
         }
       } else {
         action.dbProducts.forEach((product) => {
+          if (receivedText === product.genre) result.push(product);
           let arrayString = product.description.split(" ");
           arrayString.forEach((word) => {
-            const normalizedTextOne = normalizedText(word);
+            const productDescriptionText = normalizedText(word);
 
-            if (normalizedTextOne === normalizedTextTwo) result.push(product);
+            if (productDescriptionText === receivedText) result.push(product);
           });
         });
 
-        if (result) {
+        if (result.length) {
           localStorage.setItem(
             "@watchstore: researchProducts",
             JSON.stringify(result)
           );
 
           return result;
+        } else {
+          localStorage.setItem(
+            "@watchstore: researchProducts",
+            JSON.stringify([{ no_result: "Nenhum resultado!" }])
+          );
+          return [{ no_result: "Nenhum resultado!" }];
         }
       }
 
-      return state;
     default:
       return state;
   }

@@ -40,7 +40,7 @@ export const MenuContainer = styled.div`
         cursor: pointer;
         :hover {
           filter: brightness(75%);
-          transition: 0.3s;
+          transition: 0.5s;
         }
       }
     }

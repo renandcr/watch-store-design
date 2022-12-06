@@ -5,10 +5,10 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useTypedSelector } from "../../store/modules/index";
 import { useState, SetStateAction, Dispatch } from "react";
 import { ShoppingCartOutlined } from "@mui/icons-material";
+import { Link, useHistory } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { FiSearch } from "react-icons/fi";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { Badge } from "@mui/material";
 
 import {
@@ -34,6 +34,7 @@ const Header: React.FC<IHeader> = ({
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const cart: Array<IDbProducts> = useTypedSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const total_units = cart.reduce(
     (acc, product) => product.purchase_units + acc,
@@ -43,7 +44,13 @@ const Header: React.FC<IHeader> = ({
   return (
     <HeaderContainer>
       <TopContainer display={display}>
-        <LogoContainer>
+        <LogoContainer
+          onClick={() => {
+            dispatch(actionSearchProduct("!h@e#n$r%y&", dbProducts));
+            setSearch("");
+            history.push("/");
+          }}
+        >
           <span className="watch-store larger">Watch</span>
           <span className="watch-store smaller">Store</span>
         </LogoContainer>
@@ -51,6 +58,7 @@ const Header: React.FC<IHeader> = ({
           <input
             type="text"
             placeholder="O que você precisa?"
+            value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <button
@@ -88,6 +96,7 @@ const Header: React.FC<IHeader> = ({
           <input
             type="text"
             placeholder="O que você precisa?"
+            value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           <button
@@ -103,7 +112,12 @@ const Header: React.FC<IHeader> = ({
         </div>
         <ul>
           <Link to="/">
-            <li>
+            <li
+              onClick={() => {
+                dispatch(actionSearchProduct("!h@e#n$r%y&", dbProducts));
+                setSearch("");
+              }}
+            >
               <HomeOutlinedIcon />
             </li>
           </Link>

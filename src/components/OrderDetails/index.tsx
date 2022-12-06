@@ -55,7 +55,7 @@ const OrderDetails: React.FC<{ user: IDatabaseUser } & IOrderDetails> = ({
           <OrderDescriptionContainer>
             <li>
               <div>
-                <span>Realizado no dia</span>
+                <span>Compra realizada no dia</span>
                 <span>
                   {deliveryDate(
                     new Date(

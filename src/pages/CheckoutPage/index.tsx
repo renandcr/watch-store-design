@@ -9,9 +9,9 @@ import { Link, useHistory } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import api from "../../assets/axios";
-import { toast } from "react-toastify";
 import { useEffect } from "react";
 
 import {
@@ -79,7 +79,9 @@ const CheckoutPage: React.FC = (): JSX.Element => {
           animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
         >
           <div className="logo-container">
-            <WebSiteLogo />
+            <div>
+              <WebSiteLogo />
+            </div>
             <h1>Confira seus dados e finalize a compra</h1>
           </div>
           <CheckoutPageContainer>

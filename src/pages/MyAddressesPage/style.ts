@@ -23,12 +23,6 @@ export const MainMyAddressesPageContainer = styled.main`
   .optional-title {
     margin-bottom: 30px;
   }
-  .logo-container {
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-    width: 100%;
-  }
 
   @media only screen and (min-width: 768px) {
     padding-bottom: 130px;

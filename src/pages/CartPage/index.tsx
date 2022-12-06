@@ -41,11 +41,18 @@ const CartPage: React.FC = (): JSX.Element => {
         animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
       >
         <MainPageCart>
-          {user && !user.cart.products.length && !cart.length ? (
-            <h1>Seu carrinho está vazio!</h1>
-          ) : (
-            <h1>Meu carrinho</h1>
-          )}
+          {user &&
+            (!user.cart.products.length ? (
+              <h1>Seu carrinho está vazio!</h1>
+            ) : (
+              <h1>Meu carrinho</h1>
+            ))}
+          {!user &&
+            (!cart.length ? (
+              <h1>Seu carrinho está vazio!</h1>
+            ) : (
+              <h1>Meu carrinho</h1>
+            ))}
           <CartPageContainer>
             {(user && user.cart.products.length > 0) || cart.length > 0 ? (
               <OrderSummarySection>

@@ -1,13 +1,12 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
-import { IHome } from "./index";
 
 export const MainHomeContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
   .alice-carousel {
-    margin-top: 160px;
+    margin-top: 137px;
     .alice-carousel__stage {
       li {
         width: 50%;
@@ -65,23 +64,34 @@ export const MainHomeContainer = styled.main`
     margin: 40px 0 40px 0;
   }
   .first-title {
-    margin: 0 0 40px 0;
+    margin: 215px 0 40px 0;
+
+    @media only screen and (min-width: 500px) {
+      margin: 160px 0 40px 0;
+    }
+    @media only screen and (min-width: 768px) {
+      margin: 40px 0 40px 0;
+    }
+  }
+  .results {
+    margin: 215px 0 40px 0;
+
+    @media only screen and (min-width: 500px) {
+      margin: 160px 0 40px 0;
+    }
+    @media only screen and (min-width: 768px) {
+      margin: 170px 0 40px 0;
+    }
+  }
+  .no-result {
+    border-bottom: none;
   }
 `;
 
-export const HomeContainer = styled.ul<IHome>`
+export const HomeContainer = styled.ul`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   width: 100%;
   max-width: 1440px;
-  padding-top: ${(props) => props.areResearchProducts && "40px"};
-  margin-top: ${(props) => props.areResearchProducts && "180px"};
-
-  @media only screen and (min-width: 500px) {
-    margin-top: ${(props) => props.areResearchProducts && "125px"};
-  }
-  @media only screen and (min-width: 768px) {
-    margin: ${(props) => props.areResearchProducts && "0"};
-  }
 `;

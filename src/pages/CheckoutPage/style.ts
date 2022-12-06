@@ -16,10 +16,12 @@ export const MainCheckoutPageContainer = styled.main`
     row-gap: 20px;
     margin-bottom: 17px;
     width: 100%;
-    div {
-      align-items: flex-start;
+    > div:first-child {
       width: 90%;
       max-width: 950px;
+      div {
+        align-items: flex-start;
+      }
     }
     h1 {
       width: 90%;
@@ -38,8 +40,9 @@ export const MainCheckoutPageContainer = styled.main`
     font-weight: 500;
     text-transform: none;
     :hover {
-      color: ${VARIABLES.colorSecondary};
-      transition: 0.3s;
+      color: ${VARIABLES.colorRed2};
+      text-decoration: underline;
+      transition: 0.5s;
     }
   }
   .weight {
@@ -97,12 +100,12 @@ export const PurchaseSummaryContainer = styled.div`
     }
   }
   .total-description {
-    color: ${VARIABLES.colorRed2};
+    color: ${VARIABLES.colorRed3};
     border-top: solid 1px ${VARIABLES.lightBorderColor};
     padding-top: 20px;
     margin-bottom: -5px;
     span {
-      font-weight: 500;
+      font-weight: 600;
       font-size: 17px;
     }
   }

@@ -19,7 +19,7 @@ const ButtonContainer = styled.button<IButton>`
   background-color: ${(props) => props.backgroundColor};
   :hover {
     filter: brightness(75%);
-    transition: 0.3s;
+    transition: 0.5s;
   }
   :active {
     filter: brightness(1.6);

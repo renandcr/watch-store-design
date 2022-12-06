@@ -9,9 +9,6 @@ export const FooterContainer = styled.footer<IFooter>`
   border-top: solid 1px ${VARIABLES.lightBorderColor};
   background-color: ${VARIABLES.colorGray4};
   margin-top: ${(props) => (props.showDisplay ? "0" : "80px")};
-  a {
-    color: gray;
-  }
 
   @media only screen and (min-width: 768px) {
     margin-top: ${(props) => (props.showDisplay ? "0" : "130px")};
@@ -71,7 +68,15 @@ export const FooterMidleContainer = styled.div`
 export const SocialMediaContainer = styled.ul`
   display: flex;
   margin-bottom: 40px;
-  a + a {
+  li {
+    color: gray;
+    cursor: pointer;
+    :hover {
+      filter: brightness(75%);
+      transition: 0.5s;
+    }
+  }
+  li + li {
     margin-left: 10px;
   }
 

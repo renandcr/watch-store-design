@@ -48,7 +48,7 @@ const CompletedPurchasePage: React.FC = (): JSX.Element => {
             <h2 className="delivery-title">
               Entrega prevista para o dia {deliveryDate()}
             </h2>
-            {user.purchaseOrders.length > 0 && (
+            {user && user.purchaseOrders.length > 0 && (
               <OrderDetails user={user} renderisionType={"one"} />
             )}
           </CompletedPurchasePageContainer>
