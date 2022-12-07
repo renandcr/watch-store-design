@@ -1,4 +1,5 @@
 import AddressInformation from "../../components/AddressInformation";
+import { handleErrorMessages } from "../../assets/methods";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import ModalAddress from "../../components/ModalAddress";
 import WebSiteLogo from "../../components/WebSiteLogo";
@@ -66,7 +67,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             })
             .catch((err) => console.log(err));
         })
-        .catch((_) => toast.error("Falha ao tentar atualizar o endereço"));
+        .catch((err) => handleErrorMessages(err.response.data.message));
     }
 
     if (requestOptions === "delete") {
@@ -89,7 +90,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             })
             .catch((err) => console.log(err));
         })
-        .catch((_) => toast.error("Falha ao tentar excluir endereço"));
+        .catch((err) => handleErrorMessages(err.response.data.message));
     }
   };
 

@@ -33,18 +33,6 @@ export const MainCheckoutPageContainer = styled.main`
       line-height: 23px;
     }
   }
-  .link-change {
-    color: ${VARIABLES.colorBlue2};
-    margin-left: 5px;
-    font-size: ${VARIABLES.fontSize3};
-    font-weight: 500;
-    text-transform: none;
-    :hover {
-      color: ${VARIABLES.colorRed2};
-      text-decoration: underline;
-      transition: 0.5s;
-    }
-  }
   .weight {
     color: ${VARIABLES.colorGray3};
     font-weight: 600;
@@ -76,6 +64,18 @@ export const PurchaseSummaryContainer = styled.div`
   padding: 15px;
   background-color: #ffffff;
   box-shadow: ${VARIABLES.colorShadow1};
+  .link-change {
+    color: ${VARIABLES.colorBlue2};
+    margin-left: 5px;
+    font-size: ${VARIABLES.fontSize3};
+    font-weight: 500;
+    text-transform: none;
+    :hover {
+      color: ${VARIABLES.colorRed2};
+      text-decoration: underline;
+      transition: 0.5s;
+    }
+  }
   p {
     font-size: 13px;
     text-align: center;
@@ -100,7 +100,7 @@ export const PurchaseSummaryContainer = styled.div`
     }
   }
   .total-description {
-    color: ${VARIABLES.colorRed3};
+    color: ${VARIABLES.colorRed2};
     border-top: solid 1px ${VARIABLES.lightBorderColor};
     padding-top: 20px;
     margin-bottom: -5px;

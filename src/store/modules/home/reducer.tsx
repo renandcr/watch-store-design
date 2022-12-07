@@ -15,7 +15,7 @@ const homeReducer = (
       const receivedText = normalizedText(action.payload);
       const longText = action.payload.split(" ");
 
-      if (receivedText === "!h@e#n$r%y&" || receivedText === "") {
+      if (receivedText === "!h@e#n$r%y&" || receivedText === undefined) {
         localStorage.setItem(
           "@watchstore: researchProducts",
           JSON.stringify([])

@@ -1,6 +1,7 @@
 import { FormContainer, InsideFormContainer } from "../RegistrationForm/style";
 import { useTypedSelector } from "../../store/modules/index";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { handleErrorMessages } from "../../assets/methods";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SetStateAction, Dispatch } from "react";
@@ -108,7 +109,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
               })
               .catch((err) => console.log(err));
           })
-          .catch((_) => toast.error("Falha ao tentar alterar o endereço"))
+          .catch((err) => handleErrorMessages(err.response.data.message))
       : await api
           .post(`/address/create/${user.id}`, data, {
             headers: {
@@ -130,9 +131,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
               })
               .catch((err) => console.log(err));
           })
-          .catch((_) => {
-            toast.error("Falha ao tentar cadastrar o endereço");
-          });
+          .catch((err) => handleErrorMessages(err.response.data.message));
   };
 
   const variants1 = {

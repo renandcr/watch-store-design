@@ -1,4 +1,5 @@
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { handleErrorMessages } from "../../assets/methods";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import { useTypedSelector } from "../../store/modules";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -76,9 +77,7 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
             history.push("/login-page");
             toast.success("Cadastro realizado com sucesso");
           })
-          .catch((_) => {
-            toast.error("Falha ao tentar cadastrar seus dados");
-          })
+          .catch((err) => handleErrorMessages(err.response.data.message))
       : api
           .patch(`/update/${user.id}`, data, {
             headers: { Authorization: `bearer ${user.token}` },
@@ -95,7 +94,7 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
               })
               .catch((err) => console.log(err));
           })
-          .catch((_) => toast.error("Falha ao tentar atualizar seus dados"));
+          .catch((err) => handleErrorMessages(err.response.data.message));
   };
 
   return (

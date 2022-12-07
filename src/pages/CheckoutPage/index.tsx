@@ -1,6 +1,5 @@
 import { actionUpdateUserState } from "../../store/modules/user/actions";
 import AddressInformation from "../../components/AddressInformation";
-import { formatPrices, deliveryDate } from "../../assets/methods";
 import CartProductCard from "../../components/CartProductCard";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import WebSiteLogo from "../../components/WebSiteLogo";
@@ -9,10 +8,15 @@ import { Link, useHistory } from "react-router-dom";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import api from "../../assets/axios";
 import { useEffect } from "react";
+
+import {
+  handleErrorMessages,
+  deliveryDate,
+  formatPrices,
+} from "../../assets/methods";
 
 import {
   IAddressesDatabase,
@@ -46,7 +50,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
   const handleRequest = () => {
     api
       .post(
-        `/purchase-order/${user.id}`,
+        `/purchase-order/create/${user.id}`,
         {},
         {
           headers: { Authorization: `bearer ${user.token}` },
@@ -63,11 +67,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
           })
           .catch((err) => console.log(err));
       })
-      .catch((_) =>
-        toast.error(
-          "Certifique-se de ter um endereço para entrega e produto(s) no seu carrinho"
-        )
-      );
+      .catch((err) => handleErrorMessages(err.response.data.message));
   };
 
   return (
