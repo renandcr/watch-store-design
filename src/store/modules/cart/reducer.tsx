@@ -29,7 +29,7 @@ const cartReducer = (
 
         return [...state, action.payload];
       } else {
-        toast.error("Desculpe, você já adicionou este item ao carrinho");
+        toast.error("Você já adicionou este item ao carrinho.");
       }
 
       return state;

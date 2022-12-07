@@ -8,7 +8,8 @@ export const CartProductCardContainer = styled.div<ICartProductCard>`
   background-color: #ffffff;
   .bar {
     color: ${VARIABLES.colorBlue2};
-    margin: 0 5px 0 5px;
+    margin: 0 3px 0 3px;
+    font-size: 10px;
   }
   height: ${(props) => (props.showDisplay ? "185px" : "120px")};
   padding-bottom: ${(props) => (props.showDisplay ? "20px" : "0")};
@@ -23,7 +24,6 @@ export const CartProductCardContainer = styled.div<ICartProductCard>`
 
 export const CartImageContainer = styled.div<ICartProductCard>`
   min-width: ${(props) => (props.showDisplay ? "115px" : "90px")};
-  height: 100%;
   img {
     width: 100%;
     height: 100%;
@@ -42,16 +42,16 @@ export const CartDescriptionContainer = styled.div<ICartProductCard>`
     props.showDisplay ? "5px 5px 0 5px" : "10px 5px 0 5px"};
   h2 {
     line-height: 20px;
-    color: ${VARIABLES.colorGray1};
+    color: ${VARIABLES.colorGray2};
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
-    font-weight: ${(props) => (props.showDisplay ? "600" : "400")};
+    font-weight: ${(props) => (props.showDisplay ? "500" : "400")};
   }
   span {
-    font-weight: 500;
     font-size: ${VARIABLES.fontSize2};
+    font-weight: 500;
     color: ${VARIABLES.colorRed3};
   }
   .inventory {
@@ -73,17 +73,15 @@ export const BottomContainer = styled.div<ICartProductCard>`
     display: flex;
     align-items: center;
     .quantity {
-      margin-right: 3px;
       font-size: 14px;
       color: ${VARIABLES.colorGray3};
     }
-    .change {
-      margin-left: 5px;
+    .quantity + .quantity {
+      margin: 0 5px 0 3px;
     }
   }
   .link-change {
     color: ${VARIABLES.colorBlue2};
-    margin-left: 0;
     font-size: ${VARIABLES.fontSize3};
     font-weight: 500;
     text-transform: none;
@@ -102,10 +100,10 @@ export const QuantityInputContainer = styled.div`
   margin-top: 7px;
   width: min-content;
   div {
-    width: 40px;
+    width: 28px;
     border-radius: 4px;
-    height: 22px;
-    margin-right: 10px;
+    height: 20px;
+    margin-right: 5px;
     box-shadow: ${VARIABLES.colorShadow3};
     input {
       width: 100%;

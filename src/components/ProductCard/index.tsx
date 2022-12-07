@@ -1,9 +1,8 @@
 import { actionAddProductToCart } from "../../store/modules/cart/actions";
+import { formatPrices, handleErrorMessages } from "../../assets/methods";
 import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { useTypedSelector } from "../../store/modules";
-import { formatPrices } from "../../assets/methods";
 import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
 import api from "../../assets/axios";
 import Button from "../Button";
 
@@ -46,9 +45,7 @@ const ProductCard: React.FC<{ product: IDbProducts }> = ({
             })
             .catch((err) => console.log(err));
         })
-        .catch((_) => {
-          toast.error("Desculpe, você já adicionou este item ao carrinho");
-        });
+        .catch((err) => handleErrorMessages(err.response.data.message));
     }
   };
 

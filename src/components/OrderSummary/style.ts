@@ -47,7 +47,7 @@ export const PaymentInformationContainer = styled.div`
     font-weight: 500;
   }
   span {
-    color: ${VARIABLES.colorRed3};
+    color: ${VARIABLES.colorRed2};
     font-weight: 600;
   }
 `;

@@ -60,6 +60,10 @@ const Header: React.FC<IHeader> = ({
             placeholder="O que você precisa?"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter")
+                dispatch(actionSearchProduct(search, dbProducts));
+            }}
           />
           <button
             onClick={() => dispatch(actionSearchProduct(search, dbProducts))}
@@ -98,6 +102,10 @@ const Header: React.FC<IHeader> = ({
             placeholder="O que você precisa?"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter")
+                dispatch(actionSearchProduct(search, dbProducts));
+            }}
           />
           <button
             onClick={() => dispatch(actionSearchProduct(search, dbProducts))}

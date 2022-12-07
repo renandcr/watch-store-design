@@ -2,6 +2,7 @@ import { actionRemoveProductFromCart } from "../../store/modules/cart/actions";
 import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { InsideFormContainer } from "../RegistrationForm/style";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { handleErrorMessages } from "../../assets/methods";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import { FormContainer } from "../RegistrationForm/style";
 import { useTypedSelector } from "../../store/modules";
@@ -81,9 +82,7 @@ const LoginForm: React.FC = (): JSX.Element => {
             .catch((err) => console.log(err));
         }, 1000);
       })
-      .catch((_) => {
-        toast.error("Verifique se a senha e o e-mail estão corretos.");
-      });
+      .catch((err) => handleErrorMessages(err.response.data.message));
   };
 
   return (

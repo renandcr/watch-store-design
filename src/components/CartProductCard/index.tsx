@@ -1,11 +1,10 @@
 import { actionRemoveProductFromCart } from "../../store/modules/cart/actions";
+import { formatPrices, handleErrorMessages } from "../../assets/methods";
 import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { RiSubtractLine, RiAddLine } from "react-icons/ri";
 import { useTypedSelector } from "../../store/modules";
-import { formatPrices } from "../../assets/methods";
 import { useDispatch } from "react-redux";
 import { FaTrash } from "react-icons/fa";
-import { toast } from "react-toastify";
 import api from "../../assets/axios";
 import { useState } from "react";
 
@@ -80,7 +79,7 @@ const CartProductCard: React.FC<
             })
             .catch((err) => console.log(err));
         })
-        .catch((err) => toast.error(err.response.data.message));
+        .catch((err) => handleErrorMessages(err.response.data.message));
     }
   };
 
@@ -125,21 +124,14 @@ const CartProductCard: React.FC<
             <div className="units">
               <span className="quantity">Quantidade:</span>
               <span className="quantity"> {product.purchase_units}</span>
-              <span
-                className="change link-change"
-                onClick={() => setShowInput(true)}
-              >
+              <span className="link-change" onClick={() => setShowInput(true)}>
                 Alterar
-              </span>
-              <span className="bar">|</span>
-              <span
-                className="link-change"
-                onClick={() => handleRequest(product)}
-              >
-                Excluir
               </span>
             </div>
           )}
+          <span className="link-change" onClick={() => handleRequest(product)}>
+            Excluir
+          </span>
         </BottomContainer>
       </CartDescriptionContainer>
       <UnitsContainerAndDeletion showDisplay={showDisplay}>
