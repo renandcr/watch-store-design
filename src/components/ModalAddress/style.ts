@@ -17,14 +17,11 @@ export const ModalAddressContainer = styled.div<IAddressModal>`
   .menu {
     width: 100%;
     max-width: 450px;
-    border-radius: 4px;
-    margin: 12px 0 12px 0;
     ::-webkit-scrollbar {
       display: none;
     }
     overflow-y: ${(props) => (props.showDisplay ? "unset" : "auto")};
     .form-container {
-      border-radius: 4px;
       background-color: #ffffff;
       min-width: 100%;
       form {
@@ -33,21 +30,6 @@ export const ModalAddressContainer = styled.div<IAddressModal>`
         h1 {
           font-size: 24px;
           margin-bottom: 8px;
-        }
-        .textField {
-          height: 50px;
-          label {
-            font-size: 14px;
-          }
-          div {
-            height: 100%;
-            input {
-              height: 100%;
-              ::placeholder {
-                font-size: 14px;
-              }
-            }
-          }
         }
         p {
           column-gap: 3px;

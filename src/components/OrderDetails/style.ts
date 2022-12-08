@@ -27,6 +27,16 @@ export const OrderDescriptionContainer = styled.ul`
         text-transform: none;
       }
     }
+    div:last-child {
+      div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        span:last-child {
+          font-size: ${VARIABLES.fontSize4};
+        }
+      }
+    }
     div {
       display: flex;
       flex-direction: column;
@@ -42,7 +52,7 @@ export const OrderDescriptionContainer = styled.ul`
       font-size: ${VARIABLES.fontSize3};
       color: ${VARIABLES.colorGray2};
       font-family: ${VARIABLES.fontSecondary};
-      text-transform: uppercase;
+      text-transform: none;
     }
   }
 `;

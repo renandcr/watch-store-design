@@ -134,11 +134,23 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               <AddressInformation address={address} />
               <ShoppingContainer>
                 <h1>Entrega prevista para {deliveryDate()}</h1>
-                <h2 className="weight">
-                  {user.cart.products.length > 0
-                    ? "Você está comprando:"
-                    : "Seu carrinho está vazio!"}
-                </h2>
+                <div className="you-are-buying">
+                  <h2 className="weight">
+                    {!user.cart.products.length
+                      ? "Seu carrinho está vazio!"
+                      : "Você está comprando:"}
+                  </h2>
+                  {!user.cart.products.length && (
+                    <Link to="/">
+                      <Button
+                        backgroundColor={VARIABLES.colorOrange2}
+                        color={VARIABLES.colorGray3}
+                      >
+                        Ver produtos
+                      </Button>
+                    </Link>
+                  )}
+                </div>
                 {user.cart.products.map((product, index) => (
                   <CartProductCard key={index} product={product} showDisplay />
                 ))}
