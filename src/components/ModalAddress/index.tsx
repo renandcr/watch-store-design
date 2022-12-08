@@ -109,7 +109,9 @@ const ModalAddress: React.FC<IAddressModal> = ({
               })
               .catch((err) => console.log(err));
           })
-          .catch((err) => handleErrorMessages(err.response.data.message))
+          .catch((err) =>
+            handleErrorMessages(err.response.data.message, history)
+          )
       : await api
           .post(`/address/create/${user.id}`, data, {
             headers: {
@@ -131,7 +133,9 @@ const ModalAddress: React.FC<IAddressModal> = ({
               })
               .catch((err) => console.log(err));
           })
-          .catch((err) => handleErrorMessages(err.response.data.message));
+          .catch((err) =>
+            handleErrorMessages(err.response.data.message, history)
+          );
   };
 
   const variants1 = {

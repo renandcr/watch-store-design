@@ -3,6 +3,7 @@ import { formatPrices, handleErrorMessages } from "../../assets/methods";
 import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { RiSubtractLine, RiAddLine } from "react-icons/ri";
 import { useTypedSelector } from "../../store/modules";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import api from "../../assets/axios";
@@ -43,6 +44,7 @@ const CartProductCard: React.FC<
   const [units, setUnits] = useState<string>(product.purchase_units.toString());
   const [showInput, setShowInput] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // const handleUnitUpdateEvent = () => {
   //   if (units.length) {
@@ -79,7 +81,9 @@ const CartProductCard: React.FC<
             })
             .catch((err) => console.log(err));
         })
-        .catch((err) => handleErrorMessages(err.response.data.message));
+        .catch((err) =>
+          handleErrorMessages(err.response.data.message, history)
+        );
     }
   };
 

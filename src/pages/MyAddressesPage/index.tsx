@@ -67,7 +67,9 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             })
             .catch((err) => console.log(err));
         })
-        .catch((err) => handleErrorMessages(err.response.data.message));
+        .catch((err) =>
+          handleErrorMessages(err.response.data.message, history)
+        );
     }
 
     if (requestOptions === "delete") {
@@ -90,7 +92,9 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             })
             .catch((err) => console.log(err));
         })
-        .catch((err) => handleErrorMessages(err.response.data.message));
+        .catch((err) =>
+          handleErrorMessages(err.response.data.message, history)
+        );
     }
   };
 
