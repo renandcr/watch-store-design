@@ -67,7 +67,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
           })
           .catch((err) => console.log(err));
       })
-      .catch((err) => handleErrorMessages(err.response.data.message));
+      .catch((err) => handleErrorMessages(err.response.data.message, history));
   };
 
   return (

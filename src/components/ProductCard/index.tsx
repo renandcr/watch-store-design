@@ -2,6 +2,7 @@ import { actionAddProductToCart } from "../../store/modules/cart/actions";
 import { formatPrices, handleErrorMessages } from "../../assets/methods";
 import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { useTypedSelector } from "../../store/modules";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import api from "../../assets/axios";
 import Button from "../Button";
@@ -22,6 +23,7 @@ const ProductCard: React.FC<{ product: IDbProducts }> = ({
 }): JSX.Element => {
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleRequest = (product: IDbProducts) => {
     if (!user) {
@@ -45,7 +47,9 @@ const ProductCard: React.FC<{ product: IDbProducts }> = ({
             })
             .catch((err) => console.log(err));
         })
-        .catch((err) => handleErrorMessages(err.response.data.message));
+        .catch((err) =>
+          handleErrorMessages(err.response.data.message, history)
+        );
     }
   };
 

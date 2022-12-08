@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import { History } from "history";
 
 export const normalizedText = (text: string) => {
   if (text) {
@@ -31,7 +32,7 @@ export const deliveryDate = (date?: Date) => {
   }
 };
 
-export const handleErrorMessages = (message: string) => {
+export const handleErrorMessages = (message: string, history?: History) => {
   if (message) {
     const errorCode = message.split(" ")[0];
     if (errorCode === "[4000]") {
@@ -91,6 +92,11 @@ export const handleErrorMessages = (message: string) => {
         "Erro interno da aplicação. Por favor, contacte o administrador do sistema."
       );
     } else if (errorCode === "[4017]") {
+      setTimeout(() => {
+        history?.push("/login-page");
+        localStorage.clear();
+        window.location.reload();
+      }, 3000);
       return toast.error(
         "Seu token de acesso expirou. Por favor, faça o login novamente."
       );
