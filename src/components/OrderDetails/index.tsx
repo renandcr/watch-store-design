@@ -30,7 +30,9 @@ const OrderDetails: React.FC<{ user: IDatabaseUser } & IOrderDetails> = ({
                   <span>TOTAL</span>{" "}
                   <div>
                     <span>{formatPrices(current.total_price)}</span>
-                    <span>(incluso frete de R$18,90)</span>
+                    <span>
+                      (incluso frete de {formatPrices(current.shipping)})
+                    </span>
                   </div>
                 </div>
               </li>
@@ -78,7 +80,14 @@ const OrderDetails: React.FC<{ user: IDatabaseUser } & IOrderDetails> = ({
                         .total_price
                     )}
                   </span>
-                  <span>(incluso frete de R$18,90)</span>
+                  <span>
+                    (incluso frete de{" "}
+                    {formatPrices(
+                      user.purchaseOrders[user.purchaseOrders.length - 1]
+                        .shipping
+                    )}
+                    )
+                  </span>
                 </div>
               </div>
             </li>

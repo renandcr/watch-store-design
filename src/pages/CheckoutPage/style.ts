@@ -76,6 +76,10 @@ export const PurchaseSummaryContainer = styled.div`
       transition: 0.5s;
     }
   }
+  .terms-of-use {
+    pointer-events: none;
+    font-size: 12px;
+  }
   p {
     font-size: 13px;
     text-align: center;

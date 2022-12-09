@@ -37,6 +37,7 @@ export interface ICart {
 export interface IPurchaseOrder {
   id: string;
   purchase_units: number;
+  shipping: number;
   total_price: number;
   created_at: Date;
   products: Array<IDbProducts>;
