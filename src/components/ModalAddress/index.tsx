@@ -70,7 +70,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
     zip_code: yup
       .string()
       .required("Cep é obrigatório")
-      .max(8, "Forneça um cep válido(somente números, sem hífen)"),
+      .max(8, "Forneça um cep válido(8 dígitos, somente números, sem hífen)"),
     phone: yup
       .string()
       .required("Telefone é obrigatório")

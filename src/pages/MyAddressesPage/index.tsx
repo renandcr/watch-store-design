@@ -112,7 +112,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
             <SavedAddressesContainer>
               {!user.addresses.length && (
                 <h1 className="alert-title">
-                  Adicione um endereço para entrega!
+                  Por favor, adicione um endereço para entrega!
                 </h1>
               )}
               {user.addresses.map((address) => (

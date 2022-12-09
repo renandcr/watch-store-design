@@ -42,7 +42,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
       return address.main === true;
     }
   );
-  const shipping = user.cart.products.length ? 18.9 : 0;
+  const shipping = user.cart.products.length ? 28.9 : 0;
   const amount = shipping + user.cart.amount;
   const dispatch = useDispatch();
   const history = useHistory();
@@ -51,7 +51,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
     api
       .post(
         `/purchase-order/create/${user.id}`,
-        {},
+        { shipping },
         {
           headers: { Authorization: `bearer ${user.token}` },
         }
@@ -88,9 +88,9 @@ const CheckoutPage: React.FC = (): JSX.Element => {
             <PurchaseSummaryContainer>
               <p>
                 Ao finalizar a compra, você concorda com todas as{" "}
-                <Link to="/checkout-page">
-                  <span className="link-change">condições de uso</span>
-                </Link>{" "}
+                <span className="link-change terms-of-use">
+                  condições de uso
+                </span>{" "}
                 da
                 <span className="store-name">Watch Store</span>.
               </p>
@@ -134,11 +134,23 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               <AddressInformation address={address} />
               <ShoppingContainer>
                 <h1>Entrega prevista para {deliveryDate()}</h1>
-                <h2 className="weight">
-                  {user.cart.products.length > 0
-                    ? "Você está comprando:"
-                    : "Seu carrinho está vazio!"}
-                </h2>
+                <div className="you-are-buying">
+                  <h2 className="weight">
+                    {!user.cart.products.length
+                      ? "Seu carrinho está vazio!"
+                      : "Você está comprando:"}
+                  </h2>
+                  {!user.cart.products.length && (
+                    <Link to="/">
+                      <Button
+                        backgroundColor={VARIABLES.colorOrange2}
+                        color={VARIABLES.colorGray3}
+                      >
+                        Ver produtos
+                      </Button>
+                    </Link>
+                  )}
+                </div>
                 {user.cart.products.map((product, index) => (
                   <CartProductCard key={index} product={product} showDisplay />
                 ))}

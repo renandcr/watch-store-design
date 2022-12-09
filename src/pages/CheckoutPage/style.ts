@@ -76,6 +76,10 @@ export const PurchaseSummaryContainer = styled.div`
       transition: 0.5s;
     }
   }
+  .terms-of-use {
+    pointer-events: none;
+    font-size: 12px;
+  }
   p {
     font-size: 13px;
     text-align: center;
@@ -143,14 +147,22 @@ export const ShoppingContainer = styled.div`
   padding: 15px;
   box-shadow: ${VARIABLES.colorShadow1};
   background-color: #ffffff;
+  .you-are-buying {
+    margin-bottom: 10px;
+    h2 {
+      margin-bottom: 25px;
+    }
+    button {
+      width: 150px;
+      height: 35px;
+      font-weight: 600;
+    }
+  }
   h1 {
     font-size: 17px;
     font-weight: 500;
     line-height: 25px;
     color: ${VARIABLES.colorOrange1};
     margin-bottom: 5px;
-  }
-  h2 {
-    margin-bottom: 10px;
   }
 `;
