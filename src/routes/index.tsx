@@ -1,4 +1,5 @@
 import CompletedPurchasePage from "../pages/CompletedPurchasePage";
+import PrivacyPolicyPage from "../pages/PrivacyPolicyPage";
 import RegistrationPage from "../pages/RegistrationPage";
 import { MyRequestsPage } from "../pages/MyRequestsPage";
 import MyAddressesPage from "../pages/MyAddressesPage";
@@ -20,6 +21,7 @@ const Routes = () => {
       <Route component={MyRequestsPage} path="/my-requests-page" />
       <Route component={MyAddressesPage} path="/my-addresses-page" />
       <Route component={RegistrationPage} path="/registration-page" />
+      <Route component={PrivacyPolicyPage} path="/privacy-policy-page" />
       <Route
         component={CompletedPurchasePage}
         path="/completed-purchase-page"

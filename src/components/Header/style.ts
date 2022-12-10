@@ -2,12 +2,12 @@ import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
 import { IHeader } from ".";
 
-export const HeaderContainer = styled.header`
+export const HeaderContainer = styled.header<IHeader>`
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: ${(props) => (props.noPosition ? "none" : "fixed")};
   width: 100vw;
-  box-shadow: ${VARIABLES.colorShadow2};
+  box-shadow: ${(props) => (props.noShadow ? "none" : VARIABLES.colorShadow2)};
   z-index: 2;
 `;
 

@@ -4,6 +4,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import { Link } from "react-router-dom";
 
 import {
   FooterBottomContainer,
@@ -68,7 +69,10 @@ const Footer: React.FC<IFooter> = ({ showDisplay }): JSX.Element => {
         <div className="fake-div"></div>
       </FooterMidleContainer>
       <FooterBottomContainer>
-        <h2>© 2021-2022 watchstore.com.br</h2>
+        <span>© 2021-2022 watchstore.com.br</span>
+        <Link to="/privacy-policy-page">
+          <span>Política de privacidade</span>
+        </Link>
       </FooterBottomContainer>
     </FooterContainer>
   );
