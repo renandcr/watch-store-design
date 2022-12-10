@@ -1,9 +1,9 @@
 import { MainMyRequestsPageContainer, MyRequestsPageContainer } from "./style";
 import { IDatabaseUser } from "../../store/modules/user/actions";
 import OrderDetails from "../../components/OrderDetails";
-import WebSiteLogo from "../../components/WebSiteLogo";
 import { useTypedSelector } from "../../store/modules";
 import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 
@@ -17,12 +17,12 @@ export const MyRequestsPage: React.FC = (): JSX.Element => {
   return (
     <>
       <MainMyRequestsPageContainer>
+        <Header display="none" noPosition noShadow />
         <motion.div
           className="motion-container"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
         >
-          <WebSiteLogo />
           {user && user.purchaseOrders.length > 0 ? (
             <h1>Seus pedidos</h1>
           ) : (
