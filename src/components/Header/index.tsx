@@ -20,11 +20,15 @@ import {
 
 export interface IHeader {
   display?: string;
+  noPosition?: boolean;
+  noShadow?: boolean;
   setMenuVisibility?: Dispatch<SetStateAction<boolean>> | any;
 }
 
 const Header: React.FC<IHeader> = ({
   display,
+  noPosition,
+  noShadow,
   setMenuVisibility,
 }): JSX.Element => {
   const [search, setSearch] = useState("");
@@ -42,7 +46,7 @@ const Header: React.FC<IHeader> = ({
   );
 
   return (
-    <HeaderContainer>
+    <HeaderContainer noPosition={noPosition} noShadow={noShadow}>
       <TopContainer display={display}>
         <LogoContainer
           onClick={() => {

@@ -79,7 +79,7 @@ const Menu: React.FC<IMenu> = ({
                 Relógios Femininos
               </li>
             </Link>
-            <Link to="">
+            <Link to="/privacy-policy-page">
               <li className="up">Política de Privacidade</li>
             </Link>
             <Link

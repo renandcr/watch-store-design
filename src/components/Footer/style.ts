@@ -90,7 +90,7 @@ export const CreditCardsContainer = styled.div`
   div:first-child {
     margin-bottom: 2px;
     h2 {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       color: ${VARIABLES.colorGray1};
     }
@@ -110,7 +110,6 @@ export const CreditCardsContainer = styled.div`
     width: 55%;
     div:first-child {
       h2 {
-        font-size: 14px;
         margin: 5px 10px 0 0;
       }
     }
@@ -118,12 +117,26 @@ export const CreditCardsContainer = styled.div`
 `;
 
 export const FooterBottomContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 60px 0 35px 0;
   width: 100%;
-  h2 {
+  row-gap: 20px;
+  span {
     color: rgb(150, 150, 150);
     text-align: center;
     font-weight: 100;
     font-size: 12px;
+  }
+  a {
+    span {
+      font-size: 9px;
+      :hover {
+        text-decoration: underline;
+        color: ${VARIABLES.colorRed2};
+        transition: 0.5s;
+      }
+    }
   }
 `;
