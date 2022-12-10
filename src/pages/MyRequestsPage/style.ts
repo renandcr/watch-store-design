@@ -8,12 +8,7 @@ export const MainMyRequestsPageContainer = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-    > div {
-      width: 90%;
-      max-width: 900px;
-      align-items: flex-start;
-      margin: 30px 0 50px -20px;
-    }
+    margin-top: 40px;
     > h1 {
       font-size: 22px;
       font-weight: 600;
