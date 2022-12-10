@@ -6,7 +6,7 @@ export const HeaderContainer = styled.header<IHeader>`
   display: flex;
   flex-direction: column;
   position: ${(props) => (props.noPosition ? "none" : "fixed")};
-  width: 100vw;
+  width: 100%;
   box-shadow: ${(props) => (props.noShadow ? "none" : VARIABLES.colorShadow2)};
   z-index: 2;
 `;
@@ -143,7 +143,7 @@ export const OptionsContainer = styled.div<IHeader>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   min-height: 46px;
   padding: 10px 25px 10px 15px;
   margin-top: -1px;
