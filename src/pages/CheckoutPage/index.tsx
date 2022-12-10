@@ -1,16 +1,19 @@
 import { actionUpdateUserState } from "../../store/modules/user/actions";
 import AddressInformation from "../../components/AddressInformation";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import CartProductCard from "../../components/CartProductCard";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import WebSiteLogo from "../../components/WebSiteLogo";
 import { useTypedSelector } from "../../store/modules";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link, useHistory } from "react-router-dom";
+import Backdrop from "@material-ui/core/Backdrop";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import api from "../../assets/axios";
-import { useEffect } from "react";
 
 import {
   handleErrorMessages,
@@ -31,10 +34,20 @@ import {
   ShoppingContainer,
 } from "./style";
 
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#ffffff",
+  },
+}));
+
 const CheckoutPage: React.FC = (): JSX.Element => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const [open, setOpen] = useState(false);
+  const classes = useStyles();
 
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const address: IAddressesDatabase | undefined = user.addresses.find(
@@ -57,7 +70,11 @@ const CheckoutPage: React.FC = (): JSX.Element => {
         }
       )
       .then((_) => {
-        history.push("/completed-purchase-page");
+        setTimeout(() => {
+          history.push("/completed-purchase-page");
+          setOpen(false);
+        }, 4000);
+        setOpen(true);
         api
           .get(`/${user.id}`, {
             headers: { Authorization: `bearer ${user.token}` },
@@ -73,6 +90,9 @@ const CheckoutPage: React.FC = (): JSX.Element => {
   return (
     <>
       <MainCheckoutPageContainer>
+        <Backdrop className={classes.backdrop} open={open}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
         <motion.div
           className="motion-container"
           initial={{ opacity: 0, scale: 0.5 }}
