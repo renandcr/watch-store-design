@@ -1,10 +1,10 @@
 import { MainMyAccountPageContainer, MyAccountPageContainer } from "./style";
 import { IDatabaseUser } from "../../store/modules/user/actions";
 import RegistrationForm from "../../components/RegistrationForm";
-import WebSiteLogo from "../../components/WebSiteLogo";
 import { useTypedSelector } from "../../store/modules";
 import EditIcon from "@mui/icons-material/Edit";
 import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
@@ -19,12 +19,12 @@ const MyAccountPage: React.FC = (): JSX.Element => {
   return (
     <>
       <MainMyAccountPageContainer>
+        <Header display="none" noPosition noShadow />
         <motion.div
           className="motion-container"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
         >
-          <WebSiteLogo />
           <div className="title-container">
             {updateForm ? (
               <h1>Editar informações de acesso</h1>

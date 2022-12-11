@@ -10,13 +10,13 @@ export const MainMyRequestsPageContainer = styled.main`
     align-items: center;
     margin-top: 40px;
     > h1 {
-      font-size: 22px;
-      font-weight: 600;
+      font-size: 24px;
+      font-weight: 500;
       font-family: ${VARIABLES.fontSecondary};
       line-height: 26px;
       width: 90%;
       max-width: 900px;
-      color: ${VARIABLES.colorGray3};
+      color: ${VARIABLES.colorGray1};
       margin-bottom: 25px;
     }
   }
