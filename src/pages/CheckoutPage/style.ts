@@ -26,11 +26,11 @@ export const MainCheckoutPageContainer = styled.main`
     h1 {
       width: 90%;
       max-width: 950px;
-      font-size: 21px;
-      font-weight: 600;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 28px;
       font-family: ${VARIABLES.fontSecondary};
-      color: ${VARIABLES.colorGray3};
-      line-height: 23px;
+      color: ${VARIABLES.colorGray1};
     }
   }
   .weight {

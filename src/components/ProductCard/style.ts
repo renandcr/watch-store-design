@@ -4,14 +4,18 @@ import styled from "styled-components";
 export const ProductCardContainer = styled.li`
   width: 240px;
   border-radius: 4px;
-  margin: 0 20px 30px 20px;
+  margin: 0 5px 30px 5px;
   font-weight: 500;
   background-color: ${VARIABLES.colorBlue1};
   box-shadow: ${VARIABLES.colorShadow1};
   text-align: left;
 
-  @media only screen and (min-width: 720px) {
+  @media only screen and (min-width: 420px) {
     width: 200px;
+    margin: 0 5px 10px 5px;
+  }
+  @media only screen and (min-width: 720px) {
+    margin: 0 20px 40px 20px;
   }
   @media only screen and (min-width: 1440px) {
     margin: 0 42px 42px 42px;
@@ -23,16 +27,16 @@ export const ImageContainer = styled.div`
   overflow: hidden;
   margin: 3px 3px 10px 3px;
   border-radius: 4px 4px 0 0;
+  height: 234px;
   img {
     max-width: 100%;
-    border-radius: 4px 4px 0 0;
     transition: all 0.5s;
     :hover {
       transform: scale(1.5);
     }
   }
 
-  @media only screen and (min-width: 720px) {
+  @media only screen and (min-width: 420px) {
     height: 190px;
   }
 `;

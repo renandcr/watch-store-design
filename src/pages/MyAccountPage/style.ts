@@ -12,11 +12,7 @@ export const MainMyAccountPageContainer = styled.main`
     flex-direction: column;
     width: 90%;
     max-width: 450px;
-    > div:first-child {
-      align-items: flex-start;
-      margin: 30px 0 50px -10px;
-      width: 100%;
-    }
+    margin-top: 50px;
     .title-container {
       display: flex;
       justify-content: space-between;
@@ -24,11 +20,11 @@ export const MainMyAccountPageContainer = styled.main`
       margin-bottom: 50px;
       width: 100%;
       h1 {
-        font-size: 22px;
-        font-weight: 600;
+        font-size: 24px;
+        font-weight: 500;
         line-height: 26px;
         font-family: ${VARIABLES.fontSecondary};
-        color: ${VARIABLES.colorGray3};
+        color: ${VARIABLES.colorGray1};
       }
       span {
         display: flex;

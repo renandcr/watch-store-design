@@ -17,7 +17,7 @@ export const InsideFormContainer = styled.form`
     width: 100%;
     font-size: 26px;
     font-weight: 500;
-    color: ${VARIABLES.colorGray2};
+    color: ${VARIABLES.colorGray1};
     text-align: left;
     margin-bottom: 20px;
   }

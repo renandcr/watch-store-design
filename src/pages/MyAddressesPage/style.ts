@@ -11,11 +11,11 @@ export const MainMyAddressesPageContainer = styled.main`
     width: 100%;
   }
   h1 {
-    font-size: 21px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 500;
     font-family: ${VARIABLES.fontSecondary};
-    color: ${VARIABLES.colorGray3};
-    line-height: 23px;
+    color: ${VARIABLES.colorGray1};
+    line-height: 28px;
   }
   .alert-title {
     color: ${VARIABLES.colorOrange1};
