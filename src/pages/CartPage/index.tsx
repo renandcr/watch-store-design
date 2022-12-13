@@ -42,7 +42,7 @@ const CartPage: React.FC = (): JSX.Element => {
       >
         <MainPageCart>
           {user &&
-            (!user.cart.products.length ? (
+            (!user.cart.productCart.length ? (
               <h1>Seu carrinho está vazio!</h1>
             ) : (
               <h1>Meu carrinho</h1>
@@ -54,7 +54,7 @@ const CartPage: React.FC = (): JSX.Element => {
               <h1>Meu carrinho</h1>
             ))}
           <CartPageContainer>
-            {(user && user.cart.products.length > 0) || cart.length > 0 ? (
+            {(user && user.cart.productCart.length > 0) || cart.length > 0 ? (
               <OrderSummarySection>
                 <OrderSummary setShowAddressModal={setShowAddressModal} />
               </OrderSummarySection>
@@ -86,17 +86,17 @@ const CartPage: React.FC = (): JSX.Element => {
             )}
             <CartCardsSection>
               {user
-                ? user.cart.products.map((product, index) => (
+                ? user.cart.productCart.map((current, index) => (
                     <CartProductCard
                       key={index}
-                      product={product}
+                      current={current}
                       showDisplay={false}
                     />
                   ))
-                : cart.map((product, index) => (
+                : cart.map((current, index) => (
                     <CartProductCard
                       key={index}
-                      product={product}
+                      current={current}
                       showDisplay={false}
                     />
                   ))}

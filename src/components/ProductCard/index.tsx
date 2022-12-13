@@ -18,21 +18,21 @@ import {
   ImageContainer,
 } from "./style";
 
-const ProductCard: React.FC<{ product: IDbProducts }> = ({
-  product,
+const ProductCard: React.FC<{ current: IDbProducts }> = ({
+  current,
 }): JSX.Element => {
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const handleRequest = (product: IDbProducts) => {
+  const handleRequest = (currentProduct: IDbProducts) => {
     if (!user) {
-      dispatch(actionAddProductToCart(product));
+      dispatch(actionAddProductToCart(currentProduct));
     } else {
       api
         .post(
           `/cart/add/${user.id}`,
-          { product_id: [product.id] },
+          { product_id: [currentProduct.product.id] },
           {
             headers: { Authorization: `bearer ${user.token}` },
           }
@@ -56,15 +56,15 @@ const ProductCard: React.FC<{ product: IDbProducts }> = ({
   return (
     <ProductCardContainer>
       <ImageContainer>
-        <img src={product.img} alt="Imagem ilustrativa de um relógio" />
+        <img src={current.product.img} alt="Imagem ilustrativa de um relógio" />
       </ImageContainer>
       <DescriptionContainer>
-        <h2>{product.description}</h2>
+        <h2>{current.product.description}</h2>
         <span className="inventory">Em estoque</span>
-        <span>{formatPrices(product.price)}</span>
+        <span>{formatPrices(current.product.price)}</span>
         <Button
           onClick={() => {
-            handleRequest(product);
+            handleRequest(current);
           }}
         >
           Adicionar ao carrinho

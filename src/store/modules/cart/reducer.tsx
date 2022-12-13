@@ -19,7 +19,7 @@ const cartReducer = (
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
       const repeatProduct = state.find(
-        (product) => product.id === action.payload.id
+        (current) => current.product.id === action.payload.product.id
       );
       if (!repeatProduct) {
         localStorage.setItem(
@@ -37,9 +37,9 @@ const cartReducer = (
     case REMOVE_PRODUCT_FROM_CART:
       let updatedCart: Array<IDbProducts> = [];
       if (action.how_many === "one") {
-        updatedCart = state.filter((product) => {
+        updatedCart = state.filter((current) => {
           // action.payload.units = 1;
-          return product.id !== action.payload.id;
+          return current.product.id !== action.payload.product.id;
         });
       }
 

@@ -55,7 +55,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
       return address.main === true;
     }
   );
-  const shipping = user.cart.products.length ? 28.9 : 0;
+  const shipping = user.cart.productCart.length ? 28.9 : 0;
   const amount = shipping + user.cart.amount;
   const dispatch = useDispatch();
   const history = useHistory();
@@ -156,11 +156,11 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                 <h1>Entrega prevista para {deliveryDate()}</h1>
                 <div className="you-are-buying">
                   <h2 className="weight">
-                    {!user.cart.products.length
+                    {!user.cart.productCart.length
                       ? "Seu carrinho está vazio!"
                       : "Você está comprando:"}
                   </h2>
-                  {!user.cart.products.length && (
+                  {!user.cart.productCart.length && (
                     <Link to="/">
                       <Button
                         backgroundColor={VARIABLES.colorOrange2}
@@ -171,8 +171,8 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                     </Link>
                   )}
                 </div>
-                {user.cart.products.map((product, index) => (
-                  <CartProductCard key={index} product={product} showDisplay />
+                {user.cart.productCart.map((current, index) => (
+                  <CartProductCard key={index} current={current} showDisplay />
                 ))}
               </ShoppingContainer>
             </LeftCheckoutPageContainer>

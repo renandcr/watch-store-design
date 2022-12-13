@@ -27,13 +27,10 @@ const OrderSummary: React.FC<IOrderSummary> = ({
   const cart: Array<IDbProducts> = useTypedSelector((state) => state.cart);
   const history = useHistory();
 
-  const total_units = cart.reduce(
-    (acc, product) => product.purchase_units + acc,
-    0
-  );
+  const total_units = cart.reduce((acc, current) => current.units + acc, 0);
 
   const amount = cart.reduce(
-    (acc, product) => product.price * product.purchase_units + acc,
+    (acc, current) => current.product.price * current.units + acc,
     0
   );
 
