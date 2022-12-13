@@ -24,18 +24,18 @@ const homeReducer = (
 
       const listOfWords = receivedText.split(" ");
       let searchByGenre = false;
-      const productsFound = action.dbProducts.filter((product) => {
-        if (product.genre === listOfWords[0]) {
+      const productsFound = action.dbProducts.filter((current) => {
+        if (current.product.genre === listOfWords[0]) {
           searchByGenre = true;
-          return product;
+          return current;
         }
 
         if (searchByGenre) {
           return null;
         } else {
-          const productDescription = normalizedText(product.description)?.split(
-            " "
-          );
+          const productDescription = normalizedText(
+            current.product.description
+          )?.split(" ");
           const compatibleWords = productDescription?.filter((current) => {
             return listOfWords.find((word) => word === current);
           });

@@ -40,15 +40,18 @@ const OrderDetails: React.FC<{ user: IDatabaseUser } & IOrderDetails> = ({
                 <span>Número do pedido</span> <span>{current.id}</span>
               </li>
             </OrderDescriptionContainer>
-            {current.products.map((product) => (
-              <ProductInformation key={product.id}>
+            {current.products.map((current) => (
+              <ProductInformation key={current.product.id}>
                 <div className="image-container">
-                  <img src={product.img} alt="Imagem ilustrativa de relógio" />
+                  <img
+                    src={current.product.img}
+                    alt="Imagem ilustrativa de relógio"
+                  />
                 </div>
                 <div className="description-container">
-                  <h2>{product.description}</h2>
-                  <span>{formatPrices(product.price)}</span>
-                  <span>Quantidade: {product.purchase_units}</span>
+                  <h2>{current.product.description}</h2>
+                  <span>{formatPrices(current.product.price)}</span>
+                  <span>Quantidade: {current.units}</span>
                 </div>
               </ProductInformation>
             ))}
@@ -99,15 +102,18 @@ const OrderDetails: React.FC<{ user: IDatabaseUser } & IOrderDetails> = ({
             </li>
           </OrderDescriptionContainer>
           {user.purchaseOrders[user.purchaseOrders.length - 1].products.map(
-            (product) => (
-              <ProductInformation key={product.id}>
+            (current) => (
+              <ProductInformation key={current.product.id}>
                 <div className="image-container">
-                  <img src={product.img} alt="Imagem ilustrativa de relógio" />
+                  <img
+                    src={current.product.img}
+                    alt="Imagem ilustrativa de relógio"
+                  />
                 </div>
                 <div className="description-container">
-                  <h2>{product.description}</h2>
-                  <span>{formatPrices(product.price)}</span>
-                  <span>Quantidade: {product.purchase_units}</span>
+                  <h2>{current.product.description}</h2>
+                  <span>{formatPrices(current.product.price)}</span>
+                  <span>Quantidade: {current.units}</span>
                 </div>
               </ProductInformation>
             )

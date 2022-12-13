@@ -49,7 +49,7 @@ const LoginForm: React.FC = (): JSX.Element => {
         const decode: any = jwt(responseToken.data.token);
         if (!user && cart.length) {
           let product_id: Array<string> = [];
-          for (let product in cart) product_id.push(cart[product].id);
+          for (let current in cart) product_id.push(cart[current].product.id);
           dispatch(actionRemoveProductFromCart("all"));
           api
             .post(
@@ -70,7 +70,7 @@ const LoginForm: React.FC = (): JSX.Element => {
               headers: { Authorization: `bearer: ${responseToken.data.token}` },
             })
             .then((response) => {
-              response.data.cart.products.length
+              response.data.cart.productCart.length
                 ? history.push("/cart-page")
                 : history.push("/");
 

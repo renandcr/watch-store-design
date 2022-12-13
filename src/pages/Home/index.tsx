@@ -69,8 +69,8 @@ const Home: React.FC = (): JSX.Element => {
           <HomeContainer>
             {researchProducts.length > 0 &&
               !researchProducts[0]["no_result"] &&
-              researchProducts.map((product, index) => (
-                <ProductCard key={index} product={product} />
+              researchProducts.map((current, index) => (
+                <ProductCard key={index} current={current} />
               ))}
           </HomeContainer>
           {!researchProducts.length && (
@@ -79,9 +79,9 @@ const Home: React.FC = (): JSX.Element => {
           <HomeContainer>
             {!researchProducts.length &&
               dbProducts.map(
-                (product, index) =>
-                  product.genre === "male" && (
-                    <ProductCard key={index} product={product} />
+                (current, index) =>
+                  current.product.genre === "male" && (
+                    <ProductCard key={index} current={current} />
                   )
               )}
           </HomeContainer>
@@ -89,9 +89,9 @@ const Home: React.FC = (): JSX.Element => {
           <HomeContainer>
             {!researchProducts.length &&
               dbProducts.map(
-                (product, index) =>
-                  product.genre === "female" && (
-                    <ProductCard key={index} product={product} />
+                (current, index) =>
+                  current.product.genre === "female" && (
+                    <ProductCard key={index} current={current} />
                   )
               )}
           </HomeContainer>

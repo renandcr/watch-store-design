@@ -39,9 +39,9 @@ export interface ICartProductCard {
 }
 
 const CartProductCard: React.FC<
-  { product: IDbProducts } & ICartProductCard
-> = ({ product, showDisplay }): JSX.Element => {
-  const [units, setUnits] = useState<string>(product.purchase_units.toString());
+  { current: IDbProducts } & ICartProductCard
+> = ({ current, showDisplay }): JSX.Element => {
+  // const [units, setUnits] = useState<string>(product.purchase_units.toString());
   const [showInput, setShowInput] = useState<boolean>(false);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -63,12 +63,12 @@ const CartProductCard: React.FC<
   // };
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
 
-  const handleRequest = (product: IDbProducts) => {
+  const handleRequest = (currentProduct: IDbProducts) => {
     if (!user) {
-      dispatch(actionRemoveProductFromCart("one", product));
+      dispatch(actionRemoveProductFromCart("one", currentProduct));
     } else {
       api
-        .delete(`/cart/remove/${user.id}/${product.id}`, {
+        .delete(`/cart/remove/${user.id}/${currentProduct.product.id}`, {
           headers: { Authorization: `bearer ${user.token}` },
         })
         .then((_) => {
@@ -90,11 +90,11 @@ const CartProductCard: React.FC<
   return (
     <CartProductCardContainer showDisplay={showDisplay}>
       <CartImageContainer showDisplay={showDisplay}>
-        <img src={product.img} alt="Imagem ilustrativa de um relógio" />
+        <img src={current.product.img} alt="Imagem ilustrativa de um relógio" />
       </CartImageContainer>
       <CartDescriptionContainer showDisplay={showDisplay}>
-        <h2>{product.description}</h2>
-        <span>{formatPrices(product.price)}</span>
+        <h2>{current.product.description}</h2>
+        <span>{formatPrices(current.product.price)}</span>
         <span className="inventory">Em estoque</span>
         <BottomContainer showDisplay={showDisplay}>
           {showInput ? (
@@ -102,7 +102,7 @@ const CartProductCard: React.FC<
               <div>
                 <input
                   type="text"
-                  value={units}
+                  // value={units}
                   onChange={(e) => {
                     e.preventDefault();
                     // setUnits(e.target.value);
@@ -127,13 +127,13 @@ const CartProductCard: React.FC<
           ) : (
             <div className="units">
               <span className="quantity">Quantidade:</span>
-              <span className="quantity"> {product.purchase_units}</span>
+              <span className="quantity"> {current.units}</span>
               <span className="link-change" onClick={() => setShowInput(true)}>
                 Alterar
               </span>
             </div>
           )}
-          <span className="link-change" onClick={() => handleRequest(product)}>
+          <span className="link-change" onClick={() => handleRequest(current)}>
             Excluir
           </span>
         </BottomContainer>
@@ -144,14 +144,14 @@ const CartProductCard: React.FC<
           <AddContainer>
             <RiAddLine />
           </AddContainer>
-          <QuantityContainer>{product.purchase_units}</QuantityContainer>
+          <QuantityContainer>{current.units}</QuantityContainer>
           <SubtractContainer
           // onClick={() => dispatch(actionSubtractUnits(product))}
           >
             <RiSubtractLine />
           </SubtractContainer>
         </AddAndSubtractComponent>
-        <TrashContainer onClick={() => handleRequest(product)}>
+        <TrashContainer onClick={() => handleRequest(current)}>
           <span>
             <FaTrash />
           </span>

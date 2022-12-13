@@ -31,7 +31,7 @@ export interface ICart {
   id: string;
   total_units: number;
   amount: number;
-  products: Array<IDbProducts>;
+  productCart: Array<IDbProducts>;
 }
 
 export interface IPurchaseOrder {

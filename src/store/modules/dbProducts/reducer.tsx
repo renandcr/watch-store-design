@@ -4,7 +4,10 @@ import { IDbProductsAction } from "./actions";
 const productsReducer = (state = [], action: IDbProductsAction) => {
   switch (action.type) {
     case DATABASE_PRODUCTS:
-      return action.payload;
+      const products = action.payload.map((current) => {
+        return { units: 1, product: current };
+      });
+      return products;
 
     default:
       return state;

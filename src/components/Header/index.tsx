@@ -40,10 +40,7 @@ const Header: React.FC<IHeader> = ({
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const total_units = cart.reduce(
-    (acc, product) => product.purchase_units + acc,
-    0
-  );
+  const total_units = cart.reduce((acc, current) => current.units + acc, 0);
 
   return (
     <HeaderContainer noPosition={noPosition} noShadow={noShadow}>
