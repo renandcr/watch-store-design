@@ -37,6 +37,7 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
   const [showAddressModal, setShowAddressModal] = useState<boolean>(false);
   const [animationOption2, setAnimationOption2] = useState<boolean>(false);
   const [isItUpdateEvent, setIsItUpdateEvent] = useState<boolean>(false);
+  const [clickReleased, setClickReleased] = useState<boolean>(true);
   const [addressToBeUpdated, setAddressToBeUpdated] =
     useState<IAddressesDatabase>();
 
@@ -44,57 +45,67 @@ const MyAddressesPage: React.FC = (): JSX.Element => {
   const history = useHistory();
 
   const handleRequests = (address_id: string, requestOptions: string) => {
-    if (requestOptions === "update-main") {
-      api
-        .patch(
-          `/address/update/${address_id}`,
-          { main: true },
-          {
-            headers: { Authorization: `bearer ${user.token}` },
-          }
-        )
-        .then((_) => {
-          history.push("/checkout-page");
-          toast.success("Endereço atualizado com sucesso");
-          api
-            .get(`/${user.id}`, {
-              headers: {
-                Authorization: `bearer ${user.token}`,
-              },
-            })
-            .then((response) => {
-              dispatch(actionUpdateUserState(response.data, user.token));
-            })
-            .catch((err) => console.log(err));
-        })
-        .catch((err) =>
-          handleErrorMessages(err.response.data.message, history)
-        );
-    }
+    if (clickReleased) {
+      if (requestOptions === "update-main") {
+        setClickReleased(false);
+        setTimeout(() => {
+          setClickReleased(true);
+        }, 4000);
+        api
+          .patch(
+            `/address/update/${address_id}`,
+            { main: true },
+            {
+              headers: { Authorization: `bearer ${user.token}` },
+            }
+          )
+          .then((_) => {
+            history.push("/checkout-page");
+            toast.success("Endereço atualizado com sucesso");
+            api
+              .get(`/${user.id}`, {
+                headers: {
+                  Authorization: `bearer ${user.token}`,
+                },
+              })
+              .then((response) => {
+                dispatch(actionUpdateUserState(response.data, user.token));
+              })
+              .catch((err) => console.log(err));
+          })
+          .catch((err) =>
+            handleErrorMessages(err.response.data.message, history)
+          );
+      }
 
-    if (requestOptions === "delete") {
-      api
-        .delete(`/address/delete/${address_id}`, {
-          headers: {
-            Authorization: `bearer ${user.token}`,
-          },
-        })
-        .then((_) => {
-          toast.success("Endereço excluído com sucesso");
-          api
-            .get(`/${user.id}`, {
-              headers: {
-                Authorization: `bearer ${user.token}`,
-              },
-            })
-            .then((response) => {
-              dispatch(actionUpdateUserState(response.data, user.token));
-            })
-            .catch((err) => console.log(err));
-        })
-        .catch((err) =>
-          handleErrorMessages(err.response.data.message, history)
-        );
+      if (requestOptions === "delete") {
+        setClickReleased(false);
+        setTimeout(() => {
+          setClickReleased(true);
+        }, 300);
+        api
+          .delete(`/address/delete/${address_id}`, {
+            headers: {
+              Authorization: `bearer ${user.token}`,
+            },
+          })
+          .then((_) => {
+            toast.success("Endereço excluído com sucesso");
+            api
+              .get(`/${user.id}`, {
+                headers: {
+                  Authorization: `bearer ${user.token}`,
+                },
+              })
+              .then((response) => {
+                dispatch(actionUpdateUserState(response.data, user.token));
+              })
+              .catch((err) => console.log(err));
+          })
+          .catch((err) =>
+            handleErrorMessages(err.response.data.message, history)
+          );
+      }
     }
   };
 

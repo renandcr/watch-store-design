@@ -51,8 +51,8 @@ export const CartDescriptionContainer = styled.div<ICartProductCard>`
   }
   span {
     font-size: ${VARIABLES.fontSize2};
-    font-weight: 500;
-    color: ${VARIABLES.colorRed3};
+    font-weight: 600;
+    color: ${VARIABLES.colorGray1};
   }
   .inventory {
     color: ${VARIABLES.colorGreen2};

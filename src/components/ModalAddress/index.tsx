@@ -2,9 +2,9 @@ import { FormContainer, InsideFormContainer } from "../RegistrationForm/style";
 import { useTypedSelector } from "../../store/modules/index";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { handleErrorMessages } from "../../assets/methods";
+import { SetStateAction, Dispatch, useState } from "react";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { SetStateAction, Dispatch } from "react";
 import { ModalAddressContainer } from "./style";
 import { useHistory } from "react-router-dom";
 import api from "../../assets/axios/index";
@@ -83,59 +83,66 @@ const ModalAddress: React.FC<IAddressModal> = ({
     formState: { errors },
   } = useForm<IUserAddress>({ resolver: yupResolver(formSchema) });
 
+  const [clickReleased, setClickReleased] = useState<boolean>(true);
   const user = useTypedSelector((state) => state.user)[0];
   const dispatch = useDispatch();
   const history = useHistory();
 
   const submissionMethod = async (data: IUserAddress) => {
     setAnimationOption2?.(false);
-    isItUpdateEvent
-      ? await api
-          .patch(`/address/update/${addressToBeUpdated?.id}`, data, {
-            headers: { Authorization: `bearer ${user.token}` },
-          })
-          .then((_) => {
-            setIsItUpdateEvent?.(false);
-            history.push("/checkout-page");
-            toast.success("Endereço atualizado com sucesso");
-            api
-              .get(`/${user.id}`, {
-                headers: {
-                  Authorization: `bearer ${user.token}`,
-                },
-              })
-              .then((response) => {
-                dispatch(actionUpdateUserState(response.data, user.token));
-              })
-              .catch((err) => console.log(err));
-          })
-          .catch((err) =>
-            handleErrorMessages(err.response.data.message, history)
-          )
-      : await api
-          .post(`/address/create/${user.id}`, data, {
-            headers: {
-              Authorization: `bearer: ${user.token}`,
-            },
-          })
-          .then((_) => {
-            setTimeout(() => {
-              setShowAddressModal?.(false);
+    if (clickReleased) {
+      setClickReleased(false);
+      setTimeout(() => {
+        setClickReleased(true);
+      }, 4000);
+      isItUpdateEvent
+        ? await api
+            .patch(`/address/update/${addressToBeUpdated?.id}`, data, {
+              headers: { Authorization: `bearer ${user.token}` },
+            })
+            .then((_) => {
+              setIsItUpdateEvent?.(false);
               history.push("/checkout-page");
-              toast.success("Endereço cadastrado com sucesso");
-            }, 2000);
-            api
-              .get(`/${user.id}`, {
-                headers: { Authorization: `bearer ${user.token}` },
-              })
-              .then((response) => {
-                dispatch(actionUpdateUserState(response.data, user.token));
-              })
-              .catch((err) => console.log(err));
-          })
-          .catch((err) =>
-            handleErrorMessages(err.response.data.message, history)
-          );
+              toast.success("Endereço atualizado com sucesso");
+              api
+                .get(`/${user.id}`, {
+                  headers: {
+                    Authorization: `bearer ${user.token}`,
+                  },
+                })
+                .then((response) => {
+                  dispatch(actionUpdateUserState(response.data, user.token));
+                })
+                .catch((err) => console.log(err));
+            })
+            .catch((err) =>
+              handleErrorMessages(err.response.data.message, history)
+            )
+        : await api
+            .post(`/address/create/${user.id}`, data, {
+              headers: {
+                Authorization: `bearer: ${user.token}`,
+              },
+            })
+            .then((_) => {
+              setTimeout(() => {
+                setShowAddressModal?.(false);
+                history.push("/checkout-page");
+                toast.success("Endereço cadastrado com sucesso");
+              }, 2000);
+              api
+                .get(`/${user.id}`, {
+                  headers: { Authorization: `bearer ${user.token}` },
+                })
+                .then((response) => {
+                  dispatch(actionUpdateUserState(response.data, user.token));
+                })
+                .catch((err) => console.log(err));
+            })
+            .catch((err) =>
+              handleErrorMessages(err.response.data.message, history)
+            );
+    }
   };
 
   const variants1 = {

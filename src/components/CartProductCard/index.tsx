@@ -1,4 +1,3 @@
-import { actionRemoveProductFromCart } from "../../store/modules/cart/actions";
 import { formatPrices, handleErrorMessages } from "../../assets/methods";
 import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { RiSubtractLine, RiAddLine } from "react-icons/ri";
@@ -8,6 +7,11 @@ import { useDispatch } from "react-redux";
 import { FaTrash } from "react-icons/fa";
 import api from "../../assets/axios";
 import { useState } from "react";
+
+import {
+  actionRemoveProductFromCart,
+  actionChangeUnits,
+} from "../../store/modules/cart/actions";
 
 import {
   actionUpdateUserState,
@@ -28,12 +32,6 @@ import {
   AddContainer,
 } from "./style";
 
-// import {
-//   actionRemoveProductFromCart,
-//   actionSubtractUnits,
-//   actionAddUnits,
-// } from "../../store/modules/cart/actions";
-
 export interface ICartProductCard {
   showDisplay?: boolean;
 }
@@ -41,36 +39,53 @@ export interface ICartProductCard {
 const CartProductCard: React.FC<
   { current: IDbProducts } & ICartProductCard
 > = ({ current, showDisplay }): JSX.Element => {
-  // const [units, setUnits] = useState<string>(product.purchase_units.toString());
   const [showInput, setShowInput] = useState<boolean>(false);
+  const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
+  const [units, setUnits] = useState<string>(current.units.toString());
+  const [clickReleased, setClickReleased] = useState<boolean>(true);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // const handleUnitUpdateEvent = () => {
-  //   if (units.length) {
-  //     if (units === "0") return dispatch(actionRemoveProductFromCart(product));
-  //     else {
-  //       for (let i = 0; i < units.length; i++) {
-  //         if (Number.isNaN(parseInt(units[i]))) {
-  //           setUnits(product.units.toString());
-  //           return alert("Digite apenas números");
-  //         }
-  //       }
-  //     }
-  //   } else return setUnits(product.units.toString());
-  //   setShowInput(false);
-  //   return dispatch(actionUpdateUnits(product, Number(units)));
-  // };
-  const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
-
-  const handleRequest = (currentProduct: IDbProducts) => {
-    if (!user) {
+  const handleRequest = (
+    currentProduct: IDbProducts,
+    requestType: string,
+    unit_value?: number
+  ) => {
+    setClickReleased(false);
+    setTimeout(() => {
+      setClickReleased(true);
+    }, 300);
+    if (!user && requestType === "remove") {
       dispatch(actionRemoveProductFromCart("one", currentProduct));
-    } else {
+    } else if (user && requestType === "remove") {
       api
         .delete(`/cart/remove/${user.id}/${currentProduct.product.id}`, {
           headers: { Authorization: `bearer ${user.token}` },
         })
+        .then((_) => {
+          api
+            .get(`/${user.id}`, {
+              headers: { Authorization: `bearer ${user.token}` },
+            })
+            .then((response) => {
+              dispatch(actionUpdateUserState(response.data, user.token));
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) =>
+          handleErrorMessages(err.response.data.message, history)
+        );
+    } else if (!user && requestType === "cart_change") {
+      dispatch(actionChangeUnits(currentProduct, unit_value));
+    } else if ((user && requestType === "cart_change") || requestType === "") {
+      api
+        .patch(
+          `/cart/change_units/${user.id}/${currentProduct.id}`,
+          { change_units: { change_type: requestType, units: unit_value } },
+          {
+            headers: { Authorization: `bearer ${user.token}` },
+          }
+        )
         .then((_) => {
           api
             .get(`/${user.id}`, {
@@ -102,23 +117,28 @@ const CartProductCard: React.FC<
               <div>
                 <input
                   type="text"
-                  // value={units}
+                  value={units}
                   onChange={(e) => {
                     e.preventDefault();
-                    // setUnits(e.target.value);
+                    setUnits(e.target.value);
                   }}
                 />
               </div>
-              {/* <span className="link-change" onClick={handleUnitUpdateEvent}>
+              <span
+                className="link-change"
+                onClick={() => {
+                  handleRequest(current, "", Number(units));
+                  setShowInput(false);
+                }}
+              >
                 Atualizar
-              </span> */}
-              <span className="link-change">Atualizar</span>
+              </span>
               <span className="bar">|</span>
               <span
                 className="link-change"
                 onClick={() => {
                   setShowInput(false);
-                  // setUnits(product.units.toString());
+                  setUnits(current.units.toString());
                 }}
               >
                 Cancelar
@@ -133,25 +153,31 @@ const CartProductCard: React.FC<
               </span>
             </div>
           )}
-          <span className="link-change" onClick={() => handleRequest(current)}>
+          <span
+            className="link-change"
+            onClick={() => handleRequest(current, "remove")}
+          >
             Excluir
           </span>
         </BottomContainer>
       </CartDescriptionContainer>
       <UnitsContainerAndDeletion showDisplay={showDisplay}>
         <AddAndSubtractComponent>
-          {/* <AddContainer onClick={() => dispatch(actionAddUnits(product))}> */}
-          <AddContainer>
+          <AddContainer
+            onClick={() => handleRequest(current, "cart_change", 1)}
+          >
             <RiAddLine />
           </AddContainer>
           <QuantityContainer>{current.units}</QuantityContainer>
           <SubtractContainer
-          // onClick={() => dispatch(actionSubtractUnits(product))}
+            onClick={() => handleRequest(current, "cart_change", -1)}
           >
             <RiSubtractLine />
           </SubtractContainer>
         </AddAndSubtractComponent>
-        <TrashContainer onClick={() => handleRequest(current)}>
+        <TrashContainer
+          onClick={() => clickReleased && handleRequest(current, "remove")}
+        >
           <span>
             <FaTrash />
           </span>

@@ -46,6 +46,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
     window.scrollTo(0, 0);
   }, []);
 
+  const [clickReleased, setClickReleased] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
   const classes = useStyles();
 
@@ -61,30 +62,38 @@ const CheckoutPage: React.FC = (): JSX.Element => {
   const history = useHistory();
 
   const handleRequest = () => {
-    api
-      .post(
-        `/purchase-order/create/${user.id}`,
-        { shipping },
-        {
-          headers: { Authorization: `bearer ${user.token}` },
-        }
-      )
-      .then((_) => {
-        setTimeout(() => {
-          history.push("/completed-purchase-page");
-          setOpen(false);
-        }, 4000);
-        setOpen(true);
-        api
-          .get(`/${user.id}`, {
+    if (clickReleased) {
+      setClickReleased(false);
+      setTimeout(() => {
+        setClickReleased(true);
+      }, 5000);
+      api
+        .post(
+          `/purchase-order/create/${user.id}`,
+          { shipping },
+          {
             headers: { Authorization: `bearer ${user.token}` },
-          })
-          .then((response) => {
-            dispatch(actionUpdateUserState(response.data, user.token));
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => handleErrorMessages(err.response.data.message, history));
+          }
+        )
+        .then((_) => {
+          setTimeout(() => {
+            history.push("/completed-purchase-page");
+            setOpen(false);
+          }, 4000);
+          setOpen(true);
+          api
+            .get(`/${user.id}`, {
+              headers: { Authorization: `bearer ${user.token}` },
+            })
+            .then((response) => {
+              dispatch(actionUpdateUserState(response.data, user.token));
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) =>
+          handleErrorMessages(err.response.data.message, history)
+        );
+    }
   };
 
   return (
@@ -116,6 +125,15 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               </p>
               <h2 className="weight">Resumo do pedido</h2>
               <div>
+                <span>Quantidade:</span>
+                {user.cart.total_units > 0 && (
+                  <span>
+                    {user.cart.total_units} unidade
+                    {user.cart.total_units > 1 ? "s" : ""}
+                  </span>
+                )}
+              </div>
+              <div>
                 <span>Itens:</span>
                 <span>{formatPrices(user.cart.amount)}</span>
               </div>
@@ -127,21 +145,23 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                 <span>Total do pedido:</span>
                 <span>{formatPrices(amount)}</span>
               </div>
-              <span>
-                Em 1x de {formatPrices(amount)} sem juros{" "}
-                <Link to="/checkout-page">
-                  <span
-                    className="link-change"
-                    onClick={() =>
-                      alert(
-                        "Desculpe, por enquanto esta ação ainda não está habilitada"
-                      )
-                    }
-                  >
-                    Alterar
-                  </span>
-                </Link>
-              </span>
+              {user.cart.total_units > 0 && (
+                <span>
+                  Em 1x de {formatPrices(amount)} sem juros{" "}
+                  <Link to="/checkout-page">
+                    <span
+                      className="link-change"
+                      onClick={() =>
+                        alert(
+                          "Desculpe, por enquanto esta ação ainda não está habilitada"
+                        )
+                      }
+                    >
+                      Alterar
+                    </span>
+                  </Link>
+                </span>
+              )}
               <Button
                 backgroundColor={VARIABLES.colorOrange2}
                 color={VARIABLES.colorGray3}

@@ -15,6 +15,7 @@ import UnderLoginContainer from "./style";
 import WebSiteLogo from "../WebSiteLogo";
 import { toast } from "react-toastify";
 import api from "../../assets/axios";
+import { useState } from "react";
 import Button from "../Button";
 import jwt from "jwt-decode";
 import * as yup from "yup";
@@ -39,50 +40,59 @@ const LoginForm: React.FC = (): JSX.Element => {
 
   const cart: Array<IDbProducts> = useTypedSelector((state) => state.cart);
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
+  const [clickReleased, setClickReleased] = useState<boolean>(true);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const submissionMethod = async (data: IUserLogin) => {
-    await api
-      .post("/login", data)
-      .then((responseToken) => {
-        const decode: any = jwt(responseToken.data.token);
-        if (!user && cart.length) {
-          let product_id: Array<string> = [];
-          for (let current in cart) product_id.push(cart[current].product.id);
-          dispatch(actionRemoveProductFromCart("all"));
-          api
-            .post(
-              `/cart/add/${decode.id_token}`,
-              { product_id: ["first-login", ...product_id] },
-              {
-                headers: {
-                  Authorization: `bearer ${responseToken.data.token}`,
+    if (clickReleased) {
+      setClickReleased(false);
+      setTimeout(() => {
+        setClickReleased(true);
+      }, 2000);
+      await api
+        .post("/login", data)
+        .then((responseToken) => {
+          const decode: any = jwt(responseToken.data.token);
+          if (!user && cart.length) {
+            dispatch(actionRemoveProductFromCart("all"));
+            api
+              .post(
+                `/cart/add/${decode.id_token}`,
+                {
+                  add_products: { request_type: "first_login", products: cart },
                 },
-              }
-            )
-            .then()
-            .catch((err) => console.log(err));
-        }
-        setTimeout(() => {
-          api
-            .get(`/${decode.id_token}`, {
-              headers: { Authorization: `bearer: ${responseToken.data.token}` },
-            })
-            .then((response) => {
-              response.data.cart.productCart.length
-                ? history.push("/cart-page")
-                : history.push("/");
+                {
+                  headers: {
+                    Authorization: `bearer ${responseToken.data.token}`,
+                  },
+                }
+              )
+              .then()
+              .catch((err) => console.log(err));
+          }
+          setTimeout(() => {
+            api
+              .get(`/${decode.id_token}`, {
+                headers: {
+                  Authorization: `bearer: ${responseToken.data.token}`,
+                },
+              })
+              .then((response) => {
+                response.data.cart.productCart.length
+                  ? history.push("/cart-page")
+                  : history.push("/");
 
-              dispatch(
-                actionUpdateUserState(response.data, responseToken.data.token)
-              );
-              toast.success("Login realizado com sucesso");
-            })
-            .catch((err) => console.log(err));
-        }, 1000);
-      })
-      .catch((err) => handleErrorMessages(err.response.data.message));
+                dispatch(
+                  actionUpdateUserState(response.data, responseToken.data.token)
+                );
+                toast.success("Login realizado com sucesso");
+              })
+              .catch((err) => console.log(err));
+          }, 1000);
+        })
+        .catch((err) => handleErrorMessages(err.response.data.message));
+    }
   };
 
   return (
