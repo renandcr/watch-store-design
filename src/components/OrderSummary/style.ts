@@ -39,16 +39,21 @@ export const OrderBodyContainer = styled.div`
 
 export const PaymentInformationContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
-  margin-bottom: 45px;
-  span:first-child {
-    color: ${VARIABLES.colorGray1};
-    font-weight: 500;
-  }
-  span {
-    color: ${VARIABLES.colorRed2};
-    font-weight: 600;
+  margin-bottom: 40px;
+  row-gap: 15px;
+  div {
+    display: flex;
+    justify-content: space-between;
+    span {
+      color: ${VARIABLES.colorGray1};
+      font-weight: 500;
+    }
+    .total-price {
+      color: ${VARIABLES.colorRed2};
+      font-weight: 600;
+    }
   }
 `;
 

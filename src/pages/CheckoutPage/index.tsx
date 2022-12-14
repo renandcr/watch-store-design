@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import api from "../../assets/axios";
+import React from "react";
 
 import {
   handleErrorMessages,
@@ -90,7 +91,11 @@ const CheckoutPage: React.FC = (): JSX.Element => {
   return (
     <>
       <MainCheckoutPageContainer>
-        <Backdrop className={classes.backdrop} open={open}>
+        <Backdrop
+          ref={React.createRef()}
+          className={classes.backdrop}
+          open={open}
+        >
           <CircularProgress color="inherit" />
         </Backdrop>
         <motion.div
@@ -116,6 +121,15 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               </p>
               <h2 className="weight">Resumo do pedido</h2>
               <div>
+                <span>Quantidade:</span>
+                {user.cart.total_units > 0 && (
+                  <span>
+                    {user.cart.total_units} unidade
+                    {user.cart.total_units > 1 ? "s" : ""}
+                  </span>
+                )}
+              </div>
+              <div>
                 <span>Itens:</span>
                 <span>{formatPrices(user.cart.amount)}</span>
               </div>
@@ -127,21 +141,23 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                 <span>Total do pedido:</span>
                 <span>{formatPrices(amount)}</span>
               </div>
-              <span>
-                Em 1x de {formatPrices(amount)} sem juros{" "}
-                <Link to="/checkout-page">
-                  <span
-                    className="link-change"
-                    onClick={() =>
-                      alert(
-                        "Desculpe, por enquanto esta ação ainda não está habilitada"
-                      )
-                    }
-                  >
-                    Alterar
-                  </span>
-                </Link>
-              </span>
+              {user.cart.total_units > 0 && (
+                <span>
+                  Em 1x de {formatPrices(amount)} sem juros{" "}
+                  <Link to="/checkout-page">
+                    <span
+                      className="link-change"
+                      onClick={() =>
+                        alert(
+                          "Desculpe, por enquanto esta ação ainda não está habilitada"
+                        )
+                      }
+                    >
+                      Alterar
+                    </span>
+                  </Link>
+                </span>
+              )}
               <Button
                 backgroundColor={VARIABLES.colorOrange2}
                 color={VARIABLES.colorGray3}

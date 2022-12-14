@@ -1,6 +1,7 @@
 import { DATABASE_PRODUCTS } from "./constants";
 
 export interface IDbProducts {
+  id?: string;
   units: number;
   product: {
     readonly id: string;

@@ -1,20 +1,18 @@
-import { IAddAndRemoveProductsAction, IUpdateUnitsAction } from "./actions";
 import { IDbProducts } from "../dbProducts/actions";
+import { ICartAction } from "./actions";
 import { toast } from "react-toastify";
 
 import {
   REMOVE_PRODUCT_FROM_CART,
   ADD_PRODUCT_TO_CART,
-  SUBTRACT_UNITS,
-  UPDATE_UNITS,
-  ADD_UNITS,
+  CHANGE_UNITS,
 } from "./constants";
 
 const cartReducer = (
   state: Array<IDbProducts> = JSON.parse(
     localStorage.getItem("@watchStore: cartProducts") || JSON.stringify("")
   ) || [],
-  action: IAddAndRemoveProductsAction & IUpdateUnitsAction
+  action: ICartAction
 ) => {
   switch (action.type) {
     case ADD_PRODUCT_TO_CART:
@@ -38,7 +36,6 @@ const cartReducer = (
       let updatedCart: Array<IDbProducts> = [];
       if (action.how_many === "one") {
         updatedCart = state.filter((current) => {
-          // action.payload.units = 1;
           return current.product.id !== action.payload.product.id;
         });
       }
@@ -54,27 +51,12 @@ const cartReducer = (
 
       return updatedCart;
 
-    case ADD_UNITS:
-      // action.payload.units += 1;
+    case CHANGE_UNITS:
+      action.payload.units += action.units;
+      if (action.payload.units < 1) action.payload.units = 1;
       localStorage.setItem("@watchStore: cartProducts", JSON.stringify(state));
       return [...state];
 
-    case SUBTRACT_UNITS:
-      // if (action.payload.units > 1) {
-      //   action.payload.units -= 1;
-      //   localStorage.setItem(
-      //     "@watchStore: cartProducts",
-      //     JSON.stringify(state)
-      //   );
-      // }
-
-      return [...state];
-
-    case UPDATE_UNITS:
-      // action.payload.units = action.units;
-      localStorage.setItem("@watchStore: cartProducts", JSON.stringify(state));
-
-      return [...state];
     default:
       return state;
   }
