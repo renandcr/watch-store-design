@@ -32,7 +32,12 @@ const ProductCard: React.FC<{ current: IDbProducts }> = ({
       api
         .post(
           `/cart/add/${user.id}`,
-          { product_id: [currentProduct.product.id] },
+          {
+            add_products: {
+              request_type: "",
+              products: [currentProduct],
+            },
+          },
           {
             headers: { Authorization: `bearer ${user.token}` },
           }

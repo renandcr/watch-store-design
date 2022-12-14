@@ -49,18 +49,23 @@ const OrderSummary: React.FC<IOrderSummary> = ({
         <h2>Resumo do pedido</h2>
       </TitleContainer>
       <OrderBodyContainer>
-        <p>
-          Aviso: Opós fechar, você ainda poderá fazer alterações no seu pedido.{" "}
-        </p>
+        <p>Aviso: Opós fechar o pedido, você ainda poderá fazer alterações. </p>
         <PaymentInformationContainer>
-          <span>
-            {(user && user.cart.total_units) || (!user && total_units)} unidade
-            {(user && user.cart.total_units > 1 && "s") ||
-              (cart.length > 1 && "s")}
-          </span>
-          <span>
-            {(user && formatPrices(user.cart.amount)) || formatPrices(amount)}
-          </span>
+          <div>
+            <span>Quantidade:</span>
+            <span>
+              {(user && user.cart.total_units) || (!user && total_units)}{" "}
+              unidade
+              {(user && user.cart.total_units > 1 && "s") ||
+                (total_units > 1 && "s")}
+            </span>
+          </div>
+          <div>
+            <span>Total:</span>
+            <span className="total-price">
+              {(user && formatPrices(user.cart.amount)) || formatPrices(amount)}
+            </span>
+          </div>
         </PaymentInformationContainer>
         <Link to="/">
           <KeepBuyingContainer>

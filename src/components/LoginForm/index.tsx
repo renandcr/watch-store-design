@@ -48,13 +48,11 @@ const LoginForm: React.FC = (): JSX.Element => {
       .then((responseToken) => {
         const decode: any = jwt(responseToken.data.token);
         if (!user && cart.length) {
-          let product_id: Array<string> = [];
-          for (let current in cart) product_id.push(cart[current].product.id);
           dispatch(actionRemoveProductFromCart("all"));
           api
             .post(
               `/cart/add/${decode.id_token}`,
-              { product_id: ["first-login", ...product_id] },
+              { add_products: { request_type: "first_login", products: cart } },
               {
                 headers: {
                   Authorization: `bearer ${responseToken.data.token}`,

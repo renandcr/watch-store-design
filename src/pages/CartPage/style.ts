@@ -56,9 +56,11 @@ export const EmptyCartContainer = styled.div`
     max-width: 285px;
     margin-right: 40px;
   }
+  a {
+    margin-top: 40px;
+  }
   button {
     width: 220px;
-    margin-top: 40px;
     font-weight: 600;
   }
 `;
