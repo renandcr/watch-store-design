@@ -86,13 +86,15 @@ const CartPage: React.FC = (): JSX.Element => {
             )}
             <CartCardsSection>
               {user
-                ? user.cart.productCart.map((current, index) => (
-                    <CartProductCard
-                      key={index}
-                      current={current}
-                      showDisplay={false}
-                    />
-                  ))
+                ? user.cart.productCart
+                    .sort((a, b) => a.product.price - b.product.price)
+                    .map((current) => (
+                      <CartProductCard
+                        key={current.id}
+                        current={current}
+                        showDisplay={false}
+                      />
+                    ))
                 : cart.map((current, index) => (
                     <CartProductCard
                       key={index}

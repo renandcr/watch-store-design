@@ -42,6 +42,7 @@ const CartProductCard: React.FC<
   const [showInput, setShowInput] = useState<boolean>(false);
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const [units, setUnits] = useState<string>(current.units.toString());
+  const [clickReleased, setClickReleased] = useState<boolean>(true);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -50,6 +51,10 @@ const CartProductCard: React.FC<
     requestType: string,
     unit_value?: number
   ) => {
+    setClickReleased(false);
+    setTimeout(() => {
+      setClickReleased(true);
+    }, 300);
     if (!user && requestType === "remove") {
       dispatch(actionRemoveProductFromCart("one", currentProduct));
     } else if (user && requestType === "remove") {
@@ -170,7 +175,9 @@ const CartProductCard: React.FC<
             <RiSubtractLine />
           </SubtractContainer>
         </AddAndSubtractComponent>
-        <TrashContainer onClick={() => handleRequest(current, "remove")}>
+        <TrashContainer
+          onClick={() => clickReleased && handleRequest(current, "remove")}
+        >
           <span>
             <FaTrash />
           </span>

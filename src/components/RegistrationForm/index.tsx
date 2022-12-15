@@ -1,10 +1,10 @@
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { Dispatch, SetStateAction, useState } from "react";
 import { handleErrorMessages } from "../../assets/methods";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import { useTypedSelector } from "../../store/modules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory, Link } from "react-router-dom";
-import { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
@@ -63,6 +63,7 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
     formState: { errors },
   } = useForm<IUserRegistration>({ resolver: yupResolver(FormSchema) });
 
+  const [clickReleased, setClickReleased] = useState<boolean>(true);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -70,31 +71,37 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
     delete data.confirm_password;
     if (data.password === "password491") data.password = "";
 
-    !updateForm
-      ? api
-          .post("/create", data)
-          .then((_) => {
-            history.push("/login-page");
-            toast.success("Cadastro realizado com sucesso");
-          })
-          .catch((err) => handleErrorMessages(err.response.data.message))
-      : api
-          .patch(`/update/${user.id}`, data, {
-            headers: { Authorization: `bearer ${user.token}` },
-          })
-          .then((_) => {
-            setUpdateForm?.(false);
-            toast.success("Dados atualizados com sucesso");
-            api
-              .get(`/${user.id}`, {
-                headers: { Authorization: `bearer ${user.token}` },
-              })
-              .then((response) => {
-                dispatch(actionUpdateUserState(response.data, user.token));
-              })
-              .catch((err) => console.log(err));
-          })
-          .catch((err) => handleErrorMessages(err.response.data.message));
+    if (clickReleased) {
+      setClickReleased(false);
+      setTimeout(() => {
+        setClickReleased(true);
+      }, 2000);
+      !updateForm
+        ? api
+            .post("/create", data)
+            .then((_) => {
+              history.push("/login-page");
+              toast.success("Cadastro realizado com sucesso");
+            })
+            .catch((err) => handleErrorMessages(err.response.data.message))
+        : api
+            .patch(`/update/${user.id}`, data, {
+              headers: { Authorization: `bearer ${user.token}` },
+            })
+            .then((_) => {
+              setUpdateForm?.(false);
+              toast.success("Dados atualizados com sucesso");
+              api
+                .get(`/${user.id}`, {
+                  headers: { Authorization: `bearer ${user.token}` },
+                })
+                .then((response) => {
+                  dispatch(actionUpdateUserState(response.data, user.token));
+                })
+                .catch((err) => console.log(err));
+            })
+            .catch((err) => handleErrorMessages(err.response.data.message));
+    }
   };
 
   return (

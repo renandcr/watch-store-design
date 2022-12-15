@@ -14,7 +14,6 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import api from "../../assets/axios";
-import React from "react";
 
 import {
   handleErrorMessages,
@@ -47,6 +46,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
     window.scrollTo(0, 0);
   }, []);
 
+  const [clickReleased, setClickReleased] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
   const classes = useStyles();
 
@@ -62,40 +62,44 @@ const CheckoutPage: React.FC = (): JSX.Element => {
   const history = useHistory();
 
   const handleRequest = () => {
-    api
-      .post(
-        `/purchase-order/create/${user.id}`,
-        { shipping },
-        {
-          headers: { Authorization: `bearer ${user.token}` },
-        }
-      )
-      .then((_) => {
-        setTimeout(() => {
-          history.push("/completed-purchase-page");
-          setOpen(false);
-        }, 4000);
-        setOpen(true);
-        api
-          .get(`/${user.id}`, {
+    if (clickReleased) {
+      setClickReleased(false);
+      setTimeout(() => {
+        setClickReleased(true);
+      }, 5000);
+      api
+        .post(
+          `/purchase-order/create/${user.id}`,
+          { shipping },
+          {
             headers: { Authorization: `bearer ${user.token}` },
-          })
-          .then((response) => {
-            dispatch(actionUpdateUserState(response.data, user.token));
-          })
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => handleErrorMessages(err.response.data.message, history));
+          }
+        )
+        .then((_) => {
+          setTimeout(() => {
+            history.push("/completed-purchase-page");
+            setOpen(false);
+          }, 4000);
+          setOpen(true);
+          api
+            .get(`/${user.id}`, {
+              headers: { Authorization: `bearer ${user.token}` },
+            })
+            .then((response) => {
+              dispatch(actionUpdateUserState(response.data, user.token));
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) =>
+          handleErrorMessages(err.response.data.message, history)
+        );
+    }
   };
 
   return (
     <>
       <MainCheckoutPageContainer>
-        <Backdrop
-          ref={React.createRef()}
-          className={classes.backdrop}
-          open={open}
-        >
+        <Backdrop className={classes.backdrop} open={open}>
           <CircularProgress color="inherit" />
         </Backdrop>
         <motion.div
