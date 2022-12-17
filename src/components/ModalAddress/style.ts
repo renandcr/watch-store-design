@@ -1,15 +1,8 @@
-import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
 import { IAddressModal } from ".";
 
 export const ModalAddressContainer = styled.div<IAddressModal>`
   display: flex;
-  width: 100%;
-  height: 100%;
-  z-index: 3;
-  background-color: ${(props) =>
-    props.showDisplay ? "#ffffff" : VARIABLES.colorDarkBackground};
-  position: ${(props) => (props.showDisplay ? "none" : "fixed")};
   justify-content: ${(props) => (props.showDisplay ? "flex-start" : "center")};
   h1 {
     display: ${(props) => (props.showDisplay ? "none" : "flex")};
@@ -17,10 +10,13 @@ export const ModalAddressContainer = styled.div<IAddressModal>`
   .menu {
     width: 100%;
     max-width: 450px;
+    height: 100%;
     ::-webkit-scrollbar {
       display: none;
     }
+    z-index: 3;
     overflow-y: ${(props) => (props.showDisplay ? "unset" : "auto")};
+    position: ${(props) => (props.showDisplay ? "none" : "fixed")};
     .form-container {
       background-color: #ffffff;
       min-width: 100%;

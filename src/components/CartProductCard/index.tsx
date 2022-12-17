@@ -34,6 +34,7 @@ import {
 
 export interface ICartProductCard {
   showDisplay?: boolean;
+  unavailable?: boolean;
 }
 
 const CartProductCard: React.FC<
@@ -103,14 +104,22 @@ const CartProductCard: React.FC<
   };
 
   return (
-    <CartProductCardContainer showDisplay={showDisplay}>
+    <CartProductCardContainer
+      showDisplay={showDisplay}
+      unavailable={current.product.stock_quantity < 1 ? true : false}
+    >
       <CartImageContainer showDisplay={showDisplay}>
         <img src={current.product.img} alt="Imagem ilustrativa de um relógio" />
       </CartImageContainer>
-      <CartDescriptionContainer showDisplay={showDisplay}>
+      <CartDescriptionContainer
+        showDisplay={showDisplay}
+        unavailable={current.product.stock_quantity < 1 ? true : false}
+      >
         <h2>{current.product.description}</h2>
         <span>{formatPrices(current.product.price)}</span>
-        <span className="inventory">Em estoque</span>
+        <span className="inventory">
+          {current.product.stock_quantity < 1 ? "Esgotado" : "Em estoque"}
+        </span>
         <BottomContainer showDisplay={showDisplay}>
           {showInput ? (
             <QuantityInputContainer>

@@ -1,12 +1,19 @@
 import { actionSearchProduct } from "../../store/modules/home/actions";
 import { IDbProducts } from "../../store/modules/dbProducts/actions";
+import { IDatabaseUser } from "../../store/modules/user/actions";
 import { useTypedSelector } from "../../store/modules/index";
+import { motion, AnimatePresence } from "framer-motion";
 import CloseIcon from "@mui/icons-material/Close";
 import { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 import { MenuContainer } from "./style";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+
+declare module "framer-motion" {
+  export interface AnimatePresenceProps {
+    children?: React.ReactNode;
+  }
+}
 
 interface IMenu {
   setMenuVisibility: Dispatch<SetStateAction<boolean>>;
@@ -20,20 +27,27 @@ const Menu: React.FC<IMenu> = ({
   const dbProducts: Array<IDbProducts> = useTypedSelector(
     (state) => state.products
   );
+  const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
   const dispatch = useDispatch();
 
+  if (menuIsVisible) {
+    document.body.style.overflow = "hidden";
+  } else document.body.style.overflow = "auto";
+
   return (
-    <>
+    <AnimatePresence>
       {menuIsVisible && (
         <MenuContainer>
           <motion.ul
+            key="menu"
             className="menu"
-            initial={{ x: -400, opacity: 0 }}
-            animate={{ x: 1, opacity: 1, transition: { duration: 0.5 } }}
+            initial={{ x: "-100%" }}
+            animate={{ x: 0, transition: { duration: 0.5 } }}
+            exit={{ x: "-100%", transition: { duration: 0.5 } }}
           >
             <li className="first-child">
               <span>
-                Olá, <span className="name">Renan</span>
+                Olá, <span className="name">{user.name}</span>
               </span>
               <span
                 className="close-icon"
@@ -96,7 +110,7 @@ const Menu: React.FC<IMenu> = ({
           </motion.ul>
         </MenuContainer>
       )}
-    </>
+    </AnimatePresence>
   );
 };
 

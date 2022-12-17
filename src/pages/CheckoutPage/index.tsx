@@ -191,9 +191,15 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                     </Link>
                   )}
                 </div>
-                {user.cart.productCart.map((current, index) => (
-                  <CartProductCard key={index} current={current} showDisplay />
-                ))}
+                {user.cart.productCart
+                  .sort((a, b) => a.product.price - b.product.price)
+                  .map((current, index) => (
+                    <CartProductCard
+                      key={index}
+                      current={current}
+                      showDisplay
+                    />
+                  ))}
               </ShoppingContainer>
             </LeftCheckoutPageContainer>
           </CheckoutPageContainer>

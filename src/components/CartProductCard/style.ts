@@ -20,6 +20,7 @@ export const CartProductCardContainer = styled.div<ICartProductCard>`
     props.showDisplay ? "none" : VARIABLES.colorShadow1};
   justify-content: ${(props) =>
     props.showDisplay ? "unset" : "space-between"};
+  opacity: ${(props) => props.unavailable && "35%"};
 `;
 
 export const CartImageContainer = styled.div<ICartProductCard>`
@@ -55,9 +56,12 @@ export const CartDescriptionContainer = styled.div<ICartProductCard>`
     color: ${VARIABLES.colorGray1};
   }
   .inventory {
-    color: ${VARIABLES.colorGreen2};
+    color: ${(props) =>
+      props.unavailable ? VARIABLES.colorRed2 : VARIABLES.colorGreen2};
     font-weight: 500;
-    font-size: 11px;
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 `;
 

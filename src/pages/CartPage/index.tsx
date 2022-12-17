@@ -2,6 +2,7 @@ import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { IDatabaseUser } from "../../store/modules/user/actions";
 import CartProductCard from "../../components/CartProductCard";
 import EmptyCart from "../../assets/images/carrinho_vazio.png";
+import DarkBackground from "../../components/DarkBackground";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import OrderSummary from "../../components/OrderSummary";
 import ModalAddress from "../../components/ModalAddress";
@@ -31,6 +32,7 @@ const CartPage: React.FC = (): JSX.Element => {
 
   return (
     <>
+      {showAddressModal && <DarkBackground />}
       <Header display="none" />
       <ModalAddress
         showAddressModal={showAddressModal}

@@ -18,6 +18,10 @@ import {
   ImageContainer,
 } from "./style";
 
+export interface IProductCard {
+  unavailable: boolean;
+}
+
 const ProductCard: React.FC<{ current: IDbProducts }> = ({
   current,
 }): JSX.Element => {
@@ -59,14 +63,22 @@ const ProductCard: React.FC<{ current: IDbProducts }> = ({
   };
 
   return (
-    <ProductCardContainer>
-      <ImageContainer>
+    <ProductCardContainer
+      unavailable={current.product.stock_quantity < 1 ? true : false}
+    >
+      <ImageContainer
+        unavailable={current.product.stock_quantity < 1 ? true : false}
+      >
         <img src={current.product.img} alt="Imagem ilustrativa de um relógio" />
       </ImageContainer>
-      <DescriptionContainer>
+      <DescriptionContainer
+        unavailable={current.product.stock_quantity < 1 ? true : false}
+      >
         <h2>{current.product.description}</h2>
-        <span className="inventory">Em estoque</span>
-        <span>{formatPrices(current.product.price)}</span>
+        <span className="inventory">
+          {current.product.stock_quantity < 1 ? "Esgotado" : "Em estoque"}
+        </span>
+        <span className="price">{formatPrices(current.product.price)}</span>
         <Button
           onClick={() => {
             handleRequest(current);
