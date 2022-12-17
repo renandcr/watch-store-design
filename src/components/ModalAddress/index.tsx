@@ -4,6 +4,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { handleErrorMessages } from "../../assets/methods";
 import { SetStateAction, Dispatch, useState } from "react";
 import { VARIABLES } from "../../assets/globalStyle/style";
+import { motion, AnimatePresence } from "framer-motion";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ModalAddressContainer } from "./style";
 import { useHistory } from "react-router-dom";
@@ -11,7 +12,6 @@ import api from "../../assets/axios/index";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import Button from "../Button";
 import * as yup from "yup";
@@ -21,6 +21,12 @@ import {
   IAddressesDatabase,
   IUserAddress,
 } from "../../store/modules/user/actions";
+
+declare module "framer-motion" {
+  export interface AnimatePresenceProps {
+    children?: React.ReactNode;
+  }
+}
 
 export interface IAddressModal {
   setAnimationOption2?: Dispatch<SetStateAction<boolean>>;
@@ -128,6 +134,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
               setTimeout(() => {
                 setShowAddressModal?.(false);
                 history.push("/checkout-page");
+                document.body.style.overflow = "auto";
                 toast.success("Endereço cadastrado com sucesso");
               }, 2000);
               api
@@ -148,21 +155,28 @@ const ModalAddress: React.FC<IAddressModal> = ({
   const variants1 = {
     visible: { opacity: 1, transition: { duration: 0.5 } },
     hidden: { opacity: 0 },
+    exit: { opacity: 0, transition: { duration: 0.5 } },
   };
 
   const variants2 = {
-    visible: { y: 1, opacity: 1, transition: { duration: 0.5 } },
-    hidden: { y: -400, opacity: 0 },
+    visible: { y: 1, transition: { duration: 0.5 } },
+    hidden: { y: "-100%" },
+    exit: { y: "-100%", transition: { duration: 0.5 } },
   };
 
+  if (showAddressModal) {
+    document.body.style.overflow = "hidden";
+  } else document.body.style.overflow = "auto";
+
   return (
-    <>
+    <AnimatePresence>
       {showAddressModal && (
         <ModalAddressContainer showDisplay={showDisplay}>
           <motion.div
             className="menu"
             initial="hidden"
             animate="visible"
+            exit="exit"
             variants={animationOption2 ? variants1 : variants2}
           >
             <FormContainer className="form-container">
@@ -299,10 +313,11 @@ const ModalAddress: React.FC<IAddressModal> = ({
                   </Button>
                   <Button
                     backgroundColor={VARIABLES.colorRed2}
-                    onClick={() => {
+                    onClick={(e) => {
                       setShowAddressModal?.(false);
                       setIsItUpdateEvent?.(false);
                       setAnimationOption2?.(false);
+                      e.preventDefault();
                     }}
                   >
                     Cancelar
@@ -313,7 +328,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
           </motion.div>
         </ModalAddressContainer>
       )}
-    </>
+    </AnimatePresence>
   );
 };
 

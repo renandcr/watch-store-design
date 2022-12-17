@@ -2,20 +2,17 @@ import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
 
 export const MenuContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: ${VARIABLES.colorDarkBackground};
-  position: fixed;
-  z-index: 3;
   .menu {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 420px;
+    max-width: 370px;
     background-color: ${VARIABLES.colorBackgroundGray};
     padding-bottom: 1px;
     border-radius: 0 0 4px 0;
+    position: fixed;
+    z-index: 3;
     .first-child {
       display: flex;
       justify-content: space-between;
@@ -28,12 +25,8 @@ export const MenuContainer = styled.div`
       margin-bottom: 5px;
       filter: none;
       border: none;
-      span {
-        font-size: 15px;
-      }
       .name {
         font-weight: 600;
-        font-size: 15px;
       }
       .close-icon {
         pointer-events: visible;

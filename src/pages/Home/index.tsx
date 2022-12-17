@@ -1,3 +1,4 @@
+import DarkBackground from "../../components/DarkBackground";
 import { MainHomeContainer, HomeContainer } from "./style";
 import { useTypedSelector } from "../../store/modules";
 import ProductCard from "../../components/ProductCard";
@@ -38,6 +39,7 @@ const Home: React.FC = (): JSX.Element => {
 
   return (
     <>
+      {menuIsVisible && <DarkBackground />}
       <Header setMenuVisibility={setMenuVisibility} />
       <Menu
         setMenuVisibility={setMenuVisibility}
@@ -78,12 +80,16 @@ const Home: React.FC = (): JSX.Element => {
           )}
           <HomeContainer>
             {!researchProducts.length &&
-              dbProducts.map(
-                (current, index) =>
-                  current.product.genre === "male" && (
-                    <ProductCard key={index} current={current} />
-                  )
-              )}
+              dbProducts
+                .sort(
+                  (a, b) => b.product.stock_quantity - a.product.stock_quantity
+                )
+                .map(
+                  (current, index) =>
+                    current.product.genre === "male" && (
+                      <ProductCard key={index} current={current} />
+                    )
+                )}
           </HomeContainer>
           {!researchProducts.length && <h1>Relógios Femininos</h1>}
           <HomeContainer>
