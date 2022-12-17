@@ -1,7 +1,8 @@
 import { VARIABLES } from "../../assets/globalStyle/style";
 import styled from "styled-components";
+import { IProductCard } from ".";
 
-export const ProductCardContainer = styled.li`
+export const ProductCardContainer = styled.li<IProductCard>`
   width: 240px;
   border-radius: 4px;
   margin: 0 5px 30px 5px;
@@ -9,6 +10,7 @@ export const ProductCardContainer = styled.li`
   background-color: ${VARIABLES.colorBlue1};
   box-shadow: ${VARIABLES.colorShadow1};
   text-align: left;
+  opacity: ${(props) => props.unavailable && "35%"};
 
   @media only screen and (min-width: 420px) {
     width: 200px;
@@ -22,7 +24,7 @@ export const ProductCardContainer = styled.li`
   }
 `;
 
-export const ImageContainer = styled.div`
+export const ImageContainer = styled.div<IProductCard>`
   max-width: 100%;
   overflow: hidden;
   margin: 3px 3px 10px 3px;
@@ -32,7 +34,7 @@ export const ImageContainer = styled.div`
     max-width: 100%;
     transition: all 0.5s;
     :hover {
-      transform: scale(1.5);
+      transform: ${(props) => !props.unavailable && "scale(1.5)"};
     }
   }
 
@@ -41,7 +43,7 @@ export const ImageContainer = styled.div`
   }
 `;
 
-export const DescriptionContainer = styled.div`
+export const DescriptionContainer = styled.div<IProductCard>`
   max-width: 100%;
   padding: 0 10px 10px 10px;
   h2 {
@@ -63,8 +65,16 @@ export const DescriptionContainer = styled.div`
     font-weight: 500;
   }
   .inventory {
-    color: ${VARIABLES.colorGreen2};
-    font-size: 11px;
-    font-weight: 400;
+    color: ${(props) =>
+      props.unavailable ? VARIABLES.colorRed2 : VARIABLES.colorGreen2};
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .price {
+    opacity: ${(props) => props.unavailable && "0%"};
+  }
+  button {
+    pointer-events: ${(props) => props.unavailable && "none"};
   }
 `;

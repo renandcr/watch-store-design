@@ -52,9 +52,22 @@ const cartReducer = (
       return updatedCart;
 
     case CHANGE_UNITS:
+      const unitLimit = 5;
       action.payload.units += action.units;
       if (action.payload.units < 1) action.payload.units = 1;
-      localStorage.setItem("@watchStore: cartProducts", JSON.stringify(state));
+      else if (action.payload.units > 5) {
+        action.payload.units = unitLimit;
+        toast.error(
+          `Desculpe. Compra limitada em ${unitLimit} unidade${
+            unitLimit > 1 ? "s" : ""
+          } por cliente`
+        );
+      } else {
+        localStorage.setItem(
+          "@watchStore: cartProducts",
+          JSON.stringify(state)
+        );
+      }
       return [...state];
 
     default:
