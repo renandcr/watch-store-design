@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { VARIABLES } from "../../assets/globalStyle/style";
+import styled from "styled-components";
 
 export const BigLogoContainer = styled.div`
   display: flex;
@@ -10,7 +10,7 @@ export const BigLogoContainer = styled.div`
   width: 503px;
   height: 503px;
   border-radius: 50%;
-  background: ${VARIABLES.colorPurple};
+  background: ${VARIABLES.colorBlue6};
   background: -webkit-linear-gradient(
     to right,
     ${VARIABLES.colorPurple},

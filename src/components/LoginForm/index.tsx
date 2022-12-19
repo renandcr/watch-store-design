@@ -1,13 +1,20 @@
 import { actionRemoveProductFromCart } from "../../store/modules/cart/actions";
 import { IDbProducts } from "../../store/modules/dbProducts/actions";
 import { InsideFormContainer } from "../RegistrationForm/style";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { handleErrorMessages } from "../../assets/methods";
 import { VARIABLES } from "../../assets/globalStyle/style";
 import { FormContainer } from "../RegistrationForm/style";
+import InputAdornment from "@mui/material/InputAdornment";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Visibility from "@mui/icons-material/Visibility";
 import { useTypedSelector } from "../../store/modules";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link, useHistory } from "react-router-dom";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import IconButton from "@mui/material/IconButton";
 import { useDispatch } from "react-redux";
 import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
@@ -27,6 +34,14 @@ import {
 } from "../../store/modules/user/actions";
 
 const LoginForm: React.FC = (): JSX.Element => {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
   const formSchema = yup.object().shape({
     email: yup.string().email("Email inválido").required("Email é obrigatório"),
     password: yup.string().required("Senha é obrigatória"),
@@ -113,12 +128,28 @@ const LoginForm: React.FC = (): JSX.Element => {
             {errors.email?.message}
           </p>
         )}
-        <TextField
-          className="textField"
-          type="password"
-          label="Senha"
-          {...register("password")}
-        />
+        <FormControl sx={{ width: "100%" }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ? "text" : "password"}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                  sx={{ mb: "10px" }}
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Senha"
+            {...register("password")}
+          />
+        </FormControl>
         {errors.password && (
           <p>
             <AiOutlineExclamationCircle />

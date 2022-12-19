@@ -30,6 +30,10 @@ const CartPage: React.FC = (): JSX.Element => {
   const cart: Array<IDbProducts> = useTypedSelector((state) => state.cart);
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
 
+  if (showAddressModal) {
+    document.body.style.overflow = "hidden";
+  } else document.body.style.overflow = "auto";
+
   return (
     <>
       {showAddressModal && <DarkBackground />}

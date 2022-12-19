@@ -1,10 +1,17 @@
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { Dispatch, SetStateAction, useState } from "react";
 import { handleErrorMessages } from "../../assets/methods";
 import { VARIABLES } from "../../assets/globalStyle/style";
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import { useTypedSelector } from "../../store/modules";
 import { yupResolver } from "@hookform/resolvers/yup";
+import FormControl from "@mui/material/FormControl";
 import { useHistory, Link } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
+import InputLabel from "@mui/material/InputLabel";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
@@ -35,10 +42,24 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
   setUpdateForm,
   updateForm,
 }): JSX.Element => {
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
 
   const FormSchema = yup.object().shape({
-    name: yup.string().required("Nome é obrigatório"),
+    name: yup
+      .string()
+      .required("Nome é obrigatório")
+      .matches(
+        /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/,
+        "Não é permitido números nesse campo"
+      ),
     last_name: yup
       .string()
       .required("Sobrenome é obrigatório")
@@ -50,10 +71,13 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
       .string()
       .email("E-mail inválido")
       .required("E-mail é obrigatório"),
-    password: yup.string().required("Senha é obrigatória"),
+    password: yup
+      .string()
+      .required("Senha é obrigatória")
+      .min(6, "Sua senha deve ter no mínimo 6 dígitos"),
     confirm_password: yup
       .string()
-      .oneOf([yup.ref("password")], "Senha incorreta")
+      .oneOf([yup.ref("password")], "As senhas não são iguais")
       .required("Confirme sua senha"),
   });
 
@@ -149,26 +173,59 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
             {errors.email?.message}
           </p>
         )}
-        <TextField
-          className="textField"
-          label="Senha"
-          type="password"
-          defaultValue={updateForm && "password491"}
-          {...register("password")}
-        />
+        <FormControl sx={{ width: "100%" }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ? "text" : "password"}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                  sx={{ mb: "10px" }}
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Senha"
+            placeholder="Mínimo de 6 caracteres"
+            {...register("password")}
+          />
+        </FormControl>
         {errors.password && (
           <p>
             <AiOutlineExclamationCircle />
             {errors.password?.message}
           </p>
         )}
-        <TextField
-          className="textField"
-          label="Confirmar senha"
-          type="password"
-          defaultValue={updateForm && "password491"}
-          {...register("confirm_password")}
-        />
+        <FormControl sx={{ width: "100%" }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">
+            Confirmar senha
+          </InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={showPassword ? "text" : "password"}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                  sx={{ mb: "10px" }}
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Confirmar senha"
+            {...register("confirm_password")}
+          />
+        </FormControl>
         {errors.confirm_password && (
           <p>
             <AiOutlineExclamationCircle />

@@ -13,15 +13,15 @@ import Home from "../pages/Home";
 const Routes = () => {
   return (
     <Switch>
-      <Route component={Home} path="/" exact />
-      <Route component={CartPage} path="/cart-page" />
-      <Route component={LoginPage} path="/login-page" />
-      <Route component={CheckoutPage} path="/checkout-page" />
-      <Route component={MyAccountPage} path="/my-account-page" />
-      <Route component={MyRequestsPage} path="/my-requests-page" />
-      <Route component={MyAddressesPage} path="/my-addresses-page" />
-      <Route component={RegistrationPage} path="/registration-page" />
       <Route component={PrivacyPolicyPage} path="/privacy-policy-page" />
+      <Route component={RegistrationPage} path="/registration-page" />
+      <Route component={MyAddressesPage} path="/my-addresses-page" />
+      <Route component={MyRequestsPage} path="/my-requests-page" />
+      <Route component={MyAccountPage} path="/my-account-page" />
+      <Route component={CheckoutPage} path="/checkout-page" />
+      <Route component={LoginPage} path="/login-page" />
+      <Route component={CartPage} path="/cart-page" />
+      <Route component={Home} path="/" exact />
       <Route
         component={CompletedPurchasePage}
         path="/completed-purchase-page"

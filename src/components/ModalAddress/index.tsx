@@ -76,7 +76,10 @@ const ModalAddress: React.FC<IAddressModal> = ({
     zip_code: yup
       .string()
       .required("Cep é obrigatório")
-      .max(8, "Forneça um cep válido(8 dígitos, somente números, sem hífen)"),
+      .matches(
+        /^[0-9]{0,8}$/,
+        "Forneça um cep válido(8 dígitos, somente números, sem hífen)"
+      ),
     phone: yup
       .string()
       .required("Telefone é obrigatório")
@@ -132,10 +135,10 @@ const ModalAddress: React.FC<IAddressModal> = ({
             })
             .then((_) => {
               setTimeout(() => {
-                setShowAddressModal?.(false);
                 history.push("/checkout-page");
                 document.body.style.overflow = "auto";
                 toast.success("Endereço cadastrado com sucesso");
+                setShowAddressModal?.(false);
               }, 2000);
               api
                 .get(`/${user.id}`, {
@@ -155,7 +158,6 @@ const ModalAddress: React.FC<IAddressModal> = ({
   const variants1 = {
     visible: { opacity: 1, transition: { duration: 0.5 } },
     hidden: { opacity: 0 },
-    exit: { opacity: 0, transition: { duration: 0.5 } },
   };
 
   const variants2 = {
@@ -163,10 +165,6 @@ const ModalAddress: React.FC<IAddressModal> = ({
     hidden: { y: "-100%" },
     exit: { y: "-100%", transition: { duration: 0.5 } },
   };
-
-  if (showAddressModal) {
-    document.body.style.overflow = "hidden";
-  } else document.body.style.overflow = "auto";
 
   return (
     <AnimatePresence>

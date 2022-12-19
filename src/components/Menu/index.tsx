@@ -47,7 +47,8 @@ const Menu: React.FC<IMenu> = ({
           >
             <li className="first-child">
               <span>
-                Olá, <span className="name">{user.name}</span>
+                Olá,{" "}
+                <span className="name">{user ? user.name : "usuário"}</span>
               </span>
               <span
                 className="close-icon"
@@ -56,19 +57,34 @@ const Menu: React.FC<IMenu> = ({
                 <CloseIcon />
               </span>
             </li>
-            <Link to="/my-account-page">
+            <Link
+              to="/my-account-page"
+              onClick={() => (document.body.style.overflow = "auto")}
+            >
               <li className="up">Minha conta</li>
             </Link>
-            <Link to="/my-requests-page">
+            <Link
+              to="/my-requests-page"
+              onClick={() => (document.body.style.overflow = "auto")}
+            >
               <li className="up">Seus pedidos</li>
             </Link>
-            <Link to="/registration-page">
+            <Link
+              to="/registration-page"
+              onClick={() => (document.body.style.overflow = "auto")}
+            >
               <li>Cadastrar</li>
             </Link>
-            <Link to="/login-page">
+            <Link
+              to="/login-page"
+              onClick={() => (document.body.style.overflow = "auto")}
+            >
               <li>Entrar</li>
             </Link>
-            <Link to="/cart-page">
+            <Link
+              to="/cart-page"
+              onClick={() => (document.body.style.overflow = "auto")}
+            >
               <li className="under">Carrinho</li>
             </Link>
             <Link to="">
@@ -93,7 +109,10 @@ const Menu: React.FC<IMenu> = ({
                 Relógios Femininos
               </li>
             </Link>
-            <Link to="/privacy-policy-page">
+            <Link
+              to="/privacy-policy-page"
+              onClick={() => (document.body.style.overflow = "auto")}
+            >
               <li className="up">Política de Privacidade</li>
             </Link>
             <Link
