@@ -76,10 +76,6 @@ export const PurchaseSummaryContainer = styled.div`
       transition: 0.5s;
     }
   }
-  .terms-of-use {
-    pointer-events: none;
-    font-size: 12px;
-  }
   p {
     font-size: 13px;
     text-align: center;
@@ -113,9 +109,15 @@ export const PurchaseSummaryContainer = styled.div`
       font-size: 17px;
     }
   }
-  > span {
-    font-size: 12px;
-    font-weight: 500;
+  .installment {
+    div {
+      display: flex;
+      align-items: flex-end;
+      > span {
+        font-size: 12px;
+        font-weight: 500;
+      }
+    }
   }
   button {
     margin-top: 10px;

@@ -10,7 +10,6 @@ import Footer from "../../components/Footer";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Menu from "../../components/Menu";
-import { motion } from "framer-motion";
 import api from "../../assets/axios";
 
 import {
@@ -45,64 +44,59 @@ const Home: React.FC = (): JSX.Element => {
         setMenuVisibility={setMenuVisibility}
         menuIsVisible={menuIsVisible}
       />
-      <motion.div
-        initial={{ y: -30 }}
-        animate={{ y: 0, transition: { type: "spring", stiffness: 100 } }}
-      >
-        <MainHomeContainer>
-          {!researchProducts.length && (
-            <AliceCarousel
-              items={items}
-              autoPlayInterval={6000}
-              autoPlayDirection="ltr"
-              autoPlay={true}
-              infinite={true}
-              mouseTracking
-            />
-          )}
-          {researchProducts.length > 0 && researchProducts[0]["no_result"] && (
-            <h1 className="results no-result">
-              {researchProducts[0]["no_result"]}
-            </h1>
-          )}
-          {researchProducts.length > 0 && !researchProducts[0]["no_result"] && (
-            <h1 className="results">Resultados da busca</h1>
-          )}
-          <HomeContainer>
-            {researchProducts.length > 0 &&
-              !researchProducts[0]["no_result"] &&
-              researchProducts.map((current, index) => (
-                <ProductCard key={index} current={current} />
-              ))}
-          </HomeContainer>
-          {!researchProducts.length && (
-            <h1 className="first-title">Relógios Masculinos</h1>
-          )}
-          <HomeContainer>
-            {!researchProducts.length &&
-              dbProducts
-                .sort(
-                  (a, b) => b.product.stock_quantity - a.product.stock_quantity
-                )
-                .map(
-                  (current, index) =>
-                    current.product.genre === "male" && (
-                      <ProductCard key={index} current={current} />
-                    )
-                )}
-          </HomeContainer>
-          {!researchProducts.length && <h1>Relógios Femininos</h1>}
-          <HomeContainer>
-            {!researchProducts.length &&
-              dbProducts.map(
+      <MainHomeContainer>
+        {!researchProducts.length && (
+          <AliceCarousel
+            items={items}
+            autoPlayInterval={6000}
+            autoPlayDirection="ltr"
+            autoPlay={true}
+            infinite={true}
+            mouseTracking
+          />
+        )}
+        {researchProducts.length > 0 && researchProducts[0]["no_result"] && (
+          <h1 className="results no-result">
+            {researchProducts[0]["no_result"]}
+          </h1>
+        )}
+        {researchProducts.length > 0 && !researchProducts[0]["no_result"] && (
+          <h1 className="results">Resultados da busca</h1>
+        )}
+        <HomeContainer>
+          {researchProducts.length > 0 &&
+            !researchProducts[0]["no_result"] &&
+            researchProducts.map((current, index) => (
+              <ProductCard key={index} current={current} />
+            ))}
+        </HomeContainer>
+        {!researchProducts.length && (
+          <h1 className="first-title">Relógios Masculinos</h1>
+        )}
+        <HomeContainer>
+          {!researchProducts.length &&
+            dbProducts
+              .sort(
+                (a, b) => b.product.stock_quantity - a.product.stock_quantity
+              )
+              .map(
                 (current, index) =>
-                  current.product.genre === "female" && (
+                  current.product.genre === "male" && (
                     <ProductCard key={index} current={current} />
                   )
               )}
-          </HomeContainer>
-        </MainHomeContainer>
-      </motion.div>
+        </HomeContainer>
+        {!researchProducts.length && <h1>Relógios Femininos</h1>}
+        <HomeContainer>
+          {!researchProducts.length &&
+            dbProducts.map(
+              (current, index) =>
+                current.product.genre === "female" && (
+                  <ProductCard key={index} current={current} />
+                )
+            )}
+        </HomeContainer>
+      </MainHomeContainer>
       <Footer />
     </>
   );

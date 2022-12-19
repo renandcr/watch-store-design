@@ -18,6 +18,7 @@ export const AddressInformationContainer = styled.div<IAddressInformation>`
     font-size: ${VARIABLES.fontSize3};
     font-weight: 500;
     text-transform: none;
+    cursor: pointer;
     :hover {
       color: ${VARIABLES.colorRed2};
       transition: 0.5s;
@@ -40,6 +41,16 @@ export const AddressInformationContainer = styled.div<IAddressInformation>`
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+    .form-of-payment {
+      display: ${(props) => (props.showDisplay ? "none" : "flex")};
+      align-items: center;
+      span:first-child {
+        font-size: 15px;
+      }
+      span:last-child {
+        line-height: normal;
+      }
     }
     .upper {
       text-transform: uppercase;

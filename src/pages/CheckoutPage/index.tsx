@@ -3,11 +3,14 @@ import AddressInformation from "../../components/AddressInformation";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import CartProductCard from "../../components/CartProductCard";
 import { VARIABLES } from "../../assets/globalStyle/style";
+import FormControl from "@material-ui/core/FormControl";
 import WebSiteLogo from "../../components/WebSiteLogo";
 import { useTypedSelector } from "../../store/modules";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link, useHistory } from "react-router-dom";
+import MenuItem from "@material-ui/core/MenuItem";
 import Backdrop from "@material-ui/core/Backdrop";
+import Select from "@material-ui/core/Select";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import { useEffect, useState } from "react";
@@ -39,6 +42,24 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: "#ffffff",
   },
+  formControl: {
+    minWidth: 120,
+    "& div": {
+      "& div": {
+        fontSize: 12,
+        fontWeight: 500,
+        padding: 7,
+        fontFamily: `${VARIABLES.fontSecondary}`,
+        color: `${VARIABLES.colorGray3}`,
+      },
+    },
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      border: `solid 1px black`,
+    },
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const CheckoutPage: React.FC = (): JSX.Element => {
@@ -46,11 +67,13 @@ const CheckoutPage: React.FC = (): JSX.Element => {
     window.scrollTo(0, 0);
   }, []);
 
+  const [showInstallment, setShowInstallment] = useState<boolean>(false);
   const [clickReleased, setClickReleased] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
   const classes = useStyles();
 
   const user: IDatabaseUser = useTypedSelector((state) => state.user)[0];
+
   const address: IAddressesDatabase | undefined = user.addresses.find(
     (address) => {
       return address.main === true;
@@ -60,6 +83,22 @@ const CheckoutPage: React.FC = (): JSX.Element => {
   const amount = shipping + user.cart.amount;
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const installmentConditions = [
+    `Em 1 vez de ${formatPrices(amount)} sem juros`,
+  ];
+  for (let i = 2; i <= 10; i++) {
+    installmentConditions.push(
+      `Em ${i}x de ${formatPrices(amount / i)} sem juros`
+    );
+  }
+
+  const installmentHandling = (current: string) => {
+    setShowInstallment(false);
+    localStorage.setItem("@watchStore: installment", current);
+  };
+
+  const installment = localStorage.getItem("@watchStore: installment") || "";
 
   const handleRequest = () => {
     if (clickReleased) {
@@ -116,12 +155,14 @@ const CheckoutPage: React.FC = (): JSX.Element => {
           <CheckoutPageContainer>
             <PurchaseSummaryContainer>
               <p>
-                Ao finalizar a compra, você concorda com todas as{" "}
-                <span className="link-change terms-of-use">
-                  condições de uso
-                </span>{" "}
-                da
-                <span className="store-name">Watch Store</span>.
+                Ao finalizar a compra, você concorda com todas as condições de
+                uso da
+                <span className="store-name">Watch Store</span>. Por favor
+                verifique nossa
+                <Link to="/privacy-policy-page">
+                  <span className="link-change">Política de Privacidade</span>
+                </Link>{" "}
+                para obter mais informações.
               </p>
               <h2 className="weight">Resumo do pedido</h2>
               <div>
@@ -145,27 +186,63 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                 <span>Total do pedido:</span>
                 <span>{formatPrices(amount)}</span>
               </div>
-              {user.cart.total_units > 0 && (
-                <span>
-                  Em 1x de {formatPrices(amount)} sem juros{" "}
-                  <Link to="/checkout-page">
-                    <span
-                      className="link-change"
-                      onClick={() =>
-                        alert(
-                          "Desculpe, por enquanto esta ação ainda não está habilitada"
-                        )
-                      }
-                    >
-                      Alterar
+              <div className="installment">
+                {user.cart.total_units > 0 && !showInstallment ? (
+                  <div>
+                    <span>
+                      {installment === ""
+                        ? installmentConditions[0]
+                        : installment}
                     </span>
-                  </Link>
-                </span>
-              )}
+                    <Link to="/checkout-page">
+                      <span
+                        className="link-change"
+                        onClick={() => setShowInstallment(true)}
+                      >
+                        Alterar
+                      </span>
+                    </Link>
+                  </div>
+                ) : (
+                  user.cart.total_units > 0 &&
+                  showInstallment && (
+                    <FormControl
+                      variant="outlined"
+                      className={classes.formControl}
+                    >
+                      <Select value={""} displayEmpty>
+                        <MenuItem
+                          value=""
+                          onClick={() => installmentHandling("")}
+                        >
+                          Preço à vista
+                        </MenuItem>
+                        {installmentConditions.map(
+                          (current, index) =>
+                            index !== 0 && (
+                              <MenuItem
+                                key={index}
+                                value={current}
+                                onClick={() => installmentHandling(current)}
+                              >
+                                {current}
+                              </MenuItem>
+                            )
+                        )}
+                      </Select>
+                    </FormControl>
+                  )
+                )}
+              </div>
               <Button
                 backgroundColor={VARIABLES.colorOrange2}
                 color={VARIABLES.colorGray3}
-                onClick={() => handleRequest()}
+                onClick={() => {
+                  handleRequest();
+                  setTimeout(() => {
+                    installmentHandling("");
+                  }, 2000);
+                }}
               >
                 Finalizar compra
               </Button>

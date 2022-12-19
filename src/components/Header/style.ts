@@ -181,11 +181,8 @@ export const OptionsContainer = styled.div<IHeader>`
       }
     }
     a + a {
-      margin-left: 10px;
+      margin-left: 19px;
 
-      @media only screen and (min-width: 375px) {
-        margin-left: 19px;
-      }
       @media only screen and (min-width: 425px) {
         margin-left: 34px;
       }

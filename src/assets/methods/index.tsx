@@ -103,7 +103,6 @@ export const handleErrorMessages = (message: string, history?: History) => {
     } else if (errorCode === "[4018]") {
       return toast.error("Você não possui autorização para esta ação");
     } else if (errorCode === "[4019]") {
-      console.log("quantidade", typeof message.split(" ")[3]);
       const units = Number(message.split(" ")[3]);
       return toast.error(
         `Desculpe. Este item possui ${units} ${
@@ -123,6 +122,8 @@ export const handleErrorMessages = (message: string, history?: History) => {
           units > 1 ? "s" : ""
         } por cliente`
       );
+    } else if (errorCode === "[4023]") {
+      return toast.error("Você precisa indicar um endereço para entrega");
     }
   }
 };

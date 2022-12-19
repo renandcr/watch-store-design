@@ -7,6 +7,18 @@ export const MainMyAccountPageContainer = styled.main`
   align-items: center;
   background-color: #ffffff;
   padding-bottom: 80px;
+  .title {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 32px;
+    font-family: ${VARIABLES.fontSecondary};
+    color: ${VARIABLES.colorGray1};
+    width: 90%;
+    max-width: 900px;
+  }
+  .not-logged-in {
+    margin-top: 40px;
+  }
   .motion-container {
     display: flex;
     flex-direction: column;
@@ -19,13 +31,6 @@ export const MainMyAccountPageContainer = styled.main`
       align-items: start;
       margin-bottom: 50px;
       width: 100%;
-      h1 {
-        font-size: 24px;
-        font-weight: 500;
-        line-height: 26px;
-        font-family: ${VARIABLES.fontSecondary};
-        color: ${VARIABLES.colorGray1};
-      }
       span {
         display: flex;
         align-items: center;

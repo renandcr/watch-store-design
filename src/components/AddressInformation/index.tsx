@@ -38,21 +38,20 @@ const AddressInformation: React.FC<
         </li>
         <li>Brasil</li>
         <li>Telefone: {address?.phone}</li>
-        <li className="weight">
-          Forma de pagamento
-          <Link to="/checkout-page">
-            <span
-              className="link-change"
-              onClick={() =>
-                alert(
-                  "Desculpe, por enquanto esta ação ainda não está habilitada"
-                )
-              }
-            >
-              Alterar
-            </span>
-          </Link>
+        <li className="form-of-payment">
+          <span className="weight">Forma de pagamento</span>
+          <span
+            className="link-change"
+            onClick={() =>
+              alert(
+                "Desculpe, por enquanto esta ação ainda não está habilitada"
+              )
+            }
+          >
+            Alterar
+          </span>
         </li>
+
         <li className="flag-card weight">
           <img src={MasterCard} alt="Bandeira MasterCard" />
           <span>(Crédito) com final 4321</span>

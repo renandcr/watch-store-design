@@ -84,7 +84,9 @@ const ProductCard: React.FC<{ current: IDbProducts }> = ({
             handleRequest(current);
           }}
         >
-          Adicionar ao carrinho
+          {current.product.stock_quantity > 0
+            ? "Adicionar ao carrinho"
+            : "Produto indisponível"}
         </Button>
       </DescriptionContainer>
     </ProductCardContainer>

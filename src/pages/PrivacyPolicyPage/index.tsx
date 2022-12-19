@@ -27,7 +27,6 @@ const PrivacyPolicyPage: React.FC = (): JSX.Element => {
           </PrivacyPolicyPageContainer>
         </MainPrivacyPolicyPageContainer>
       </motion.div>
-
       <Footer />
     </>
   );

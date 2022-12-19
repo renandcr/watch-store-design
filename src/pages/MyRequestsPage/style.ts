@@ -13,7 +13,7 @@ export const MainMyRequestsPageContainer = styled.main`
       font-size: 24px;
       font-weight: 500;
       font-family: ${VARIABLES.fontSecondary};
-      line-height: 26px;
+      line-height: 32px;
       width: 90%;
       max-width: 900px;
       color: ${VARIABLES.colorGray1};

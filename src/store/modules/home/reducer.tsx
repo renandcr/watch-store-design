@@ -35,11 +35,11 @@ const homeReducer = (
         } else {
           const productDescription = normalizedText(
             current.product.description
-          )?.split(" ");
-          const compatibleWords = productDescription?.filter((current) => {
+          )!.split(" ");
+          const compatibleWords = productDescription.filter((current) => {
             return listOfWords.find((word) => word === current);
           });
-          return compatibleWords?.length === listOfWords.length;
+          return compatibleWords.length === listOfWords.length;
         }
       });
 
