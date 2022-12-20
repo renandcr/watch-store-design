@@ -77,7 +77,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
       .string()
       .required("Cep é obrigatório")
       .matches(
-        /^[0-9]{0,8}$/,
+        /^[0-9]{8}$/,
         "Forneça um cep válido(8 dígitos, somente números, sem hífen)"
       ),
     phone: yup

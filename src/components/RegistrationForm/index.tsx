@@ -180,19 +180,22 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
             type={showPassword ? "text" : "password"}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                  sx={{ mb: "10px" }}
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
+                {!updateForm && (
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                    sx={{ mb: "10px" }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                )}
               </InputAdornment>
             }
             label="Senha"
             placeholder="Mínimo de 6 caracteres"
+            defaultValue={updateForm && "password491"}
             {...register("password")}
           />
         </FormControl>
@@ -211,18 +214,21 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
             type={showPassword ? "text" : "password"}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                  sx={{ mb: "10px" }}
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
+                {!updateForm && (
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                    sx={{ mb: "10px" }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                )}
               </InputAdornment>
             }
             label="Confirmar senha"
+            defaultValue={updateForm && "password491"}
             {...register("confirm_password")}
           />
         </FormControl>

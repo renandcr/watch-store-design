@@ -15,10 +15,15 @@ const OrderDetails: React.FC<{ user: IDatabaseUser } & IOrderDetails> = ({
   user,
   renderisionType,
 }): JSX.Element => {
+  const purchaseOrders = user.purchaseOrders.sort(
+    (a, b) =>
+      new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  );
+
   return (
     <>
       {renderisionType === "all" &&
-        user.purchaseOrders.map((current) => (
+        purchaseOrders.map((current) => (
           <OrderDetailsContainer key={current.id}>
             <OrderDescriptionContainer>
               <li>
@@ -65,59 +70,39 @@ const OrderDetails: React.FC<{ user: IDatabaseUser } & IOrderDetails> = ({
               <div>
                 <span>Compra realizada no dia</span>
                 <span>
-                  {deliveryDate(
-                    new Date(
-                      user.purchaseOrders[
-                        user.purchaseOrders.length - 1
-                      ].created_at
-                    )
-                  )}
+                  {deliveryDate(new Date(purchaseOrders[0].created_at))}
                 </span>
               </div>
               <div>
                 <span>TOTAL</span>{" "}
                 <div>
+                  <span>{formatPrices(purchaseOrders[0].total_price)}</span>
                   <span>
-                    {formatPrices(
-                      user.purchaseOrders[user.purchaseOrders.length - 1]
-                        .total_price
-                    )}
-                  </span>
-                  <span>
-                    (incluso frete de{" "}
-                    {formatPrices(
-                      user.purchaseOrders[user.purchaseOrders.length - 1]
-                        .shipping
-                    )}
+                    (incluso frete de {formatPrices(purchaseOrders[0].shipping)}
                     )
                   </span>
                 </div>
               </div>
             </li>
             <li>
-              <span>Número do pedido</span>{" "}
-              <span>
-                {user.purchaseOrders[user.purchaseOrders.length - 1].id}
-              </span>
+              <span>Número do pedido</span> <span>{purchaseOrders[0].id}</span>
             </li>
           </OrderDescriptionContainer>
-          {user.purchaseOrders[user.purchaseOrders.length - 1].products.map(
-            (current) => (
-              <ProductInformation key={current.product.id}>
-                <div className="image-container">
-                  <img
-                    src={current.product.img}
-                    alt="Imagem ilustrativa de relógio"
-                  />
-                </div>
-                <div className="description-container">
-                  <h2>{current.product.description}</h2>
-                  <span>{formatPrices(current.product.price)}</span>
-                  <span>Quantidade: {current.units}</span>
-                </div>
-              </ProductInformation>
-            )
-          )}
+          {purchaseOrders[0].products.map((current) => (
+            <ProductInformation key={current.product.id}>
+              <div className="image-container">
+                <img
+                  src={current.product.img}
+                  alt="Imagem ilustrativa de relógio"
+                />
+              </div>
+              <div className="description-container">
+                <h2>{current.product.description}</h2>
+                <span>{formatPrices(current.product.price)}</span>
+                <span>Quantidade: {current.units}</span>
+              </div>
+            </ProductInformation>
+          ))}
         </OrderDetailsContainer>
       )}
     </>
