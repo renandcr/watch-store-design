@@ -72,7 +72,7 @@ const ModalAddress: React.FC<IAddressModal> = ({
     state: yup
       .string()
       .required("Estado é obrigatório")
-      .max(2, "Não ultrapasse o limite de 5 caracteres"),
+      .max(2, "Não ultrapasse o limite de 2 caracteres"),
     zip_code: yup
       .string()
       .required("Cep é obrigatório")

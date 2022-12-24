@@ -206,11 +206,11 @@ const RegistrationForm: React.FC<IRegistrationForm> = ({
           </p>
         )}
         <FormControl sx={{ width: "100%" }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">
+          <InputLabel htmlFor="outlined-adornment-confirm-password">
             Confirmar senha
           </InputLabel>
           <OutlinedInput
-            id="outlined-adornment-password"
+            id="outlined-adornment-confirm-password"
             type={showPassword ? "text" : "password"}
             endAdornment={
               <InputAdornment position="end">

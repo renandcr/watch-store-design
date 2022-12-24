@@ -7,14 +7,17 @@ export const MainMyAccountPageContainer = styled.main`
   align-items: center;
   background-color: #ffffff;
   padding-bottom: 80px;
+  .motion-container-1 {
+    width: 90%;
+    max-width: 900px;
+  }
   .title {
     font-size: 24px;
     font-weight: 500;
     line-height: 32px;
     font-family: ${VARIABLES.fontSecondary};
     color: ${VARIABLES.colorGray1};
-    width: 90%;
-    max-width: 900px;
+    width: 100%;
   }
   .not-logged-in {
     margin-top: 40px;

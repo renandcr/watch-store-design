@@ -31,6 +31,8 @@ export interface ICart {
   id: string;
   total_units: number;
   amount: number;
+  shipping: number;
+  installment: string;
   productCart: Array<IDbProducts>;
 }
 
