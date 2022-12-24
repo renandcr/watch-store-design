@@ -20,11 +20,17 @@ const MyAccountPage: React.FC = (): JSX.Element => {
     <>
       <MainMyAccountPageContainer>
         <Header display="none" noPosition noShadow />
-        {!user && (
-          <h1 className="title not-logged-in">
-            Entre em sua conta para ter acesso aos seus dados!
-          </h1>
-        )}
+        <motion.div
+          className="motion-container-1"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1, transition: { duration: 0.5 } }}
+        >
+          {!user && (
+            <h1 className="title not-logged-in">
+              Entre em sua conta para ter acesso aos seus dados!
+            </h1>
+          )}
+        </motion.div>
         <motion.div
           className="motion-container"
           initial={{ opacity: 0, scale: 0.5 }}

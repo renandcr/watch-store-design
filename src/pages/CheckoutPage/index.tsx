@@ -79,26 +79,40 @@ const CheckoutPage: React.FC = (): JSX.Element => {
       return address.main === true;
     }
   );
-  const shipping = user.cart.productCart.length ? 28.9 : 0;
-  const amount = shipping + user.cart.amount;
+
+  const amount = user.cart.shipping + user.cart.amount;
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const installmentConditions = [
-    `Em 1 vez de ${formatPrices(amount)} sem juros`,
-  ];
+  const installmentConditions = [];
   for (let i = 2; i <= 10; i++) {
     installmentConditions.push(
       `Em ${i}x de ${formatPrices(amount / i)} sem juros`
     );
   }
 
-  const installmentHandling = (current: string) => {
+  const installmentHandling = (installment: string) => {
     setShowInstallment(false);
-    localStorage.setItem("@watchStore: installment", current);
+    api
+      .patch(
+        `/cart/change_installments/${user.id}`,
+        { installment },
+        {
+          headers: { Authorization: `bearer ${user.token}` },
+        }
+      )
+      .then((_) => {
+        api
+          .get(`/${user.id}`, {
+            headers: { Authorization: `bearer ${user.token}` },
+          })
+          .then((response) => {
+            dispatch(actionUpdateUserState(response.data, user.token));
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => handleErrorMessages(err.response.data.message, history));
   };
-
-  const installment = localStorage.getItem("@watchStore: installment") || "";
 
   const handleRequest = () => {
     if (clickReleased) {
@@ -109,7 +123,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
       api
         .post(
           `/purchase-order/create/${user.id}`,
-          { shipping },
+          {},
           {
             headers: { Authorization: `bearer ${user.token}` },
           }
@@ -180,7 +194,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               </div>
               <div>
                 <span>Frete:</span>
-                <span>{formatPrices(shipping)}</span>
+                <span>{formatPrices(user.cart.shipping)}</span>
               </div>
               <div className="total-description">
                 <span>Total do pedido:</span>
@@ -189,11 +203,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
               <div className="installment">
                 {user.cart.total_units > 0 && !showInstallment ? (
                   <div>
-                    <span>
-                      {installment === ""
-                        ? installmentConditions[0]
-                        : installment}
-                    </span>
+                    <span>{user.cart.installment}</span>
                     <Link to="/checkout-page">
                       <span
                         className="link-change"
@@ -213,22 +223,23 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                       <Select value={""} displayEmpty>
                         <MenuItem
                           value=""
-                          onClick={() => installmentHandling("")}
+                          onClick={() =>
+                            installmentHandling(
+                              `Em 1x de ${formatPrices(amount)} sem juros`
+                            )
+                          }
                         >
                           Preço à vista
                         </MenuItem>
-                        {installmentConditions.map(
-                          (current, index) =>
-                            index !== 0 && (
-                              <MenuItem
-                                key={index}
-                                value={current}
-                                onClick={() => installmentHandling(current)}
-                              >
-                                {current}
-                              </MenuItem>
-                            )
-                        )}
+                        {installmentConditions.map((current, index) => (
+                          <MenuItem
+                            key={index}
+                            value={current}
+                            onClick={() => installmentHandling(current)}
+                          >
+                            {current}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
                   )
@@ -239,9 +250,6 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                 color={VARIABLES.colorGray3}
                 onClick={() => {
                   handleRequest();
-                  setTimeout(() => {
-                    installmentHandling("");
-                  }, 2000);
                 }}
               >
                 Finalizar compra

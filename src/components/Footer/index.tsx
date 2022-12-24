@@ -69,7 +69,7 @@ const Footer: React.FC<IFooter> = ({ showDisplay }): JSX.Element => {
         <div className="fake-div"></div>
       </FooterMidleContainer>
       <FooterBottomContainer>
-        <span>© 2021-2022 watchstore.com.br</span>
+        <span>© 2022-2023 watchstore.com.br</span>
         <Link to="/privacy-policy-page">
           <span>Política de privacidade</span>
         </Link>
