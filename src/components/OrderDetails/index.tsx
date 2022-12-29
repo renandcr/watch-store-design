@@ -55,7 +55,7 @@ const OrderDetails: React.FC<{ user: IDatabaseUser } & IOrderDetails> = ({
                 </div>
                 <div className="description-container">
                   <h2>{current.product.description}</h2>
-                  <span>{formatPrices(current.product.price)}</span>
+                  <span>{formatPrices(current.final_price)}</span>
                   <span>Quantidade: {current.units}</span>
                 </div>
               </ProductInformation>
@@ -98,7 +98,7 @@ const OrderDetails: React.FC<{ user: IDatabaseUser } & IOrderDetails> = ({
               </div>
               <div className="description-container">
                 <h2>{current.product.description}</h2>
-                <span>{formatPrices(current.product.price)}</span>
+                <span>{formatPrices(current.final_price)}</span>
                 <span>Quantidade: {current.units}</span>
               </div>
             </ProductInformation>
