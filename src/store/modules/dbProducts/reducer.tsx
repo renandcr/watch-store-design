@@ -5,7 +5,11 @@ const productsReducer = (state = [], action: IDbProductsAction) => {
   switch (action.type) {
     case DATABASE_PRODUCTS:
       const products = action.payload.map((current) => {
-        return { units: 1, product: current };
+        return {
+          units: 1,
+          final_price: current.price,
+          product: current,
+        };
       });
       return products;
 

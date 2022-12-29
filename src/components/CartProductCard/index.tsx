@@ -116,7 +116,7 @@ const CartProductCard: React.FC<
         unavailable={current.product.stock_quantity < 1 ? true : false}
       >
         <h2>{current.product.description}</h2>
-        <span>{formatPrices(current.product.price)}</span>
+        <span>{formatPrices(current.final_price)}</span>
         <span className="inventory">
           {current.product.stock_quantity < 1 ? "Esgotado" : "Em estoque"}
         </span>

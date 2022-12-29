@@ -30,7 +30,7 @@ const OrderSummary: React.FC<IOrderSummary> = ({
   const total_units = cart.reduce((acc, current) => current.units + acc, 0);
 
   const amount = cart.reduce(
-    (acc, current) => current.product.price * current.units + acc,
+    (acc, current) => current.final_price * current.units + acc,
     0
   );
 

@@ -277,7 +277,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                   )}
                 </div>
                 {user.cart.productCart
-                  .sort((a, b) => a.product.price - b.product.price)
+                  .sort((a, b) => a.final_price - b.final_price)
                   .map((current, index) => (
                     <CartProductCard
                       key={index}
