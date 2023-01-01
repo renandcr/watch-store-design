@@ -1,3 +1,4 @@
+import { handleErrorMessages, formatPrices } from "../../assets/methods";
 import { actionUpdateUserState } from "../../store/modules/user/actions";
 import AddressInformation from "../../components/AddressInformation";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -17,12 +18,6 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import api from "../../assets/axios";
-
-import {
-  handleErrorMessages,
-  deliveryDate,
-  formatPrices,
-} from "../../assets/methods";
 
 import {
   IAddressesDatabase,
@@ -129,9 +124,11 @@ const CheckoutPage: React.FC = (): JSX.Element => {
           }
         )
         .then((_) => {
+          document.body.style.overflow = "hidden";
           setTimeout(() => {
             history.push("/completed-purchase-page");
             setOpen(false);
+            document.body.style.overflow = "auto";
           }, 4000);
           setOpen(true);
           api
@@ -144,7 +141,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
             .catch((err) => console.log(err));
         })
         .catch((err) =>
-          handleErrorMessages(err.response.data.message, history)
+          handleErrorMessages(err.response.data.message, history, user)
         );
     }
   };
@@ -258,7 +255,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
             <LeftCheckoutPageContainer>
               <AddressInformation address={address} />
               <ShoppingContainer>
-                <h1>Entrega prevista para {deliveryDate()}</h1>
+                <h1>Previsão para entrega de 7 dias úteis</h1>
                 <div className="you-are-buying">
                   <h2 className="weight">
                     {!user.cart.productCart.length

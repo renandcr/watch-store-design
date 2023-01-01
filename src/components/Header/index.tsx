@@ -130,12 +130,19 @@ const Header: React.FC<IHeader> = ({
               <HomeOutlinedIcon />
             </li>
           </Link>
-          <Link to="/registration-page">
-            <li>Cadastrar</li>
-          </Link>
+          {!user && (
+            <Link to="/registration-page">
+              <li>Cadastrar</li>
+            </Link>
+          )}
           <Link to="/login-page">
             <li>Entrar</li>
           </Link>
+          {user && (
+            <Link to="/my-requests-page">
+              <li>Seus pedidos</li>
+            </Link>
+          )}
           <Link to="/my-account-page">
             <li>Minha conta</li>
           </Link>

@@ -1,3 +1,4 @@
+import { IDatabaseUser } from "../../store/modules/user/actions";
 import { toast } from "react-toastify";
 import { History } from "history";
 
@@ -19,20 +20,15 @@ export const formatPrices = (value: number) => {
   }
 };
 
-export const deliveryDate = (date?: Date) => {
-  if (date) {
-    return date.toLocaleDateString("pt-br", { dateStyle: "long" });
-  } else {
-    let newDate = new Date()
-      .toLocaleDateString("pt-br", { dateStyle: "long" })
-      .split(" ");
-    let day = newDate.shift();
-
-    return `${Number(day) + 7} ${[...newDate].join(" ").replace(/,/gi, "")}`;
-  }
+export const deliveryDate = (date: Date) => {
+  return date.toLocaleDateString("pt-br", { dateStyle: "long" });
 };
 
-export const handleErrorMessages = (message: string, history?: History) => {
+export const handleErrorMessages = (
+  message: string,
+  history?: History,
+  user?: IDatabaseUser
+) => {
   if (message) {
     const errorCode = message.split(" ")[0];
     if (errorCode === "[4000]") {
@@ -105,7 +101,7 @@ export const handleErrorMessages = (message: string, history?: History) => {
     } else if (errorCode === "[4019]") {
       const units = Number(message.split(" ")[3]);
       return toast.error(
-        `Desculpe. Este item possui ${units} ${
+        `Desculpe. Este item possui somente ${units} ${
           units > 1
             ? "unidades disponíveis para compra"
             : "unidade disponível para compra"
@@ -124,6 +120,16 @@ export const handleErrorMessages = (message: string, history?: History) => {
       );
     } else if (errorCode === "[4023]") {
       return toast.error("Você precisa indicar um endereço para entrega");
+    } else if (errorCode === "[4024]") {
+      const productId = message.split(" ")[3];
+      const product = user!.cart.productCart.find(
+        (current) => current.product.id === productId
+      );
+      return toast.error(
+        `Desculpe. "${product!.product.description}" possui somente ${
+          product?.product.stock_quantity
+        } unidade${product!.product.stock_quantity > 1 ? "s" : ""} em estoque`
+      );
     }
   }
 };

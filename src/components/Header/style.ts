@@ -181,7 +181,7 @@ export const OptionsContainer = styled.div<IHeader>`
       }
     }
     a + a {
-      margin-left: 19px;
+      margin-left: 15px;
 
       @media only screen and (min-width: 425px) {
         margin-left: 34px;
