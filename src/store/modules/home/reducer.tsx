@@ -52,9 +52,11 @@ const homeReducer = (
       } else {
         localStorage.setItem(
           "@watchstore: researchedProducts",
-          JSON.stringify([{ no_result: "Nenhum resultado!" }])
+          JSON.stringify([
+            { no_result: `Nenhum resultado para ${action.payload}` },
+          ])
         );
-        return [{ no_result: "Nenhum resultado!" }];
+        return [{ no_result: `Nenhum resultado para ${action.payload}` }];
       }
     default:
       return state;

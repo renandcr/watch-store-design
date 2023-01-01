@@ -2,7 +2,6 @@ import AddressInformation from "../../components/AddressInformation";
 import OrderDetails from "../../components/OrderDetails";
 import { useTypedSelector } from "../../store/modules";
 import WebSiteLogo from "../../components/WebSiteLogo";
-import { deliveryDate } from "../../assets/methods";
 import Footer from "../../components/Footer";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
@@ -46,7 +45,7 @@ const CompletedPurchasePage: React.FC = (): JSX.Element => {
             <h2>Detalhes do pedido</h2>
             <AddressInformation showDisplay border address={address} />
             <h2 className="delivery-title">
-              Entrega prevista para o dia {deliveryDate()}
+              Previsão para entrega de 7 dias úteis
             </h2>
             {user && user.purchaseOrders.length > 0 && (
               <OrderDetails user={user} renderisionType={"one"} />

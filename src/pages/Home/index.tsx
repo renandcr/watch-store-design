@@ -56,12 +56,12 @@ const Home: React.FC = (): JSX.Element => {
           />
         )}
         {researchProducts.length > 0 && researchProducts[0]["no_result"] && (
-          <h1 className="results no-result">
+          <p className="results no-result">
             {researchProducts[0]["no_result"]}
-          </h1>
+          </p>
         )}
         {researchProducts.length > 0 && !researchProducts[0]["no_result"] && (
-          <h1 className="results">Resultados da busca</h1>
+          <p className="results">Resultados encontrados</p>
         )}
         <HomeContainer>
           {researchProducts.length > 0 &&

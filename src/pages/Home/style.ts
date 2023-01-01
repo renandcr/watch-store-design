@@ -73,6 +73,18 @@ export const MainHomeContainer = styled.main`
       margin: 40px 0 40px 0;
     }
   }
+  p {
+    font-size: 21px;
+    line-height: 30px;
+    color: ${VARIABLES.colorGray1};
+    font-family: ${VARIABLES.fontSecondary};
+    font-family: ${VARIABLES.fontThirdy};
+    border-bottom: solid 1px ${VARIABLES.lightBorderColor};
+    padding-bottom: 13px;
+    width: 50%;
+    text-align: center;
+    margin: 40px 0 40px 0;
+  }
   .results {
     margin: 215px 0 40px 0;
 
@@ -85,6 +97,10 @@ export const MainHomeContainer = styled.main`
   }
   .no-result {
     border-bottom: none;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 
