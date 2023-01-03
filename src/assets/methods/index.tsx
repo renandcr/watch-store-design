@@ -101,7 +101,7 @@ export const handleErrorMessages = (
     } else if (errorCode === "[4019]") {
       const units = Number(message.split(" ")[3]);
       return toast.error(
-        `Desculpe. Este item possui somente ${units} ${
+        `Desculpe. Este item possui ${units} ${
           units > 1
             ? "unidades disponíveis para compra"
             : "unidade disponível para compra"
@@ -126,7 +126,7 @@ export const handleErrorMessages = (
         (current) => current.product.id === productId
       );
       return toast.error(
-        `Desculpe. "${product!.product.description}" possui somente ${
+        `Desculpe. "${product!.product.description}" possui ${
           product?.product.stock_quantity
         } unidade${product!.product.stock_quantity > 1 ? "s" : ""} em estoque`
       );
