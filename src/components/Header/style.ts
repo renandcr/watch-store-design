@@ -92,13 +92,17 @@ export const TopContainer = styled.div<IHeader>`
     span {
       font-size: 13px;
       font-family: ${VARIABLES.fontSecondary};
-    }
-    .smile {
-      font-size: 10px;
+      line-height: 15px;
     }
     .header-name {
       font-weight: 600;
       margin-top: 3px;
+      text-transform: uppercase;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 14ch;
+      font-size: 12px;
     }
   }
   .li-icon-cart:hover {
