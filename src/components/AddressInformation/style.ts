@@ -41,6 +41,7 @@ export const AddressInformationContainer = styled.div<IAddressInformation>`
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      max-width: 75ch;
     }
     .form-of-payment {
       display: ${(props) => (props.showDisplay ? "none" : "flex")};

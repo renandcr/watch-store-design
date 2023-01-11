@@ -25,7 +25,16 @@ export const MenuContainer = styled.div`
       margin-bottom: 5px;
       filter: none;
       border: none;
+      span {
+        line-height: 17px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 20ch;
+      }
       .name {
+        text-transform: uppercase;
+        font-size: 15px;
         font-weight: 600;
       }
       .close-icon {

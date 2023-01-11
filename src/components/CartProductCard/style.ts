@@ -90,6 +90,7 @@ export const BottomContainer = styled.div<ICartProductCard>`
     font-weight: 500;
     text-transform: none;
     cursor: pointer;
+    width: max-content;
     :hover {
       color: ${VARIABLES.colorRed2};
       transition: 0.5s;

@@ -74,9 +74,7 @@ const Header: React.FC<IHeader> = ({
         </div>
         <ul>
           <li>
-            <span>
-              Bem-vindo :<span className="smile">)</span>,
-            </span>
+            <span>Olá,</span>
             <span className="header-name">{user ? user.name : "usuário"}</span>
           </li>
           <li className="li-icon-cart">
