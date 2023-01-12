@@ -21,7 +21,7 @@
 
 <br>
 
-### Project status 🚀 In production!
+### Project status 🚀 In production! Access the website [here](https://watchstore2.vercel.app/).
 
 <br>
 
@@ -40,7 +40,7 @@
   - [My requests](#my-requests)
   - [My account](#my-account)
   - [Privacy policy](#privacy-policy)
-- [Quick start](#quick-start)
+- [💻 Quick start](#-quick-start)
   - [Learn more](#learn-more)
 - [Author](#author)
 - [License](#license)
@@ -191,7 +191,7 @@ Changing access data.
 
 <br>
 
-## Quick start
+## 💻 Quick start
 
 To run a project in React, you will need to have [node.js](https://nodejs.org/en/) installed on your machine. In addition, you will also need a good code editor. My suggestion is the [Visual Studio Code](https://code.visualstudio.com/).
 
