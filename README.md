@@ -3,16 +3,12 @@
 </h1>
 
 ### Project description
-
-⌚Watch Store - is an e-commerce website developed in React.
-
-This is a fullstack project, and this interface was built together with an API developed in nodejs. You can access the API github through this link...
-
-This project was developed during the Web Development course offered by Kenzie Academy Brasil.
+⌚Watch Store - is an e-commerce website with many features. The project consists of two parts, an interface in React and an API developed in Node.js.
+ [Access the API repository](https://github.com/renandcr/watch-store-2-api).
 
 <br>
 
-![Version](https://img.shields.io/badge/version-v1.0.0-blue)
+![Version](https://img.shields.io/badge/version-v2.0.0-blue)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/renandcr/watch-store-design?color=orange)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fwatchstore2.vercel.app%2F)
 ![GitHub repo size](https://img.shields.io/github/repo-size/renandcr/watch-store-design)
@@ -20,6 +16,7 @@ This project was developed during the Web Development course offered by Kenzie A
 ![GitHub language count](https://img.shields.io/github/languages/count/renandcr/watch-store-design)
 ![GitHub top language](https://img.shields.io/github/languages/top/renandcr/watch-store-design)
 ![npm](https://img.shields.io/npm/v/yarn?label=yarn&logoColor=red)
+![GitHub](https://img.shields.io/github/license/renandcr/watch-store-design)
 
 <br>
 
@@ -49,8 +46,6 @@ This project was developed during the Web Development course offered by Kenzie A
 
 <br>
 
----
-
 ## ⚙️ Features
 
 1. Register user
@@ -59,7 +54,7 @@ This project was developed during the Web Development course offered by Kenzie A
 4. Search for products in the search field
 5. Add products to cart
 6. Remove products from cart
-7. Change quantity of products in cart
+7. Change the individual quantity of the products added to the cart
 8. Register address
 9. Delete address
 10. Change address details
@@ -69,8 +64,6 @@ This project was developed during the Web Development course offered by Kenzie A
 14. View completed orders
 
 <br>
-
----
 
 ## 🛠️ Technologies used
 
@@ -89,133 +82,109 @@ This project was developed during the Web Development course offered by Kenzie A
 
 <br>
 
----
-
 ## 🎨 Layout
-
-⬆️[ back to the top ](#)
 
 ### Home
 
 Website home page.
 
-<img alt="Home" src="src/assets/readme/images/home.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Home" src="src/assets/readme/images/home.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 <br>
 
 Accessing the sidebar menu.
 
-<img alt="Home_2" src="src/assets/readme/images/home_2.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Home" src="src/assets/readme/images/home_2.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 <br>
 
 Searching for products in the search field.
 
-<img alt="Home_3" src="src/assets/readme/images/home_3.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Home" src="src/assets/readme/images/home_3.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 <br>
 
 Failed search.
 
-<img alt="Home_4" src="src/assets/readme/images/home_4.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Home" src="src/assets/readme/images/home_4.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 ### Cart
 
-⬆️[ back to the top ](#)
-
 Products added to cart. User can change units or remove product. In the order summary, the user can view the total quantity and total price of all items added to the cart. Once finished, user can close the order.
 
-<img alt="Cart" src="src/assets/readme/images/cart.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Cart" src="src/assets/readme/images/cart.png" style="border-radius: 6px; width: 100%; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 <br>
 
 When the user tries to close the order but does not yet have a registered address, a modal appears so that he can register a valid address. User needs to be logged in to be able to close the order, if not, he will be directed to the login page.
 
-<img alt="Cart_2" src="src/assets/readme/images/cart_2.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Cart" src="src/assets/readme/images/cart_2.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 <br>
 
-<img alt="Cart_3" src="src/assets/readme/images/cart_3.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+Cart has no products added yet.
+
+<h4><img alt="Cart" src="src/assets/readme/images/cart_3.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 ### Registration
 
-⬆️[ back to the top ](#)
-
-<img alt="Registration" src="src/assets/readme/images/registration.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Registration" src="src/assets/readme/images/registration.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 ### Login
 
-⬆️[ back to the top ](#)
-
-<img alt="Login" src="src/assets/readme/images/login.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Login" src="src/assets/readme/images/login.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 ### Checkout
 
-⬆️[ back to the top ](#)
-
 After the user clicks close the order, he is directed to this page. On this page he can change the delivery address, change the installment plan, change product units or remove a product. After checking everything, the user can complete the purchase.
 
-<img alt="Checkout" src="src/assets/readme/images/checkout.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Checkout" src="src/assets/readme/images/checkout.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 <br>
 
 Changing installment.
 
-<img alt="Checkout" src="src/assets/readme/images/changing_installment.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Checkout" src="src/assets/readme/images/changing_installment.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 ### My addresses
 
-⬆️[ back to the top ](#)
-
 Here user can remove, edit and add a new address. If the user has more than one address registered, he can select which address he wants the delivery to be made.
 
-<img alt="My" src="src/assets/readme/images/my_addresses.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="My addresses" src="src/assets/readme/images/my_addresses.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 ### Completed Purchase
 
-⬆️[ back to the top ](#)
-
 After completing the purchase, the user is directed to this page.
 
-<img alt="Home" src="src/assets/readme/images/completed_purchase2.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Completed purchase" src="src/assets/readme/images/completed_purchase2.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 ### My requests
 
-⬆️[ back to the top ](#)
-
 On this page the user can view all of his completed orders.
 
-<img alt="Home" src="src/assets/readme/images/my_requests.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="My requests" src="src/assets/readme/images/my_requests.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 ### My account
 
-⬆️[ back to the top ](#)
-
 Viewing access data.
 
-<img alt="Home" src="src/assets/readme/images/my_account.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="My account" src="src/assets/readme/images/my_account.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 <br>
 
 Changing access data.
 
-<img alt="Home" src="src/assets/readme/images/my_account_2.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="My account" src="src/assets/readme/images/my_account_2.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 ### Privacy policy
 
-⬆️[ back to the top ](#)
-
-<img alt="Home" src="src/assets/readme/images/privacy_policy.png" style="border-radius: 6px; box-shadow: 0 0 15px #999"/>
+<h4><img alt="Privacy policy" src="src/assets/readme/images/privacy_policy.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 <br>
-
----
 
 <br>
 
 ## Quick start
-
-⬆️[ back to the top ](#)
 
 To run a project in React, you will need to have [node.js](https://nodejs.org/en/) installed on your machine. In addition, you will also need a good code editor. My suggestion is the [Visual Studio Code](https://code.visualstudio.com/).
 
@@ -257,7 +226,7 @@ In your text editor terminal, run the server:
 yarn start
 ```
 
-Use "Ctrl + c" to stop the server.
+Use "Ctrl + C" to stop the server.
 
 ### Learn more
 
@@ -267,14 +236,16 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 <br>
 
----
-
 ## Author
 
-<img alt="Home" src="src/assets/readme/images/profile_photo_2.JPG" style="border-radius: 6px; width: 100px; border-radius: 50px; object-fit: cover"/> \
+<h4><img alt="Home" src="src/assets/readme/images/profile_photo_2.JPG" style="width: 100px; border-radius: 50px"/></h4>
 Renan Ribeiro 🚀
 
-Made with lots of ❤️ by Renan Ribeiro 👋 Get in touch!
+<br>
+
+<br>
+
+Made with ❤️ by Renan Ribeiro 👋 Get in touch!
 
 ![WHATSAPP](<https://img.shields.io/badge/(43)996935385-25D366?style=flat-square&logo=whatsapp&logoColor=white>)
 ![GMAIL](https://img.shields.io/badge/renandcribeiro@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)
@@ -285,4 +256,4 @@ Made with lots of ❤️ by Renan Ribeiro 👋 Get in touch!
 
 ## License
 
-Licensed under [MIT]("https://github.com/renandcr/watch-store-design/blob/developer/LICENSE.md").
+Licensed under [MIT](https://github.com/renandcr/watch-store-design/blob/developer/LICENSE.md).
