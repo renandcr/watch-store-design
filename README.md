@@ -3,8 +3,9 @@
 </h1>
 
 ### Project description
+
 ⌚Watch Store - is an e-commerce website with many features. The project consists of two parts, an interface in React and an API developed in Node.js.
- [Access the API repository](https://github.com/renandcr/watch-store-2-api).
+[Access the API repository](https://github.com/renandcr/watch-store-2-api).
 
 <br>
 
@@ -107,6 +108,12 @@ Searching for products in the search field.
 Failed search.
 
 <h4><img alt="Home" src="src/assets/readme/images/home_4.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
+
+<br>
+
+On the right side, one of the items is out of stock, so there is no way to add it to the cart.
+
+<h4><img alt="Home" src="src/assets/readme/images/home_5.png" style="border-radius: 6px; box-shadow: 0 0 15px #999; width: 700px"/></h4>
 
 ### Cart
 
