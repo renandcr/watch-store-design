@@ -86,7 +86,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
     );
   }
 
-  const installmentHandling = (installment: string) => {
+  const installmentHandling = (installment: number) => {
     setShowInstallment(false);
     api
       .patch(
@@ -220,11 +220,7 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                       <Select value={""} displayEmpty>
                         <MenuItem
                           value=""
-                          onClick={() =>
-                            installmentHandling(
-                              `Em 1x de ${formatPrices(amount)} sem juros`
-                            )
-                          }
+                          onClick={() => installmentHandling(1)}
                         >
                           Preço à vista
                         </MenuItem>
@@ -232,7 +228,9 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                           <MenuItem
                             key={index}
                             value={current}
-                            onClick={() => installmentHandling(current)}
+                            onClick={() =>
+                              installmentHandling(Number(current.split("")[3]))
+                            }
                           >
                             {current}
                           </MenuItem>
