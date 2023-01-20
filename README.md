@@ -1,3 +1,4 @@
+<h1 align="center">Watch Store INTERFACE</h1>
 <h1 align="center">
   <img alt="Watch Store" src="src/assets/readme/images/logo.png" style="border-radius: 6px"/>
 </h1>
@@ -25,11 +26,11 @@
 
 <br>
 
-### 🏁 Index
+### Index
 
-- [⚙️ Features](#️-features)
-- [🛠️ Technologies used](#️-technologies-used)
-- [🎨 Layout](#-layout)
+- [Features](#️-features)
+- [Technologies used](#️-technologies-used)
+- [Layout](#-layout)
   - [Home](#home)
   - [Cart](#cart)
   - [Registration](#registration)
@@ -40,7 +41,7 @@
   - [My requests](#my-requests)
   - [My account](#my-account)
   - [Privacy policy](#privacy-policy)
-- [💻 Quick start](#-quick-start)
+- [Quick start](#-quick-start)
   - [Learn more](#learn-more)
 - [Author](#author)
 - [License](#license)
@@ -193,12 +194,12 @@ Changing access data.
 
 ## 💻 Quick start
 
-To run a project in React, you will need to have [node.js](https://nodejs.org/en/) installed on your machine. In addition, you will also need a good code editor. My suggestion is the [Visual Studio Code](https://code.visualstudio.com/).
+To run a project in React, you will need to have [node.js](https://nodejs.org/en/) installed on your machine. In addition, you will also need a good code editor, my suggestion is the [Visual Studio Code](https://code.visualstudio.com/).
 
 Clone the remote repository on your machine:
 
 ```
-git@github.com:renandcr/watch-store-design.git
+git clone git@github.com:renandcr/watch-store-design.git
 ```
 
 <br>
@@ -219,7 +220,7 @@ yarn
 
 <br>
 
-Open the text editor in the project's root folder:
+Open the code editor in the project's root folder:
 
 ```
 code .
@@ -227,7 +228,7 @@ code .
 
 <br>
 
-In your text editor terminal, run the server:
+In your code editor terminal, run the server:
 
 ```
 yarn start
@@ -254,7 +255,7 @@ Renan Ribeiro 🚀
 
 Made with ❤️ by Renan Ribeiro 👋 Get in touch!
 
-![WHATSAPP](<https://img.shields.io/badge/(43)996935385-25D366?style=flat-square&logo=whatsapp&logoColor=white>)
+![WHATSAPP](<https://img.shields.io/badge/+55(43)996935385-25D366?style=flat-square&logo=whatsapp&logoColor=white>)
 ![GMAIL](https://img.shields.io/badge/renandcribeiro@gmail.com-D14836?style=flat-square&logo=gmail&logoColor=white)
 <a href="https://www.linkedin.com/in/renandcr">
 <img src="https://img.shields.io/badge/Renan-0077B5?style=flat-square&logo=linkedin&logoColor=white"/></a>
