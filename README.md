@@ -10,7 +10,6 @@
 
 <br>
 
-![Version](https://img.shields.io/badge/version-v2.0.0-blue)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/renandcr/watch-store-design?color=orange)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fwatchstore2.vercel.app%2F)
 ![GitHub repo size](https://img.shields.io/github/repo-size/renandcr/watch-store-design)
