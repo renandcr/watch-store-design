@@ -17,6 +17,9 @@ export const ProductCardContainer = styled.li<IProductCard>`
     margin: 0 5px 10px 5px;
   }
   @media only screen and (min-width: 720px) {
+    margin: 0 10px 20px 10px;
+  }
+  @media only screen and (min-width: 1290px) {
     margin: 0 20px 40px 20px;
   }
   @media only screen and (min-width: 1440px) {
