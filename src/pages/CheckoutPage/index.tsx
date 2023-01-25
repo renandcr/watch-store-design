@@ -229,7 +229,9 @@ const CheckoutPage: React.FC = (): JSX.Element => {
                             key={index}
                             value={current}
                             onClick={() =>
-                              installmentHandling(Number(current.split("")[3]))
+                              installmentHandling(
+                                Number(current.split(" ")[1].replace("x", ""))
+                              )
                             }
                           >
                             {current}
