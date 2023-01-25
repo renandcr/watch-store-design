@@ -109,7 +109,7 @@ export const handleErrorMessages = (
       );
     } else if (errorCode === "[4020]") {
       return toast.error(
-        "Remova o produto com estoque esgotado antes de fechar o pedido"
+        "Remova o produto com estoque esgotado antes de finalizar a compra"
       );
     } else if (errorCode === "[4021]") {
       const units = Number(message.split(" ")[7]);
