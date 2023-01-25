@@ -21,7 +21,11 @@
 
 <br>
 
-### Project status 🚀 In production! Access the website [here](https://watchstore2.vercel.app/).
+### 📽️ Watch the presentation video [here.](https://drive.google.com/file/d/1utu-MTkfr0QGSVcVKBmtOTqnL8HL6hro/view?usp=share_link)
+
+<br>
+
+### 🖥️ Project status 🚀 In production! Access the website [here.](https://watchstore2.vercel.app/)
 
 <br>
 
